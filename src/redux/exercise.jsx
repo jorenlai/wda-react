@@ -1,24 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { po } from "../jrx/Util";
+import { createSlice } from '@reduxjs/toolkit'
+import { po } from '../jrx/Util'
 
 
 const initialState={
-    shopkeeper: JSON.parse(localStorage.getItem('shopkeeper')||"{}")
+    administrator: JSON.parse(localStorage.getItem('administrator')||'{}')
 }
 
 const exerciseSlice = createSlice({
-    name: "exercise"
+    name:'exercise'
     ,initialState
     ,reducers: Object.entries(initialState).reduce((aco,[exerciseName])=>{
         aco[`set${exerciseName.charAt(0).toUpperCase()}${exerciseName.slice(1)}`]=(state, action) => {
-            const st=JSON.parse( localStorage.getItem(exerciseName))
             Object.entries(action.payload).forEach(([key,value])=>{
                 state[exerciseName][key]=value
-                // st[key]=value
             })
             localStorage.setItem(exerciseName, JSON.stringify(state[exerciseName]))
-            // po('set storage',st)
-            po('state[exerciseName]',state[exerciseName])
         }
         return aco;
     }

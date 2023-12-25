@@ -1,11 +1,7 @@
-import styled from 'styled-components'
-
-const StyledTmp=styled.div`
-    display: flex;
-`
+import JCrud from '../../../jrx/JCrud'
 
 export default function tmp(){
-    return <StyledTmp>
+    return <JCrud>
         tmp
-    </StyledTmp>
+    </JCrud>
 }

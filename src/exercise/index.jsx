@@ -19,17 +19,18 @@ import AnpExercise from './AnpExercise'
 export default function ExerciseApp(){
 
     const topic={
-        name:'shopkeeper'
+        name:'administrator'
         ,time:1000 * 60 * 100 
     }
 
+    const set=`set${topic.name.charAt(0).toUpperCase()}${topic.name.slice(1)}`
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)[topic.name]
     
     
     const onComplete=(a,b,c)=>{
         if(exercise.timeUp===false){
-            dispatch(exerciseActions.setShopkeeper({
+            dispatch(exerciseActions[set]({
                 timeUp:true
                 ,completed:true
                 ,startTime:null
@@ -45,7 +46,7 @@ export default function ExerciseApp(){
             || exercise.completed 
             || exercise.startTime+topic.time<Date.now()
         ){
-            dispatch(exerciseActions.setShopkeeper({
+            dispatch(exerciseActions[set]({
                 startTime:dayjs().valueOf()
                 ,timeUp:false
                 ,completed:false

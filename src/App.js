@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ExerciseApp from './exercise'
 
 function App() {
-	console.clear()
+	// console.clear()
 	return <AppProvider>
 		<BrowserRouter>
 			<Routes>

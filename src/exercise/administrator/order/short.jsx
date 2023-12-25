@@ -1,6 +1,7 @@
+import JCrud from '../../../jrx/JCrud'
 
 export default function OrderShort(){
-    return <div>
+    return <JCrud>
         OrderShort
-    </div>
+    </JCrud>
 }

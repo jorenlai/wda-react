@@ -4,7 +4,6 @@ import { po } from "../jrx/Util"
 import { useEffect, useState } from "react"
 
 export default function Timer({startTime,length,onComplete}){
-    po('Timer',startTime)
     const startTimeD=dayjs(startTime)
     const nowLength=startTimeD.add(length,'millisecond')
     const date=startTime + length
