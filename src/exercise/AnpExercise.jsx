@@ -3,6 +3,7 @@ import { Button, Tabs } from 'antd'
 import { po } from '../jrx/Util';
 import PlanApp from './plan';
 import AdministratorApp from './administrator';
+import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){
     const location = useLocation();
@@ -16,7 +17,7 @@ export default function AnpExercise(){
             key: 'administrator'
             ,label: 'Tab 1'
             ,children: <Routes>
-                <Route path='/administrator/*' element={<AdministratorApp/>}/>
+                <Route path='/administrator*' element={<AdministratorApp/>}/>
             </Routes>
         },
         {
@@ -28,6 +29,6 @@ export default function AnpExercise(){
         }
     ];
     return <div>
-        <Tabs onChange={navigate} tabBarExtraContent={operations} defaultActiveKey={p['tab']==='plan'?'plan':'administrator'} items={items}/>
+        <Tabs onChange={navigate} tabBarExtraContent={operations} activeKey={p['*']==='plan'?'plan':'administrator'} items={items}/>
     </div>
 }

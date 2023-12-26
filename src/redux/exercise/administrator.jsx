@@ -1,15 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { po } from '../jrx/Util'
 
 
 const initialState={
-    exercise: JSON.parse(localStorage.getItem('exercise')||'{}')
-    ,administrator: JSON.parse(localStorage.getItem('administrator')||'{}')
-    ,plan: JSON.parse(localStorage.getItem('plan')||'{}')
+    administrator: JSON.parse(localStorage.getItem('administrator')||'{}')
 }
 
-const exerciseSlice = createSlice({
-    name:'exercise'
+const administratorSlice = createSlice({
+    name:'administrator'
     ,initialState
     ,reducers: Object.entries(initialState).reduce((aco,[exerciseName])=>{
         aco[`set${exerciseName.charAt(0).toUpperCase()}${exerciseName.slice(1)}`]=(state, action) => {
@@ -31,5 +28,5 @@ const exerciseSlice = createSlice({
     })
 })
 
-export const exerciseActions = exerciseSlice.actions;
-export default exerciseSlice.reducer;
+export const administratorActions = administratorSlice.actions;
+export default administratorSlice.reducer;

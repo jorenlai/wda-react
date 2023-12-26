@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useParams, useLocation,useNavigate } from 'react-router-dom'
 import { useSelector , useDispatch } from 'react-redux'
-import { exerciseActions } from '../../redux/exercise'
+import {   administratorActions } from '../../redux/exercise/administrator'
 
 import styled from 'styled-components'
 
 import WebApp from './WebApp'
-import IGrid from '../../jrx/IGrid'
+import JGrid from '../../jrx/JGrid'
 import IQuestion, { ITitle, IDescription } from './component/IQuestion'
 import { po } from '../../jrx/Util'
 import { useState } from 'react'
 import  question  from './Question'
 
-const StyledAdministratorApp=styled(IGrid)`
+const StyledAdministratorApp=styled(JGrid)`
     > * {
         border: 1px solid gray;
     }
@@ -26,6 +26,7 @@ const StyledQuestionPanel=styled.div`
 `
 
 const allQKey={}
+let leafNum=0
 const getLeafLength=(question,length,keys)=>{
     const children= (Array.isArray(question.props.children)
         ? question.props.children
@@ -39,28 +40,23 @@ const getLeafLength=(question,length,keys)=>{
 
     if(children.length>0){
         children.forEach((child,i)=>{
-            const _key=[...keys,i+1]
-            length+= getLeafLength(child,0,_key)
-            // po('length',length,_key)
-            allQKey[length]=_key
+            length+= getLeafLength(child,0,[...keys,i+1])
         })
         return length
     }else{
-        const index=length+1
-        // po("--------",length+1)
-        allQKey[index]=keys
+        allQKey[++leafNum]=keys
         return length+1
     }
 }
 const leafLenght=getLeafLength(question,0,[])
-po("allQKey",allQKey)
 
 
 
 
 const QuestionPanel=()=>{
     const dispatch = useDispatch()
-    const exercise = useSelector((state) => state.exercise)['administrator']
+    const administrator = useSelector((state) => state.administrator)['administrator']
+    po('administrator',administrator)
     let leafIndex=0
 
     const thisQ=(question,keys)=>{
@@ -106,28 +102,30 @@ const QuestionPanel=()=>{
     
 
     const navQ=(_num)=>{
-        const sum=exercise.selectedIndex+_num 
-        const selectedIndex=sum<=1 ? 1:sum>leafLenght?exercise.selectedIndex:sum
-        dispatch(exerciseActions.setAdministrator(
+        const sum=administrator.selectedIndex+_num 
+        const selectedIndex=sum<=1 ? 1:sum>leafLenght?administrator.selectedIndex:sum
+        po('selectedIndex',selectedIndex)
+        dispatch(administratorActions.setAdministrator(
             {
-                selectedIndex,selectedQKey:allQKey[selectedIndex]
+                selectedIndex
+                ,selectedQKey:allQKey[selectedIndex]
             }
         ))
     }   
     
     useEffect(()=>{
-        if(exercise.selectedIndex==null){
-            dispatch(exerciseActions.setAdministrator(
+        if(administrator.selectedIndex==null){
+            dispatch(administratorActions.setAdministrator(
                 {selectedIndex:1,selectedQKey:allQKey[1]}
            ))
         }
     },[])
 
-    const selectedQuestion=selectQues(question,exercise.selectedIndex,[])
+    const selectedQuestion=selectQues(question,administrator.selectedIndex,[])
     return <StyledQuestionPanel>
         <button>Start</button><button>Stop</button>
         <button onClick={()=>navQ(-1)}>Pre</button>
-        {exercise.selectedIndex}
+        {administrator.selectedIndex}
         <button onClick={()=>navQ(1)}>next</button><br/>
         {
             selectedQuestion

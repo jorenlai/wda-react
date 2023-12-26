@@ -19,7 +19,7 @@ import AnpExercise from './AnpExercise'
 export default function ExerciseApp(){
 
     const topic={
-        name:'administrator'
+        name:'exercise'
         ,time:1000 * 60 * 100 
     }
 

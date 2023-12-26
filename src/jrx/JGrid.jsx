@@ -14,7 +14,7 @@ const StyledGrid = styled.div`
     gap: ${({ gap }) => gap ?? "20px"};
 `;
 
-export default class IGrid extends React.Component {
+export default class JGrid extends React.Component {
     createElement({ props: { style = {}, colSpan, rowSpan, ...props }, ...child }) {
         const _style={
             ...style
