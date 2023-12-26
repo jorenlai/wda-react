@@ -17,7 +17,7 @@ export default function AnpExercise(){
             key: 'administrator'
             ,label: 'Tab 1'
             ,children: <Routes>
-                <Route path='/administrator*' element={<AdministratorApp/>}/>
+                <Route path='/administrator/*' element={<AdministratorApp/>}/>
             </Routes>
         },
         {

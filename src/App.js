@@ -1,4 +1,3 @@
-import logo from './logo.svg'
 import './App.css'
 import AppProvider from './component/AppProvider'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -7,7 +6,6 @@ import ResetApp from './exercise/reset'
 import ReadyApp from './exercise/ready'
 
 function App() {
-	// console.clear()
 	return <AppProvider>
 		<BrowserRouter>
 			<Routes>

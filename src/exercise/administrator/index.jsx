@@ -56,7 +56,6 @@ const leafLenght=getLeafLength(question,0,[])
 const QuestionPanel=()=>{
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
-    po('administrator',administrator)
     let leafIndex=0
 
     const thisQ=(question,keys)=>{
@@ -104,7 +103,6 @@ const QuestionPanel=()=>{
     const navQ=(_num)=>{
         const sum=administrator.selectedIndex+_num 
         const selectedIndex=sum<=1 ? 1:sum>leafLenght?administrator.selectedIndex:sum
-        po('selectedIndex',selectedIndex)
         dispatch(administratorActions.setState(
             {
                 selectedIndex

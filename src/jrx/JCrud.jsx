@@ -9,16 +9,10 @@ const StyledJCrud=styled.div`
 
 
 
-export function SearchPanel({children}){
-    return <div>
-        SearchPanel {children}
-    </div>
+export function SearchPanel(){
 }
 
 export function ResultPanel({children}){
-    return <div>
-        ResultPanel {children}
-    </div>
 }
 
 const getChildren=(children) =>{
@@ -37,11 +31,11 @@ const getChildren=(children) =>{
 
 export default function JCrud({children}){
     const items=getChildren(children)
-    po('items',items)
     /////////////////////////////////////////////////////////////////////////
     const searchPanelFormRef=useRef()
     const {
         children:searchChildren
+        ,...searchProps
     }=items.SearchPanel?.props ?? {}
 
 
@@ -50,7 +44,10 @@ export default function JCrud({children}){
     const {
         children:resultChildren
         ,get:resultGet
+        ,type:resultType
     }=items.ResultPanel?.props ?? {}
+
+    const ResultType=resultType??JForm
 
 
 
@@ -58,15 +55,18 @@ export default function JCrud({children}){
     return <StyledJCrud>
         {
             items.SearchPanel!=null &&
-            <JForm cols={1} gap={0} ref={searchPanelFormRef}>
+            <JForm cols={1} gap={0} {...searchProps} ref={searchPanelFormRef}>
                 <JForm.Grid cols={4}>
                     {searchChildren}
                 </JForm.Grid>
-                <JForm.Grid>
-                    <button>Reset</button>
+                <JForm.Grid style={{width:'400px'}}>
                     <button onClick={()=>{
-                        po(searchPanelFormRef.current.getValue())
-                        resultPanelFormRef.current.get()
+                        searchPanelFormRef.current.resetFields()
+                    }}>Reset</button>
+                    <button onClick={()=>{
+                        resultPanelFormRef.current.get({
+                            value:searchPanelFormRef.current.getValue()
+                        })
                     }}>Search</button>
                 </JForm.Grid>
             </JForm>
@@ -74,16 +74,17 @@ export default function JCrud({children}){
 
         {
             items.ResultPanel!=null &&
-            <JForm cols={1} gap={0} ref={resultPanelFormRef}
+            <ResultType cols={1} gap={0} ref={resultPanelFormRef}
                 get={{
-                    ...resultGet
+                    mask:'Loading...'
+                    ,...resultGet
                 }}
             >
                 ResultPanel
                 <JForm.Grid>
                 {resultChildren}
                 </JForm.Grid>
-            </JForm>
+            </ResultType>
         }
     </StyledJCrud>
 }

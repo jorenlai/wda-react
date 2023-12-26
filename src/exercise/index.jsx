@@ -38,8 +38,6 @@ export default function ExerciseApp(){
         }
     }
 
-
-
     useEffect(()=>{
         if(exercise==null 
             || exercise.startTime==null 
