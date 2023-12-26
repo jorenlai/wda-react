@@ -23,9 +23,9 @@ export default function ExerciseApp(){
         ,time:1000 * 60 * 100 
     }
 
-    const set=`set${topic.name.charAt(0).toUpperCase()}${topic.name.slice(1)}`
+    const set=`setState`
     const dispatch = useDispatch()
-    const exercise = useSelector((state) => state.exercise)[topic.name]
+    const exercise = useSelector((state) => state.exercise)
     
     
     const onComplete=(a,b,c)=>{

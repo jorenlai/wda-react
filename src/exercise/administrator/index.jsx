@@ -55,7 +55,7 @@ const leafLenght=getLeafLength(question,0,[])
 
 const QuestionPanel=()=>{
     const dispatch = useDispatch()
-    const administrator = useSelector((state) => state.administrator)['administrator']
+    const administrator = useSelector((state) => state.administrator)
     po('administrator',administrator)
     let leafIndex=0
 
@@ -105,7 +105,7 @@ const QuestionPanel=()=>{
         const sum=administrator.selectedIndex+_num 
         const selectedIndex=sum<=1 ? 1:sum>leafLenght?administrator.selectedIndex:sum
         po('selectedIndex',selectedIndex)
-        dispatch(administratorActions.setAdministrator(
+        dispatch(administratorActions.setState(
             {
                 selectedIndex
                 ,selectedQKey:allQKey[selectedIndex]
@@ -115,7 +115,7 @@ const QuestionPanel=()=>{
     
     useEffect(()=>{
         if(administrator.selectedIndex==null){
-            dispatch(administratorActions.setAdministrator(
+            dispatch(administratorActions.setState(
                 {selectedIndex:1,selectedQKey:allQKey[1]}
            ))
         }

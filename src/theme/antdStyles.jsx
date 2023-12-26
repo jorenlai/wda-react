@@ -15,5 +15,13 @@ const AntdStyles = createGlobalStyle`
         color: white;
     }
 
+    .ant-form{
+        .ant-form-item-label{
+            label{
+                color: white;
+            }
+        }
+        color: white;
+    }
 `
 export default AntdStyles

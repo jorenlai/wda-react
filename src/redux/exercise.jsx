@@ -2,34 +2,32 @@ import { createSlice } from '@reduxjs/toolkit'
 import { po } from '../jrx/Util'
 
 
+const name='exercise'
 const initialState={
-    exercise: JSON.parse(localStorage.getItem('exercise')||'{}')
-    ,administrator: JSON.parse(localStorage.getItem('administrator')||'{}')
-    ,plan: JSON.parse(localStorage.getItem('plan')||'{}')
+    selectedIndex:1
+    ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
+
 const exerciseSlice = createSlice({
-    name:'exercise'
+    name
     ,initialState
-    ,reducers: Object.entries(initialState).reduce((aco,[exerciseName])=>{
-        aco[`set${exerciseName.charAt(0).toUpperCase()}${exerciseName.slice(1)}`]=(state, action) => {
-            Object.entries(action.payload).forEach(([key,value])=>{
-                state[exerciseName][key]=value
-            })
-            localStorage.setItem(exerciseName, JSON.stringify(state[exerciseName]))
+    ,reducers: Object.entries(initialState).reduce((aco,[key,value])=>{
+        aco[`set${key.charAt(0).toUpperCase()}${key.slice(1)}`]=(state, action) => {
+            state[key] = action.payload
+            localStorage.setItem(name, JSON.stringify(state))
         }
         return aco;
     }
     ,{
         setState(state, action){
-            Object.entries(action.payload).forEach(([key,value])=>state[key]=value)
-        }
-        ,reset(state, action){
-            state[action.payload]={}
-            localStorage.removeItem(action.payload)
+            Object.entries(action.payload).forEach(([key,value])=>{
+                state[key]=value
+                localStorage.setItem(name, JSON.stringify(state))
+            })
         }
     })
-})
+});
 
 export const exerciseActions = exerciseSlice.actions;
 export default exerciseSlice.reducer;

@@ -1,11 +1,19 @@
-import JCrud, { SearchPanel } from '../../../jrx/JCrud'
+import JCrud, { ResultPanel, SearchPanel } from '../../../jrx/JCrud'
 
 
 export default function OrderBook(){
     return <JCrud>
         <SearchPanel>
-            my search
+            <input name={'name'} label={'Name'}/>
+            <input name={'address'} label={'Address'}/>
         </SearchPanel>
-        OrderBook
+        <ResultPanel
+            get={{
+                url:'/plan.json'
+            }}
+        >
+            OrderBook 
+            <input name={'name'}  />
+        </ResultPanel>
     </JCrud>
 }
