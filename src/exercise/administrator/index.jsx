@@ -37,12 +37,13 @@ const findQuestion=(questions,selectedIndex)=>{
             if(question.questions?.length>0){
                 const foundQ=findQ(question.questions,selectedIndex,`${t}\t`)
                 if(foundQ){
-                    po(`${t}`,question)
                     question.subQuestion=foundQ
-                    return question
+                    return {
+                        ...question
+                        ,questions:[foundQ]
+                    }
                 }
             }else if(selectedIndex===++index){
-                po(`${t}`,question)
                 return question
             }
         }
@@ -51,7 +52,7 @@ const findQuestion=(questions,selectedIndex)=>{
 }
 
 const getQuestionParams=(questions,t)=>{
-    console.clear()
+    // console.clear()
 
     let length=0
     const keyMap={}
@@ -64,17 +65,14 @@ const getQuestionParams=(questions,t)=>{
         for(var i=0;i<questions?.length ?? 0;i++){
             const question=questions[i]
             const _key=`${key}${i}`
-            // po(t,level,_key,question)
             if(question.questions?.length>0){
                 countLength(question.questions,level+1,`${_key}-`,`${t}\t`)
             }else{
                 ++length
-                // po('i=',i,length)
                 if(i===0 || level===0){
                     firstQKeyMap[_key]=length
                     level1QKeyList.push(length)
                 }
-                po(length)
                 keyList.push(_key)
                 keyMap[_key]=length
             }
@@ -82,17 +80,12 @@ const getQuestionParams=(questions,t)=>{
     }
 
     countLength(questions,0,'','')
-    po('firstQKeyNav',firstQKeyNav)
-    // po('firstQKeyMap',firstQKeyMap)
-    // po('firstQKeyList',firstQKeyList)
-    // po('keyMap',keyMap)
     return {
         firstQKeyNav,length,firstQKeyMap,level1QKeyList,keyMap,keyList
     }
 }
 
 const ControllPanel=({questions,questionParams})=>{
-    po('questionParams',questionParams)
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
     const [selectedQuestion,setSelectedQuestion]=useState()
@@ -108,26 +101,21 @@ const ControllPanel=({questions,questionParams})=>{
 
     }
     const nav=(num)=>{
-        // po('administrator.selectedIndex',administrator.selectedIndex)
-        // po('questionParams.keyList[ administrator.selectedIndex-1]',questionParams.keyList[ administrator.selectedIndex-1])
-        const level1QIndex=parseInt(questionParams.keyList[ administrator.selectedIndex-1]?.split('-')[0] ?? -1)
-        let i= (level1QIndex)+num   
+        // const level1QIndex=parseInt(questionParams.keyList[ administrator.selectedIndex-1]?.split('-')[0] ?? -1)
+        let i= getQNum()+num   
         i=i<=0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
-        setSelectedQuestion(i)
         dispatch(administratorActions.setSelectedIndex(questionParams.level1QKeyList[i]))
     }
 
-    // useEffect(()=>{
-    //     if(selectedQuestion!=null){
-    //         console.clear()
-    //         po('selectedQuestion change ',selectedQuestion)
-    //         po(findQuestion(questions,selectedQuestion))
-    //         dispatch(administratorActions.setSelectedIndex(questionParams?.level1QKeyList?.[selectedQuestion] ))
-    //     }
-    // },[selectedQuestion])
+    useEffect(()=>{
+        if(administrator && questionParams){
+            // const level1QIndex=parseInt(questionParams?.keyList[ administrator.selectedIndex-1]?.split('-')[0] ?? -1)
+            setSelectedQuestion(getQNum())
+        }
+    },[administrator.selectedIndex,questionParams ])
 
     return <StyledControllPanel  colSpan={2}>
-
+        Total:{questionParams?.level1QKeyList?.length}<br/>
         <button
             onClick={()=>nav(-1)}
         >Pre</button>
@@ -169,9 +157,27 @@ const getLeafLength=(question,length,keys)=>{
 }
 const leafLenght=getLeafLength(questionsf,0,[])
 
+const QQuestion=({question})=>{
+    return <div>{question?.question}
+        {
+            question?.questions?.map((question,index)=>{
+                return <QQuestion question={question} key={index}/>
+            })
+        }
 
-const ShowQuestion=()=>{
-    return <div>Question</div>
+    </div>
+}
+
+const ShowQuestion=({questions})=>{
+    po('ShowQuestion',questions)
+    return <div>Question
+        {
+            questions?.map((question,index)=>{
+                return <QQuestion question={question} key={index}/>
+            })
+        }
+
+    </div>
 }
 
 const QuestionPanel=({questions,questionParams})=>{
@@ -238,37 +244,13 @@ const QuestionPanel=({questions,questionParams})=>{
         }
     },[])
 
-
-    const selectedQuestion=selectQues(questionsf,administrator.selectedIndex,[])
+    const selectedQuestion=findQuestion(questionParams?.questions,administrator.selectedIndex)
     return <StyledQuestionPanel>
         <button>Start</button><button>Stop</button><br/>
         <button onClick={()=>navQ(-1)}>Pre</button>
         {administrator.selectedIndex}
         <button onClick={()=>navQ(1)}>next</button><br/>
-        {
-            JSON.stringify(findQuestion(questionParams?.questions,administrator.selectedIndex)??'{}')
-            
-        }
-        <ShowQuestion selectedQuestion={findQuestion(questionParams?.questions,administrator.selectedIndex)}/>
-        {/* {
-            findQuestion(questionParams?.questions,administrator.selectedIndex)
-            ?.reduce((aco,record)=>{
-                return ''
-            },null)
-        } */}
-        {/* {
-            selectedQuestion
-            ?.filter(q=>q.keys.length>0)
-            .reduce((aco,q)=><IQuestion>
-                    {q.ITitle}
-                    {q.IDescription}
-                    {aco}
-                </IQuestion>
-            ,null)
-        } */}
-        <br/>
-        {/* {JSON.stringify(findQues())} */}
-        {/* {JSON.stringify(questions)} */}
+        <ShowQuestion questions={selectedQuestion!=null?[selectedQuestion]:null}/>
     </StyledQuestionPanel>
 }
 
