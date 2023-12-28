@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const name='administrator'
 const initialState={
-    selectedIndex:1
+    selectedIndex:0
     ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 

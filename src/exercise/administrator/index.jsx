@@ -10,7 +10,6 @@ import JGrid from '../../jrx/JGrid'
 import IQuestion, { ITitle, IDescription } from './component/IQuestion'
 import { po } from '../../jrx/Util'
 import { useState } from 'react'
-import  questionsf  from './Question'
 import JPanel from '../../jrx/JPanel'
 
 const StyledAdministratorApp=styled(JPanel)`
@@ -25,12 +24,8 @@ const StyledControllPanel=styled.div`
 `
 
 
-const indexByMain=(i,question)=>{
-    return 5
-}
-
 const findQuestion=(questions,selectedIndex)=>{
-    let index=0
+    let index=-1
     const findQ=(questions,selectedIndex,t)=>{
         for(var i=0;i<questions?.length ?? 0;i++){
             const question=questions[i]
@@ -52,9 +47,7 @@ const findQuestion=(questions,selectedIndex)=>{
 }
 
 const getQuestionParams=(questions,t)=>{
-    // console.clear()
-
-    let length=0
+    let length=-1
     const keyMap={}
     const keyList=[]
     const firstQKeyMap={}
@@ -89,27 +82,18 @@ const ControllPanel=({questions,questionParams})=>{
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
     const [selectedQuestion,setSelectedQuestion]=useState()
-
-    // const nav_=(num)=>{
-    //     let i= (selectedQuestion??0)+num   
-    //     i=i<=0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
-    //     setSelectedQuestion(i)
-    // }
-
     const getQNum=()=>{
-        return parseInt(questionParams.keyList[ administrator.selectedIndex-1]?.split('-')[0] ?? -1)
+        return parseInt(questionParams.keyList[ administrator.selectedIndex]?.split('-')[0] ?? 0)
 
     }
     const nav=(num)=>{
-        // const level1QIndex=parseInt(questionParams.keyList[ administrator.selectedIndex-1]?.split('-')[0] ?? -1)
         let i= getQNum()+num   
-        i=i<=0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
+        i=i<0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
         dispatch(administratorActions.setSelectedIndex(questionParams.level1QKeyList[i]))
     }
 
     useEffect(()=>{
         if(administrator && questionParams){
-            // const level1QIndex=parseInt(questionParams?.keyList[ administrator.selectedIndex-1]?.split('-')[0] ?? -1)
             setSelectedQuestion(getQNum())
         }
     },[administrator.selectedIndex,questionParams ])
@@ -133,28 +117,7 @@ const StyledQuestionPanel=styled.div`
 `
 
 const allQKey={}
-let leafNum=0
-const getLeafLength=(question,length,keys)=>{
-    const children= (Array.isArray(question.props.children)
-        ? question.props.children
-        : question.props.children
-            ? [question.props.children]
-            : []
-    )
-    .filter((child)=>{
-        return child.type===IQuestion
-    })
 
-    if(children.length>0){
-        children.forEach((child,i)=>{
-            length+= getLeafLength(child,0,[...keys,i+1])
-        })
-        return length
-    }else{
-        allQKey[++leafNum]=keys
-        return length+1
-    }
-}
 
 const QQuestion=({question})=>{
     return <div>{question?.question}
@@ -167,7 +130,6 @@ const QQuestion=({question})=>{
 }
 
 const ShowQuestion=({questions})=>{
-    po('ShowQuestion',questions)
     return <div>Question
         {
             questions?.map((question,index)=>{
@@ -183,7 +145,7 @@ const QuestionPanel=({questions,questionParams})=>{
 
     const navQ=(_num)=>{
         const sum=administrator.selectedIndex+_num 
-        const selectedIndex=sum<=1 ? 1:sum>questionParams.length?questionParams.length:sum
+        const selectedIndex=sum<=0 ? 0:sum>questionParams.length?questionParams.length:sum
         dispatch(administratorActions.setState(
             {
                 selectedIndex
