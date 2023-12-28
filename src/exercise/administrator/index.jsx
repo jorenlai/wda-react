@@ -100,15 +100,19 @@ const ControllPanel=({questions,questionParams})=>{
 
     return <StyledControllPanel  colSpan={2}>
         Total:{questionParams?.level1QKeyList?.length}<br/>
-        <button
+        <button  disabled={selectedQuestion===0}
             onClick={()=>nav(-1)}
-        >Pre</button>
+        >
+            Pre
+        </button>
             {selectedQuestion+1}
-        <button
+        <button disabled={selectedQuestion+1===questionParams?.level1QKeyList?.length}
             onClick={()=>nav(1)}
-            >Next</button><br/>
+        >
+            Next
+        </button><br/>
 
-            {administrator.selectedIndex}
+        {administrator.selectedIndex}
     </StyledControllPanel>
 }
 
@@ -157,7 +161,21 @@ const QuestionPanel=({questions,questionParams})=>{
     const nav=(num)=>{
         console.clear()
         po('questionParams',questionParams)
-        po(administrator.selectedIndex)
+        po('index',administrator.selectedIndex)
+        po('key',questionParams.keyList[administrator.selectedIndex])
+        const keys=questionParams.keyList[administrator.selectedIndex]?.split('-').map((i)=>parseInt(i))
+        
+        
+        po('keys',keys)
+        let i=keys[keys.length-1]+num
+        keys[keys.length-1]=i
+        po('keys',keys)
+        po('index',i)
+        const joinKeys=keys.join('-')
+        po('joinKeys ?',joinKeys)
+        if(i>-1 && keys.length>1 &&questionParams.keyMap[joinKeys]!=null){
+            dispatch(administratorActions.setSelectedIndex(administrator.selectedIndex+num))
+        }
     } 
 
     useEffect(()=>{
@@ -187,7 +205,7 @@ export default function AdministratorApp(){
 
     return <StyledAdministratorApp 
         get={{
-            url:'/question.json'
+            url:'/question3.json'
             ,autoRun:true
             ,callback(success,res){
                 if(success){
