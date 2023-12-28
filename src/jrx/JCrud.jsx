@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { po } from './Util'
 import JForm from './JForm'
 import { useRef } from 'react'
+import JXTable from './JXTable'
 const StyledJCrud=styled.div`
     display: flex;
     flex-direction: column;
@@ -45,9 +46,10 @@ export default function JCrud({children}){
         children:resultChildren
         ,get:resultGet
         ,type:resultType
+        ,...resultProps
     }=items.ResultPanel?.props ?? {}
 
-    const ResultType=resultType??JForm
+    const ResultType=resultType??JXTable
 
 
 
@@ -74,7 +76,7 @@ export default function JCrud({children}){
 
         {
             items.ResultPanel!=null &&
-            <ResultType cols={1} gap={0} ref={resultPanelFormRef}
+            <ResultType cols={1} gap={0} ref={resultPanelFormRef} {...resultProps}
                 get={{
                     mask:'Loading...'
                     ,...resultGet
