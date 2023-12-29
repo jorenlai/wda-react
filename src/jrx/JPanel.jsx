@@ -1,7 +1,39 @@
+import JGrid from './JGrid'
 import JSubmit from './JSubmit'
+import { po } from './Util'
 
 export default class JPanel extends JSubmit {
+    setValue(value){
+        po('setValue',value)
+        this.setState({value})
+    }
+
+    children(children, allChildren, key) {
+        return (Array.isArray(children)
+            ? children
+            : children
+                ? [children]
+                : []
+            ).map((child,i) => {
+                const {type:Type, children,key,ref,props}=child
+                if(props.name){
+                    const params={
+                        [props.name]:this.state?.value?.[props.name]
+                    }
+                    return <Type {...props} {...params} ref={ref} key={key??`jp${i}`}>{children}</Type>
+                }else{
+                    return child
+                }
+            }
+        ,allChildren)
+    }
+
     renderer(){
-        return <div className={this.props.className}>JPanel {this.props.children}</div>
+        return <JGrid 
+            className={this.props.className}
+            cols={this.props.cols}
+        >
+            {this.children(this.props.children, [],'')}
+        </JGrid>
     }
 }

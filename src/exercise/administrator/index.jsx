@@ -138,11 +138,11 @@ const ControllPanel=({questions,questionParams})=>{
 }
 
 
+/////////////////////////////////////
 const StyledQuestionPanel=styled.div`
 `
 
 const allQKey={}
-
 
 const QQuestion=({question})=>{
     return <div>{question?.question}
@@ -163,7 +163,7 @@ const ShowQuestion=({questions})=>{
         }
     </div>
 }
-/////////////////////////////////////
+
 const QuestionPanel=({questions,questionParams})=>{
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
@@ -181,21 +181,31 @@ const QuestionPanel=({questions,questionParams})=>{
     
     const navSub=(num)=>{
         console.clear()
-        po('questionParams',questionParams)
-        po('index',administrator.selectedIndex)
+        if(questionParams){
+            let selectIndex=administrator.selectedIndex+num 
+            selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
+            const currentKeys=questionParams.keys[administrator.selectedIndex]
+            const currentParrentKeys=[...questionParams.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+            const futureParrentKeys=[...questionParams.keys[selectIndex]].splice(0,currentKeys.length-1)
 
-        let selectIndex=administrator.selectedIndex+num 
-        selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
-        const currentKeys=questionParams.keys[administrator.selectedIndex]
-        po('selectIndex',selectIndex)
-        po('current key',currentKeys)
-        const currentParrentKeys=[...questionParams.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
-        po('currentParrentKeys',currentParrentKeys)
-        const futureParrentKeys=[...questionParams.keys[selectIndex]].splice(0,currentKeys.length-1)
-        po('futureParrentKeys',futureParrentKeys)
+            if(currentParrentKeys.toString()===futureParrentKeys.toString()){
+                dispatch(administratorActions.setSelectedIndex(selectIndex))
+            }
+        }
+    } 
+    
 
-        if(currentParrentKeys.toString()===futureParrentKeys.toString()){
-            dispatch(administratorActions.setSelectedIndex(selectIndex))
+    const navigable=(num)=>{
+        if(questionParams){
+            let selectIndex=administrator.selectedIndex+num 
+            selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
+            const currentKeys=questionParams.keys[administrator.selectedIndex]
+            const currentParrentKeys=[...questionParams.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+            const futureParrentKeys=[...questionParams.keys[selectIndex]].splice(0,currentKeys.length-1)
+
+            return currentParrentKeys.toString()===futureParrentKeys.toString()
+        }else{
+            return true
         }
     } 
 
@@ -210,39 +220,35 @@ const QuestionPanel=({questions,questionParams})=>{
     const selectedQuestion=findQuestion(questionParams?.questions,administrator.selectedIndex)
     return <StyledQuestionPanel>
         <button>Start</button><button>Stop</button><br/>
+
         <button onClick={()=>navQ(-1)}>pre</button>
         {administrator.selectedIndex}
         <button onClick={()=>navQ(1)}>next</button><br/><br/>
 
-        <button onClick={()=>navSub(-1)}>pre</button>
-        <button onClick={()=>navSub(1)}>next</button><br/>
+        <button onClick={()=>navSub(-1)} disabled={!navigable(-1)}>pre</button>
+        <button onClick={()=>navSub(1)} disabled={!navigable(1)}>next</button><br/>
         <ShowQuestion questions={selectedQuestion!=null?[selectedQuestion]:null}/>
     </StyledQuestionPanel>
 }
 
 export default function AdministratorApp(){
-    const [question,setQuestion]=useState()
-    const [questionParams,setQuestionParams]=useState()
-
     return <StyledAdministratorApp 
         get={{
             url:'/question3.json'
             ,autoRun:true
-            ,callback(success,res){
-                if(success){
-                    setQuestionParams({
-                        ...getQuestionParams(res.data)
-                        ,questions:res.data
-                    })
-                    setQuestion(res.data)
+            ,dataFormat(data){
+                return {
+                    questionParams:{
+                        ...getQuestionParams(data)
+                        ,questions:data
+                    }
                 }
             }
         }}
+        cols={2}
     >
-        <JGrid grid={'auto / 200px 1fr'}>
-            <ControllPanel questions={question} questionParams={questionParams}/>
-            <QuestionPanel questions={question} questionParams={questionParams}/>
-            <WebApp/>
-        </JGrid>
+        <ControllPanel name={'questionParams'} colSpan={2}/>
+        <QuestionPanel name={'questionParams'} />
+        <WebApp/>
     </StyledAdministratorApp>
 } 
