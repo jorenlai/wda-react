@@ -11,6 +11,7 @@ import IQuestion, { ITitle, IDescription } from './component/IQuestion'
 import { po } from '../../jrx/Util'
 import { useState } from 'react'
 import JPanel from '../../jrx/JPanel'
+import Select from '../../jrx/ISelect'
 
 const StyledAdministratorApp=styled(JPanel)`
     > div > * {
@@ -51,13 +52,11 @@ const getQuestionParams=(questions,t)=>{
     const keyMap={}
     const keyList=[]
     const keys=[]
-    // const firstQKeyMap={}
     const level1QKeyList=[]
 
     const countLength=(questions,level,level1Index,key,keyArray,t)=>{
         for(var i=0;i<questions?.length ?? 0;i++){
             if(level===0) level1Index=i
-            
             
             const question=questions[i]
             const _key=`${key}${i}`
@@ -67,7 +66,6 @@ const getQuestionParams=(questions,t)=>{
             }else{
                 ++length
                 if(level1QKeyList[level1Index]==null){
-                    // firstQKeyMap[_key]=length
                     level1QKeyList.push(length)
                 }
                 keys.push(_keyArray)
@@ -78,65 +76,64 @@ const getQuestionParams=(questions,t)=>{
     }
 
     countLength(questions,0,null,'',[],'')
-    // po('firstQKeyMap',firstQKeyMap)
-    po('level1QKeyList',level1QKeyList)
     return {
         length,level1QKeyList,keyMap,keyList,keys
     }
 }
 
-const ControllPanel=({questions,questionParams})=>{
+const ControllPanel=({value})=>{
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
     const [selectedQuestion,setSelectedQuestion]=useState()
     const getQNum=()=>{
-        return parseInt(questionParams.keyList[ administrator.selectedIndex]?.split('-')[0] ?? 0)
-
+        return parseInt(value.keyList[ administrator.selectedIndex]?.split('-')[0] ?? 0)
     }
 
     const selectQuestion=(num)=>{
         console.clear()
-        po('questionParams',questionParams)
         let i= num   
-        i=i<0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
-        dispatch(administratorActions.setSelectedIndex(questionParams.level1QKeyList[i]))
+        i=i<0?0:i>=value.level1QKeyList.length?value.level1QKeyList.length-1:i
+        dispatch(administratorActions.setSelectedIndex(value.level1QKeyList[i]))
     }
 
     const nav=(num)=>{
-        let i= getQNum()+num   
-        i=i<0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
-        dispatch(administratorActions.setSelectedIndex(questionParams.level1QKeyList[i]))
+        if(value!=null){
+            let i= getQNum()+num   
+            i=i<0?0:i>=value.level1QKeyList.length?value.level1QKeyList.length-1:i
+            dispatch(administratorActions.setSelectedIndex(value.level1QKeyList[i]))
+        }
     }
 
     useEffect(()=>{
-        if(administrator && questionParams){
+        if(administrator && value){
             setSelectedQuestion(getQNum())
         }
-    },[administrator.selectedIndex,questionParams ])
+    },[administrator.selectedIndex,value ])
 
     return <StyledControllPanel  colSpan={2}>
-        Total:{questionParams?.level1QKeyList?.length}<br/>
+        Total:{value?.level1QKeyList?.length}<br/>
 
-        <button onClick={()=>selectQuestion(0)}>1</button>
-        <button onClick={()=>selectQuestion(1)}>2</button>
 
-        <br/>
-        <button  disabled={selectedQuestion===0}
-            onClick={()=>nav(-1)}
-        >
+        <button  disabled={selectedQuestion===0 || value==null} onClick={()=>nav(-1)}>
             Pre
         </button>
-            {selectedQuestion+1}
-        <button disabled={selectedQuestion+1===questionParams?.level1QKeyList?.length}
-            onClick={()=>nav(1)}
-        >
+        <Select showBlank={false} 
+            options={
+                Array(value?.level1QKeyList?.length??0).fill()
+                .map((a,id)=>{
+                    return{
+                        name:id+1,id
+                    }
+                })
+            }
+            onChange={selectQuestion}
+            value={selectedQuestion}
+        />
+        <button disabled={selectedQuestion+1===value?.level1QKeyList?.length || value==null}onClick={()=>nav(1)}>
             Next
         </button><br/>
-
-        {administrator.selectedIndex}
     </StyledControllPanel>
 }
-
 
 /////////////////////////////////////
 const StyledQuestionPanel=styled.div`
@@ -164,13 +161,13 @@ const ShowQuestion=({questions})=>{
     </div>
 }
 
-const QuestionPanel=({questions,questionParams})=>{
+const QuestionPanel=({value})=>{
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
 
     const navQ=(_num)=>{
         let selectIndex=administrator.selectedIndex+_num 
-        selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
+        selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
         dispatch(administratorActions.setState(
             {
                 selectedIndex: selectIndex
@@ -181,27 +178,26 @@ const QuestionPanel=({questions,questionParams})=>{
     
     const navSub=(num)=>{
         console.clear()
-        if(questionParams){
+        if(value){
             let selectIndex=administrator.selectedIndex+num 
-            selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
-            const currentKeys=questionParams.keys[administrator.selectedIndex]
-            const currentParrentKeys=[...questionParams.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
-            const futureParrentKeys=[...questionParams.keys[selectIndex]].splice(0,currentKeys.length-1)
+            selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
+            const currentKeys=value.keys[administrator.selectedIndex]
+            const currentParrentKeys=[...value.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+            const futureParrentKeys=[...value.keys[selectIndex]].splice(0,currentKeys.length-1)
 
             if(currentParrentKeys.toString()===futureParrentKeys.toString()){
                 dispatch(administratorActions.setSelectedIndex(selectIndex))
             }
         }
     } 
-    
 
     const navigable=(num)=>{
-        if(questionParams){
+        if(value){
             let selectIndex=administrator.selectedIndex+num 
-            selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
-            const currentKeys=questionParams.keys[administrator.selectedIndex]
-            const currentParrentKeys=[...questionParams.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
-            const futureParrentKeys=[...questionParams.keys[selectIndex]].splice(0,currentKeys.length-1)
+            selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
+            const currentKeys=value.keys[administrator.selectedIndex]
+            const currentParrentKeys=[...value.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+            const futureParrentKeys=[...value.keys[selectIndex]].splice(0,currentKeys.length-1)
 
             return currentParrentKeys.toString()===futureParrentKeys.toString()
         }else{
@@ -217,16 +213,24 @@ const QuestionPanel=({questions,questionParams})=>{
         }
     },[])
 
-    const selectedQuestion=findQuestion(questionParams?.questions,administrator.selectedIndex)
+    const currentSub=()=>{
+
+        const keys=value?.keys[administrator.selectedIndex]??[]
+        const i=keys[keys.length-1]
+        return i==null?null:i+1
+    }
+
+    const selectedQuestion=findQuestion(value?.questions,administrator.selectedIndex)
     return <StyledQuestionPanel>
         <button>Start</button><button>Stop</button><br/>
 
-        <button onClick={()=>navQ(-1)}>pre</button>
+        {/* <button onClick={()=>navQ(-1)}>pre</button>
         {administrator.selectedIndex}
-        <button onClick={()=>navQ(1)}>next</button><br/><br/>
+        <button onClick={()=>navQ(1)}>next</button><br/><br/> */}
 
-        <button onClick={()=>navSub(-1)} disabled={!navigable(-1)}>pre</button>
-        <button onClick={()=>navSub(1)} disabled={!navigable(1)}>next</button><br/>
+        <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null}>pre</button>
+        {currentSub()}
+        <button onClick={()=>navSub(1)} disabled={!navigable(1)||value==null}>next</button><br/>
         <ShowQuestion questions={selectedQuestion!=null?[selectedQuestion]:null}/>
     </StyledQuestionPanel>
 }

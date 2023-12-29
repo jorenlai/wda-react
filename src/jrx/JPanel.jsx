@@ -4,7 +4,6 @@ import { po } from './Util'
 
 export default class JPanel extends JSubmit {
     setValue(value){
-        po('setValue',value)
         this.setState({value})
     }
 
@@ -17,10 +16,7 @@ export default class JPanel extends JSubmit {
             ).map((child,i) => {
                 const {type:Type, children,key,ref,props}=child
                 if(props.name){
-                    const params={
-                        [props.name]:this.state?.value?.[props.name]
-                    }
-                    return <Type {...props} {...params} ref={ref} key={key??`jp${i}`}>{children}</Type>
+                    return <Type {...props} value={this.state?.value?.[props.name]} ref={ref} key={key??`jp${i}`}>{children}</Type>
                 }else{
                     return child
                 }
