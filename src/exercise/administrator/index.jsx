@@ -94,7 +94,7 @@ export default function AdministratorApp(){
         }}
         cols={2}
     >
-        <ControllPanel name={'questionParams'} colSpan={2}/>
+        <ControllPanel name={'questionParams'} colSpan={2} />
         <QuestionPanel name={'questionParams'} />
         <WebApp/>
     </StyledAdministratorApp>

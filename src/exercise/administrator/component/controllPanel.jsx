@@ -6,10 +6,9 @@ import {   administratorActions } from '../../../redux/exercise/administrator'
 import Select from '../../../jrx/ISelect'
 
 const StyledControllPanel=styled.div`
-    grid-column: span 2;
 `
 
-export default function ControllPanel({value}){
+export default function ControllPanel({value,...props}){
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
     const [selectedQuestion,setSelectedQuestion]=useState()
@@ -38,7 +37,7 @@ export default function ControllPanel({value}){
         }
     },[administrator.selectedIndex,value ])
 
-    return <StyledControllPanel  colSpan={2}>
+    return <StyledControllPanel {...props}>
         Total:{value?.level1QKeyList?.length}<br/>
 
 
