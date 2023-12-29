@@ -21,6 +21,8 @@ const GlobalStyle = createGlobalStyle`
     .anp-tab{
         flex:1;
         border: 20px solid red;
+        overflow: hidden;
+
         .ant-tabs-content{
             height: 100%;
 
@@ -33,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
 
     .con-adm{
         flex:1;
+        overflow: hidden;
         border: 10px solid yellow;
         grid: 100px 1fr/200px 1fr !important;
     }
