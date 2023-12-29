@@ -50,31 +50,38 @@ const getQuestionParams=(questions,t)=>{
     let length=-1
     const keyMap={}
     const keyList=[]
-    const firstQKeyMap={}
+    const keys=[]
+    // const firstQKeyMap={}
     const level1QKeyList=[]
-    const firstQKeyNav=[]
 
-    const countLength=(questions,level,key,t)=>{
+    const countLength=(questions,level,level1Index,key,keyArray,t)=>{
         for(var i=0;i<questions?.length ?? 0;i++){
+            if(level===0) level1Index=i
+            
+            
             const question=questions[i]
             const _key=`${key}${i}`
+            const _keyArray=[...keyArray??[],i]
             if(question.questions?.length>0){
-                countLength(question.questions,level+1,`${_key}-`,`${t}\t`)
+                countLength(question.questions,level+1,level1Index,`${_key}-`,_keyArray,`${t}\t`)
             }else{
                 ++length
-                if(i===0 || level===0){
-                    firstQKeyMap[_key]=length
+                if(level1QKeyList[level1Index]==null){
+                    // firstQKeyMap[_key]=length
                     level1QKeyList.push(length)
                 }
+                keys.push(_keyArray)
                 keyList.push(_key)
                 keyMap[_key]=length
             }
         }
     }
 
-    countLength(questions,0,'','')
+    countLength(questions,0,null,'',[],'')
+    // po('firstQKeyMap',firstQKeyMap)
+    po('level1QKeyList',level1QKeyList)
     return {
-        firstQKeyNav,length,firstQKeyMap,level1QKeyList,keyMap,keyList
+        length,level1QKeyList,keyMap,keyList,keys
     }
 }
 
@@ -86,6 +93,15 @@ const ControllPanel=({questions,questionParams})=>{
         return parseInt(questionParams.keyList[ administrator.selectedIndex]?.split('-')[0] ?? 0)
 
     }
+
+    const selectQuestion=(num)=>{
+        console.clear()
+        po('questionParams',questionParams)
+        let i= num   
+        i=i<0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
+        dispatch(administratorActions.setSelectedIndex(questionParams.level1QKeyList[i]))
+    }
+
     const nav=(num)=>{
         let i= getQNum()+num   
         i=i<0?0:i>=questionParams.level1QKeyList.length?questionParams.level1QKeyList.length-1:i
@@ -100,6 +116,11 @@ const ControllPanel=({questions,questionParams})=>{
 
     return <StyledControllPanel  colSpan={2}>
         Total:{questionParams?.level1QKeyList?.length}<br/>
+
+        <button onClick={()=>selectQuestion(0)}>1</button>
+        <button onClick={()=>selectQuestion(1)}>2</button>
+
+        <br/>
         <button  disabled={selectedQuestion===0}
             onClick={()=>nav(-1)}
         >
@@ -142,39 +163,39 @@ const ShowQuestion=({questions})=>{
         }
     </div>
 }
-
+/////////////////////////////////////
 const QuestionPanel=({questions,questionParams})=>{
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
 
     const navQ=(_num)=>{
-        const sum=administrator.selectedIndex+_num 
-        const selectedIndex=sum<=0 ? 0:sum>questionParams.length?questionParams.length:sum
+        let selectIndex=administrator.selectedIndex+_num 
+        selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
         dispatch(administratorActions.setState(
             {
-                selectedIndex
-                ,selectedQKey:allQKey[selectedIndex]
+                selectedIndex: selectIndex
+                ,selectedQKey:allQKey[selectIndex]
             }
         ))
     }   
     
-    const nav=(num)=>{
+    const navSub=(num)=>{
         console.clear()
         po('questionParams',questionParams)
         po('index',administrator.selectedIndex)
-        po('key',questionParams.keyList[administrator.selectedIndex])
-        const keys=questionParams.keyList[administrator.selectedIndex]?.split('-').map((i)=>parseInt(i))
-        
-        
-        po('keys',keys)
-        let i=keys[keys.length-1]+num
-        keys[keys.length-1]=i
-        po('keys',keys)
-        po('index',i)
-        const joinKeys=keys.join('-')
-        po('joinKeys ?',joinKeys)
-        if(i>-1 && keys.length>1 &&questionParams.keyMap[joinKeys]!=null){
-            dispatch(administratorActions.setSelectedIndex(administrator.selectedIndex+num))
+
+        let selectIndex=administrator.selectedIndex+num 
+        selectIndex=selectIndex<=0 ? 0:selectIndex>questionParams.length?questionParams.length:selectIndex
+        const currentKeys=questionParams.keys[administrator.selectedIndex]
+        po('selectIndex',selectIndex)
+        po('current key',currentKeys)
+        const currentParrentKeys=[...questionParams.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+        po('currentParrentKeys',currentParrentKeys)
+        const futureParrentKeys=[...questionParams.keys[selectIndex]].splice(0,currentKeys.length-1)
+        po('futureParrentKeys',futureParrentKeys)
+
+        if(currentParrentKeys.toString()===futureParrentKeys.toString()){
+            dispatch(administratorActions.setSelectedIndex(selectIndex))
         }
     } 
 
@@ -193,8 +214,8 @@ const QuestionPanel=({questions,questionParams})=>{
         {administrator.selectedIndex}
         <button onClick={()=>navQ(1)}>next</button><br/><br/>
 
-        <button onClick={()=>nav(-1)}>pre</button>
-        <button onClick={()=>nav(1)}>next</button><br/>
+        <button onClick={()=>navSub(-1)}>pre</button>
+        <button onClick={()=>navSub(1)}>next</button><br/>
         <ShowQuestion questions={selectedQuestion!=null?[selectedQuestion]:null}/>
     </StyledQuestionPanel>
 }
