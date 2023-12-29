@@ -81,7 +81,7 @@ export const getQuestionParams=(questions,t)=>{
 export default function AdministratorApp(){
     return <StyledAdministratorApp 
         get={{
-            url:'/question3.json'
+            url:'/question.json'
             ,autoRun:true
             ,dataFormat(data){
                 return {
