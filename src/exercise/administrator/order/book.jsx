@@ -21,7 +21,7 @@ export default function OrderBook(){
                 }
             }}
             columns={[
-                {name:'question',label:'Question',sort:true}
+                {name:'question',label:'Question',sort:true,width:'200px'}
                 ,{name:'description',label:'Description',sort:true}
             ]}
         >

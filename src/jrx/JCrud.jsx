@@ -76,7 +76,13 @@ export default function JCrud({children}){
 
         {
             items.ResultPanel!=null &&
-            <ResultType cols={1} gap={0} ref={resultPanelFormRef} {...resultProps}
+            <ResultType 
+                scrollx
+                cols={1} 
+                gap={0} 
+                ref={resultPanelFormRef} 
+                {...resultProps}
+
                 get={{
                     mask:'Loading...'
                     ,...resultGet

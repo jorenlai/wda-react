@@ -58,11 +58,13 @@ export default function WebApp(){
     const routes=[]
     const menus=[]
     loop(routeConfig,'','',0,routes,menus,navigate,dispatch,exercise)
-    return <StyledWebApp>
-        <Menu menu={menus}/>
+    return <StyledWebApp className={'web-app'}>
+        <Menu menu={menus} className={'menu'}/>
+        <div className={'body'}>
         <Routes>
             {routes}
         </Routes>  
-        {JSON.stringify(exercise.nav)}
+        </div>
+        {/* {JSON.stringify(exercise.nav)} */}
     </StyledWebApp>
 }

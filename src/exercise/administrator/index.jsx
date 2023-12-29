@@ -79,7 +79,8 @@ export const getQuestionParams=(questions,t)=>{
 }
 
 export default function AdministratorApp(){
-    return <StyledAdministratorApp 
+    return <StyledAdministratorApp
+        className={'con-adm'}
         get={{
             url:'/question.json'
             ,autoRun:true

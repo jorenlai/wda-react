@@ -28,7 +28,7 @@ export default function AnpExercise(){
             </Routes>
         }
     ];
-    return <div>
-        <Tabs onChange={navigate} tabBarExtraContent={operations} activeKey={p['*']==='plan'?'plan':'administrator'} items={items}/>
+    return <div className={'anp-panel'}>
+        <Tabs className={'anp-tab'} onChange={navigate} tabBarExtraContent={operations} activeKey={p['*']==='plan'?'plan':'administrator'} items={items}/>
     </div>
 }

@@ -16,6 +16,30 @@ import styled from 'styled-components'
 import AnpExercise from './AnpExercise'
 
 
+export function InfoPanel(){
+    const dispatch = useDispatch()
+    const topic={
+        name:'exercise'
+        ,time:1000 * 60 * 100 
+    }
+    const set=`setState`
+
+    const onComplete=(a,b,c)=>{
+        if(exercise.timeUp===false){
+            dispatch(exerciseActions[set]({
+                timeUp:true
+                ,completed:true
+                ,startTime:null
+            }))
+        }
+    }
+
+    const exercise = useSelector((state) => state.exercise)
+    return <div className={'info-panel'}>
+        <Timer startTime={exercise.startTime} length={topic.time} onComplete={onComplete} />
+    </div>
+}
+
 export default function ExerciseApp(){
 
     const topic={
@@ -28,15 +52,7 @@ export default function ExerciseApp(){
     const exercise = useSelector((state) => state.exercise)
     
     
-    const onComplete=(a,b,c)=>{
-        if(exercise.timeUp===false){
-            dispatch(exerciseActions[set]({
-                timeUp:true
-                ,completed:true
-                ,startTime:null
-            }))
-        }
-    }
+
 
     useEffect(()=>{
         if(exercise==null 
@@ -53,9 +69,8 @@ export default function ExerciseApp(){
     },[])
 
 
-    return <div>
-        [{JSON.stringify(exercise)}]<br/>
-        <Timer startTime={exercise.startTime} length={topic.time} onComplete={onComplete} />
+    return <div className={'exercise'}>
+        <InfoPanel/>
         <Routes>
             <Route path='/anp/*' element={<AnpExercise/>}/>
         </Routes>

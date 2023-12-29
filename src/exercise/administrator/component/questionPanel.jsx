@@ -52,13 +52,11 @@ export default function QuestionPanel({value}){
     const navigable=(num)=>{
         if(value){
             let selectIndex=administrator.selectedIndex+num 
-            po(selectIndex,value.length)
             if(selectIndex===-1 || selectIndex>value.length){
                 return false
             }
 
             selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
-
 
             const currentKeys=value.keys[administrator.selectedIndex]
             const currentParrentKeys=[...value.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
@@ -78,7 +76,9 @@ export default function QuestionPanel({value}){
     }
 
     const selectedQuestion=findQuestion(value?.questions,administrator.selectedIndex)
-    return <StyledQuestionPanel>
+    return <StyledQuestionPanel
+        className={'question-panel'}
+    >
         <button>Start</button><button>Stop</button><br/>
 
         <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null}>pre</button>
