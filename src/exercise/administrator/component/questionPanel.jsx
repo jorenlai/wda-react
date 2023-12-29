@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
 import {   administratorActions } from '../../../redux/exercise/administrator'
 import { findQuestion } from '..'
+import { po } from '../../../jrx/Util'
 
 
 const QQuestion=({question})=>{
@@ -51,7 +52,14 @@ export default function QuestionPanel({value}){
     const navigable=(num)=>{
         if(value){
             let selectIndex=administrator.selectedIndex+num 
+            po(selectIndex,value.length)
+            if(selectIndex===-1 || selectIndex>value.length){
+                return false
+            }
+
             selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
+
+
             const currentKeys=value.keys[administrator.selectedIndex]
             const currentParrentKeys=[...value.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
             const futureParrentKeys=[...value.keys[selectIndex]].splice(0,currentKeys.length-1)

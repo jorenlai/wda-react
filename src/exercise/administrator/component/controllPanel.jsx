@@ -39,8 +39,6 @@ export default function ControllPanel({value,...props}){
 
     return <StyledControllPanel {...props}>
         Total:{value?.level1QKeyList?.length}<br/>
-
-
         <button  disabled={selectedQuestion===0 || value==null} onClick={()=>nav(-1)}>
             Pre
         </button>
