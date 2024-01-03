@@ -30,7 +30,7 @@ const ShowQuestion=({questions})=>{
 const StyledQuestionPanel=styled.div`
 `
 
-export default function QuestionPanel({value}){
+export default function QuestionPanel({value,actions}){
     const dispatch = useDispatch()
     const administrator = useSelector((state) => state.administrator)
 

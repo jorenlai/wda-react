@@ -114,13 +114,13 @@ const StyledJRTable = styled.div`
     color: black;
     > main {
         /* Track */
-        &::-webkit-scrollbar {
+        &::XXX-webkit-scrollbar {
             position: sticky;
             background: transparent;
             margin-top: ${({headerHeight})=>headerHeight}px;
         }
 
-        ${({scrollx})=>scrollx===undefined?'min-':'overflow: overlay; '}height: calc(100vh ${({paging})=>paging?'- 42px':''} - ${({float})=>float?.header?.top} - ${({float})=>float?.footer?.bottom});
+        ${({scrollx})=>scrollx===undefined?'min-':'overflow: overlay; '}height: 100%;
     }
 
 

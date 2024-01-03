@@ -3,6 +3,8 @@ import { po } from './Util'
 import JForm from './JForm'
 import { useRef } from 'react'
 import JXTable from './JXTable'
+import ITable from './ITable'
+import { Button } from 'antd'
 const StyledJCrud=styled.div`
     display: flex;
     flex-direction: column;
@@ -54,22 +56,27 @@ export default function JCrud({children}){
 
 
 
-    return <StyledJCrud>
+    return <StyledJCrud
+        className={'jr-crud'}
+    >
         {
             items.SearchPanel!=null &&
-            <JForm cols={1} gap={0} {...searchProps} ref={searchPanelFormRef}>
+            <JForm  
+                className={'search-panel'}
+                cols={1} gap={0} {...searchProps} ref={searchPanelFormRef}
+            >
                 <JForm.Grid cols={4}>
                     {searchChildren}
                 </JForm.Grid>
                 <JForm.Grid style={{width:'400px'}}>
-                    <button onClick={()=>{
+                    <Button onClick={()=>{
                         searchPanelFormRef.current.resetFields()
-                    }}>Reset</button>
-                    <button onClick={()=>{
+                    }}>Reset</Button>
+                    <Button onClick={()=>{
                         resultPanelFormRef.current.get({
                             value:searchPanelFormRef.current.getValue()
                         })
-                    }}>Search</button>
+                    }}>Search</Button>
                 </JForm.Grid>
             </JForm>
         }
@@ -77,6 +84,7 @@ export default function JCrud({children}){
         {
             items.ResultPanel!=null &&
             <ResultType 
+                className={'result-panel'}
                 scrollx
                 cols={1} 
                 gap={0} 

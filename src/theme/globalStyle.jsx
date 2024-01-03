@@ -1,26 +1,39 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    :root {
+        --border-width: 10px;
+
+      }
+    
+    #root{
+        height: 100vh;
+        display: flex;
+    }
+
     html,*,*:before,*:after {
         box-sizing: border-box;
     }
 
     .exercise{
+        flex:1;
         height: 100vh;
-        border: 10px solid gray;
+        border: var(--border-width) solid gray;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     .anp-panel{
         flex:1;
         display: flex;
-        border: 10px solid blue;
+        border: var(--border-width) solid blue;
+        overflow: hidden;
     }
 
     .anp-tab{
         flex:1;
-        border: 20px solid red;
+        border: var(--border-width) solid red;
         overflow: hidden;
 
         .ant-tabs-content{
@@ -28,26 +41,58 @@ const GlobalStyle = createGlobalStyle`
 
             .ant-tabs-tabpane{
                 height: 100%;
-                display: flex;
+                xdisplay: flex;
+                border: var(--border-width) solid purple;
             }
         }
+    }
+
+    .ant-tabs-tabpane-active{
+        display: flex;
     }
 
     .con-adm{
         flex:1;
         overflow: hidden;
-        border: 10px solid yellow;
-        grid: 100px 1fr/200px 1fr !important;
+        border: var(--border-width) solid yellow;
+        grid: 60px 1fr/ 1fr !important;
     }
     
     .web-app{
+        flex: 1;
         display: flex;
-
+        border: var(--border-width) solid white;
+        overflow: hidden;
         .body{
+            display: flex;
             flex:1;
-            border: 10px solid green;
+            border: var(--border-width) solid green;
+            overflow: hidden;
         }
     }
+
+    .plan-panel{
+        flex:1;
+        border: var(--border-width) solid orange;
+    }
+
+    .jr-crud{
+        overflow: hidden;
+        flex:1;
+    }
+
+    .search-panel{
+        overflow: scroll;
+        border: 2px solid red;
+        flex-shrink: 0;
+    }
+
+    .jr-table.result-panel{
+        flex:1;
+        overflow: hidden;
+    }
+
+
 `
 
 export default GlobalStyle

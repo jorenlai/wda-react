@@ -2,40 +2,41 @@ import React, { useEffect ,useState} from 'react'
 import { Routes, Route, useParams, useLocation,useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
-import {   administratorActions } from '../../../redux/exercise/administrator'
-import Select from '../../../jrx/ISelect'
+import Select from '../jrx/ISelect'
+import { po } from '../jrx/Util'
 
 const StyledControllPanel=styled.div`
 `
 
-export default function ControllPanel({value,...props}){
+export default function ControllPanel({value, actions,selectorName,...props}){
+    po('planActions',actions)
     const dispatch = useDispatch()
-    const administrator = useSelector((state) => state.administrator)
+    const selector = useSelector((state) => state[selectorName])
     const [selectedQuestion,setSelectedQuestion]=useState()
     const getQNum=()=>{
-        return parseInt(value.keyList[ administrator.selectedIndex]?.split('-')[0] ?? 0)
+        return parseInt(value.keyList[ selector.selectedIndex]?.split('-')[0] ?? 0)
     }
 
     const selectQuestion=(num)=>{
         console.clear()
         let i= num   
         i=i<0?0:i>=value.level1QKeyList.length?value.level1QKeyList.length-1:i
-        dispatch(administratorActions.setSelectedIndex(value.level1QKeyList[i]))
+        dispatch(actions.setSelectedIndex(value.level1QKeyList[i]))
     }
 
     const nav=(num)=>{
         if(value!=null){
             let i= getQNum()+num   
             i=i<0?0:i>=value.level1QKeyList.length?value.level1QKeyList.length-1:i
-            dispatch(administratorActions.setSelectedIndex(value.level1QKeyList[i]))
+            dispatch(actions.setSelectedIndex(value.level1QKeyList[i]))
         }
     }
 
     useEffect(()=>{
-        if(administrator && value){
+        if(selector && value){
             setSelectedQuestion(getQNum())
         }
-    },[administrator.selectedIndex,value ])
+    },[selector.selectedIndex,value ])
 
     return <StyledControllPanel {...props}>
         Total:{value?.level1QKeyList?.length}

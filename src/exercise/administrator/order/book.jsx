@@ -2,6 +2,7 @@ import JCrud, { ResultPanel, SearchPanel } from '../../../jrx/JCrud'
 import styled from 'styled-components'
 import JPanel from '../../../jrx/JPanel'
 import JForm from '../../../jrx/JForm'
+import { Input } from 'antd'
 
 const StyledJCrud=styled(SearchPanel)`
     display: flex;
@@ -10,8 +11,10 @@ const StyledJCrud=styled(SearchPanel)`
 export default function OrderBook(){
     return <JCrud>
         <SearchPanel>
-            <input name={'name'} label={'Name'}/>
-            <input name={'address'} label={'Address'}/>
+            <Input name={'name'} label={'Name'}/>
+            <Input name={'address'} label={'Address'}/>
+            <Input name={'name'} label={'Name'}/>
+            <Input name={'address'} label={'Address'}/>
         </SearchPanel>
         <ResultPanel
             get={{
@@ -26,7 +29,7 @@ export default function OrderBook(){
             ]}
         >
             OrderBook 
-            <input name={'name'}  />
+            <Input name={'name'}  />
         </ResultPanel>
     </JCrud>
 }
