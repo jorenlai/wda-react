@@ -1,58 +1,47 @@
+import React, { useEffect, useRef } from 'react'
+import {   planActions } from '../../redux/exercise/plan'
+
 import styled from 'styled-components'
-import JGrid from '../../jrx/JGrid'
-import JPanel from '../../jrx/JPanel'
-import JForm from '../../jrx/JForm'
-import { useEffect, useState } from 'react'
+
 import { po } from '../../jrx/Util'
-import { useSelector , useDispatch } from 'react-redux'
-import { planActions } from '../../redux/exercise/plan'
-import ControllPanel from '../controllPanel'
+import { useState } from 'react'
+import JPanel from '../../jrx/JPanel'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
-import JEditor from '../../jrx/JEditor'
-import { useRef } from 'react'
+import ControllPanel from '../controllPanel'
+import JForm from '../../jrx/JForm'
 import { Input } from 'antd'
+import JEditor from '../../jrx/JEditor'
 import { toPng } from 'html-to-image'
+import QuestionPanel from '../administrator/component/questionPanel'
 
-const StyledPlanApp=styled(JPanel)`
-`
-
-const StyledControllPanel=styled.div`
-     > * {
+const StyledAdministratorApp=styled(JPanel)`
+    > div > * {
         border: 1px solid gray;
     }
-    grid-column: span 2;
+    gap: 20px;
 `
-
-// const ControllPanel=({questions})=>{
-//     const plan = useSelector((state) => state.plan)
-//     const dispatch = useDispatch()
-
-//     const nav=(num)=>{
-//         dispatch(planActions.setSelectedIndex(plan.selectedIndex+num))
-//     }
-//     return <StyledControllPanel>StyledControllPanel
-//         <button onClick={()=>nav(-1)}>pre</button>
-//         {plan.selectedIndex}
-//         <button onClick={()=>nav(1)}>next</button>
-//     </StyledControllPanel>
+    
+// export const findQuestion=(questions,selectedIndex)=>{
+//     let index=-1
+//     const findQ=(questions,selectedIndex,t)=>{
+//         for(var i=0;i<questions?.length ?? 0;i++){
+//             const question=questions[i]
+//             if(question.questions?.length>0){
+//                 const foundQ=findQ(question.questions,selectedIndex,`${t}\t`)
+//                 if(foundQ){
+//                     question.subQuestion=foundQ
+//                     return {
+//                         ...question
+//                         ,questions:[foundQ]
+//                     }
+//                 }
+//             }else if(selectedIndex===++index){
+//                 return question
+//             }
+//         }
+//     }     
+//     return findQ(questions,selectedIndex,'')
 // }
-
-const QuestionPanel=({questions})=>{
-    
-    const plan = useSelector((state) => state.plan)
-    const dispatch = useDispatch()
-    
-    const nav=(num)=>{
-        dispatch(planActions.setSelectedIndex(plan.selectedIndex+num))
-    }
-
-
-    return <div style={{border:'1px solid blue'}}>QuestionPanel ({plan.selectedIndex})
-        <button onClick={()=>nav(-1)}>pre</button>
-        <button onClick={()=>nav(1)}>next</button>
-        <br/>{JSON.stringify(questions)}
-    </div>
-}
 
 export const getQuestionParams=(questions,t)=>{
     let length=-1
@@ -91,15 +80,10 @@ export const getQuestionParams=(questions,t)=>{
 export default function PlanApp(){
     const editorRef=useRef()
     const [value,setValue]=useState()
-    const [questions,setQuestions]=useState()
-    const dispatch = useDispatch()
-    const plan = useSelector((state) => state.plan)
-
-  
-    return <StyledPlanApp
-        className={'plan-panel'}
+    return <StyledAdministratorApp
+        XXclassName={'con-plan'}
         get={{
-            url:'/question.json'
+            url:'/question1.json'
             ,autoRun:true
             ,callback(success,res){
                 setValue(res.data.questionParams)
@@ -117,20 +101,11 @@ export default function PlanApp(){
         }}
         cols={1}
     >
-            <ControllPanel name={'questionParams'}  actions={planActions} selectorName={'plan'}/>
-            <PanelGroup direction="horizontal">
-                <Panel minSize={10} defaultSizePercentage={25}>
-                    <QuestionPanel value={value} name={'questionParams'}/>
-                </Panel>    
-                <PanelResizeHandle/>
-                <Panel minSize={30} style={{display:'flex'}}>
-                    AAAAAAAAAAAA
-                </Panel>   
-            </PanelGroup>
 
-            {/* <PanelGroup direction="horizontal">
+        <ControllPanel value={value} actions={planActions} selectorName={'plan'}/>
+        <PanelGroup direction="horizontal">
             <Panel minSize={10} defaultSizePercentage={25}>
-                <QuestionPanel value={value} name={'questionParams'}/>
+                <QuestionPanel value={value}  actions={planActions} selectorName={'plan'}/>
             </Panel>    
             <PanelResizeHandle/>
             <Panel minSize={30} style={{display:'flex'}}>
@@ -169,8 +144,10 @@ export default function PlanApp(){
                         }}
                     >Submit</button>
                     </JForm.Grid>
-                </JForm>                
+                </JForm>  
             </Panel>   
-        </PanelGroup> */}
-    </StyledPlanApp>
-}
+
+        </PanelGroup>
+    </StyledAdministratorApp>
+
+} 

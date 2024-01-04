@@ -1,7 +1,7 @@
 import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
-import {   administratorActions } from '../../../redux/exercise/administrator'
+// import {   actions } from '../../../redux/exercise/administrator'
 import { findQuestion } from '..'
 import { po } from '../../../jrx/Util'
 
@@ -30,36 +30,36 @@ const ShowQuestion=({questions})=>{
 const StyledQuestionPanel=styled.div`
 `
 
-export default function QuestionPanel({value,actions}){
+export default function QuestionPanel({value,actions,selectorName}){
     const dispatch = useDispatch()
-    const administrator = useSelector((state) => state.administrator)
+    const selector = useSelector((state) => state[selectorName])
 
     const navSub=(num)=>{
         console.clear()
         if(value){
-            let selectIndex=administrator.selectedIndex+num 
+            let selectIndex=selector.selectedIndex+num 
             selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
-            const currentKeys=value.keys[administrator.selectedIndex]
-            const currentParrentKeys=[...value.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+            const currentKeys=value.keys[selector.selectedIndex]
+            const currentParrentKeys=[...value.keys[selector.selectedIndex]].splice(0,currentKeys.length-1)
             const futureParrentKeys=[...value.keys[selectIndex]].splice(0,currentKeys.length-1)
 
             if(currentParrentKeys.toString()===futureParrentKeys.toString()){
-                dispatch(administratorActions.setSelectedIndex(selectIndex))
+                dispatch(actions.setSelectedIndex(selectIndex))
             }
         }
     } 
 
     const navigable=(num)=>{
         if(value){
-            let selectIndex=administrator.selectedIndex+num 
+            let selectIndex=selector.selectedIndex+num 
             if(selectIndex===-1 || selectIndex>value.length){
                 return false
             }
 
             selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
 
-            const currentKeys=value.keys[administrator.selectedIndex]
-            const currentParrentKeys=[...value.keys[administrator.selectedIndex]].splice(0,currentKeys.length-1)
+            const currentKeys=value.keys[selector.selectedIndex]
+            const currentParrentKeys=[...value.keys[selector.selectedIndex]].splice(0,currentKeys.length-1)
             const futureParrentKeys=[...value.keys[selectIndex]].splice(0,currentKeys.length-1)
 
             return currentParrentKeys.toString()===futureParrentKeys.toString()
@@ -70,12 +70,12 @@ export default function QuestionPanel({value,actions}){
 
     const currentSub=()=>{
 
-        const keys=value?.keys[administrator.selectedIndex]??[]
+        const keys=value?.keys[selector.selectedIndex]??[]
         const i=keys[keys.length-1]
         return i==null?null:i+1
     }
 
-    const selectedQuestion=findQuestion(value?.questions,administrator.selectedIndex)
+    const selectedQuestion=findQuestion(value?.questions,selector.selectedIndex)
     return <StyledQuestionPanel
         className={'question-panel'}
     >

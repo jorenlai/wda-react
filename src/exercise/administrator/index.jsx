@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, useParams, useLocation,useNavigate } from 'react-router-dom'
-import { useSelector , useDispatch } from 'react-redux'
 import {   administratorActions } from '../../redux/exercise/administrator'
 
 import styled from 'styled-components'
 
 import WebApp from './WebApp'
-import JGrid from '../../jrx/JGrid'
-import IQuestion, { ITitle, IDescription } from './component/IQuestion'
 import { po } from '../../jrx/Util'
 import { useState } from 'react'
 import JPanel from '../../jrx/JPanel'
-import Select from '../../jrx/ISelect'
-// import ControllPanel from './component/controllPanel'
 import QuestionPanel from './component/questionPanel'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 import ControllPanel from '../controllPanel'
@@ -103,14 +97,10 @@ export default function AdministratorApp(){
         }}
         cols={1}
     >
-        {/* <ControllPanel name={'questionParams'} colSpan={2} />
-        <QuestionPanel name={'questionParams'} />
-        <WebApp/> */}
-
-        <ControllPanel value={value} name={'questionParams'} actions={administratorActions} selectorName={'administrator'}/>
+        <ControllPanel value={value} actions={administratorActions} selectorName={'administrator'}/>
         <PanelGroup direction="horizontal">
             <Panel minSize={10} defaultSizePercentage={25}>
-                <QuestionPanel value={value} name={'questionParams'}/>
+                <QuestionPanel value={value} actions={administratorActions} selectorName={'administrator'}/>
             </Panel>    
             <PanelResizeHandle/>
             <Panel minSize={30} style={{display:'flex'}}>
