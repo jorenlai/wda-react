@@ -6,6 +6,7 @@ import ResetApp from './exercise/reset'
 import ReadyApp from './exercise/ready'
 import WebApp from './exercise/administrator/WebApp'
 import TestApp from './test'
+import PlanForm from './exercise/plan/planForm'
 
 function App() {
 	return <AppProvider>
@@ -13,6 +14,7 @@ function App() {
 			<Routes>
 				<Route path="/test/*" element={<TestApp/>}/>
 				<Route path="/web/*" element={<WebApp/>}/>
+				<Route path="/plan/*" element={<PlanForm/>}/>
 				<Route path="/exercise/reset" element={<ResetApp/>}/>
 				<Route path="/exercise/ready" element={<ReadyApp/>}/>
 				<Route path="/exercise/*" element={<ExerciseApp/>}/>

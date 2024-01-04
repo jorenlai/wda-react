@@ -6,7 +6,7 @@ import GlobalStyle from '../theme/globalStyle'
 
 export default function AppProvider({children}){
 	return <Provider store={store} >
-		{/* <GlobalStyle/> */}
+		<GlobalStyle/>
 		<AntdStyles/>
 		<LoadingBar/>
         {children}

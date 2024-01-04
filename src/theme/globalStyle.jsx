@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        --border-width: 10px;
+        --border-width: 1px;
 
       }
     
@@ -51,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
     }
 
-    .con-adm{
+    .con-adm, .con-plan{
         flex:1;
         overflow: hidden;
         border: var(--border-width) solid yellow;

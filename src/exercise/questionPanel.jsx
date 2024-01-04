@@ -2,8 +2,8 @@ import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
 // import {   actions } from '../../../redux/exercise/administrator'
-import { findQuestion } from '..'
-import { po } from '../../../jrx/Util'
+// import { findQuestion } from './administrator'
+import { po } from '../jrx/Util'
 
 
 const QQuestion=({question})=>{
@@ -26,6 +26,61 @@ const ShowQuestion=({questions})=>{
     </div>
 }
 
+export const getQuestionParams=(questions,t)=>{
+    let length=-1
+    const keyMap={}
+    const keyList=[]
+    const keys=[]
+    const level1QKeyList=[]
+
+    const countLength=(questions,level,level1Index,key,keyArray,t)=>{
+        for(var i=0;i<questions?.length ?? 0;i++){
+            if(level===0) level1Index=i
+            
+            const question=questions[i]
+            const _key=`${key}${i}`
+            const _keyArray=[...keyArray??[],i]
+            if(question.questions?.length>0){
+                countLength(question.questions,level+1,level1Index,`${_key}-`,_keyArray,`${t}\t`)
+            }else{
+                ++length
+                if(level1QKeyList[level1Index]==null){
+                    level1QKeyList.push(length)
+                }
+                keys.push(_keyArray)
+                keyList.push(_key)
+                keyMap[_key]=length
+            }
+        }
+    }
+
+    countLength(questions,0,null,'',[],'')
+    return {
+        length,level1QKeyList,keyMap,keyList,keys
+    }
+}
+
+export const findQuestion=(questions,selectedIndex)=>{
+    let index=-1
+    const findQ=(questions,selectedIndex,t)=>{
+        for(var i=0;i<questions?.length ?? 0;i++){
+            const question=questions[i]
+            if(question.questions?.length>0){
+                const foundQ=findQ(question.questions,selectedIndex,`${t}\t`)
+                if(foundQ){
+                    question.subQuestion=foundQ
+                    return {
+                        ...question
+                        ,questions:[foundQ]
+                    }
+                }
+            }else if(selectedIndex===++index){
+                return question
+            }
+        }
+    }     
+    return findQ(questions,selectedIndex,'')
+}
 
 const StyledQuestionPanel=styled.div`
 `
