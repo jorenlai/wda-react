@@ -43,11 +43,11 @@ export default function AdministratorApp(){
     >
         <ControllPanel value={value} actions={administratorActions} selectorName={'administrator'}/>
         <PanelGroup direction="horizontal">
-            <Panel minSize={10} defaultSizePercentage={25}>
+            <Panel minSize={10} defaultSize={25}>
                 <QuestionPanel value={value} actions={administratorActions} selectorName={'administrator'}/>
             </Panel>    
             <PanelResizeHandle/>
-            <Panel minSize={30} style={{display:'flex'}}>
+            <Panel minSize={30} defaultSize={75} style={{display:'flex'}}>
                 <WebApp/>
             </Panel>   
         </PanelGroup>

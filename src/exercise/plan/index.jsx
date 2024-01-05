@@ -17,7 +17,7 @@ import PlanForm from './planForm'
 
 const StyledAdministratorApp=styled(JPanel)`
     > div > * {
-        border: 1px solid gray;
+        xborder: 1px solid gray;
     }
     gap: 20px;
 `
@@ -49,8 +49,8 @@ export default function PlanApp(){
 
         <ControllPanel value={value} actions={planActions} selectorName={'plan'}/>
         <PanelGroup direction="horizontal">
-            <Panel minSize={10} defaultSizePercentage={25}>
-                <QuestionPanel value={value}  actions={planActions} selectorName={'plan'}/>
+            <Panel minSize={10} defaultSize={25}>
+                <QuestionPanel value={value} actions={planActions} selectorName={'plan'}/>
             </Panel>    
             <PanelResizeHandle/>
             <Panel minSize={30} style={{display:'flex'}}>

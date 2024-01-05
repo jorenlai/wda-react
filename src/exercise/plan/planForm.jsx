@@ -5,54 +5,44 @@ import JForm from "../../jrx/JForm"
 import JEditor from "../../jrx/JEditor"
 import { toPng } from 'html-to-image'
 import { po } from '../../jrx/Util'
+import JPanel from '../../jrx/JPanel'
 
-const StyledPlanForm=styled.div`
-    border: 4px solid #aaa;
+const StyledPlanForm=styled(JPanel)`
+    xborder: 4px solid #aaa;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     flex:1;
 
-    .jr-form{
-        flex:1;
-        overflow: hidden;
-    }
 `
 
 export default function PlanForm(){
+    const formRef=useRef()
     const editorRef=useRef()
-    return <StyledPlanForm
-        cols={1}
-        initialValues={{
-            report:<div><a href="www.google.com">This is link to google</a> Yes
-            <br/><br/><br/><br/><br/><br/>
-            <img style={{width:"20px"}} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"/>
-            {/* <br/><br/><br/><br/><br/><br/>AAAAAAAAAAAAAAAA
-            <br/><br/><br/><br/><br/><br/>AAAAAAAAAAAAAAAA
-            <br/><br/><br/><br/><br/><br/>AAAAAAAAAAAAAAAA
-            <br/><br/><br/><br/><br/><br/>AAAAAAAAAAAAAAAA */}
-            </div>
-        }}                
+    const jrEditorRef=useRef()
+    return <StyledPlanForm ref={formRef} cols={1}
+        post={{
+            url:'/api/file/test'
+        }}
     >
-        <JForm doNotShowErrorMessage={true} gridStyle={{height:'100%'}}>
-            <JEditor xname={'report'} eRef={editorRef}/>
-        </JForm>
+        <JEditor xname={'report'} eRef={editorRef} ref={jrEditorRef}/>
         <button
             onClick={()=>{
-                console.clear()
-                po('ref',editorRef)
-                toPng(editorRef.current, { cacheBust: false })
-                .then((dataUrl) => {
-                    po('dataUrl',dataUrl)
-                const link = document.createElement("a");
-                link.download = "my-image-name.png";
-                link.href = dataUrl;
-                link.click();
-                })
-                .catch((err) => {
-                console.log(err);
-                })
+                po(formRef)
+                jrEditorRef.current.download()
+                jrEditorRef.current.getBase64().then((base64)=>{
+                    po('[base64',base64)
+                    const link = document.createElement("a");
+                    link.download = "my-image-name.png";
+                    link.href = base64;
+                    link.click();
 
+                    formRef.current.post({
+                        value:{
+                            base64//:'base64'
+                        }
+                    })
+                })
             }}
         >Submit</button>
     </StyledPlanForm>  
