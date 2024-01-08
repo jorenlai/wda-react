@@ -38,10 +38,10 @@ export default function ControllPanel({value, actions,selectorName,...props}){
 
     return <StyledControllPanel className={'controll-panel'} {...props}>
         Total:{value?.level1QKeyList?.length}
-        <button  disabled={selectedQuestion===0 || value==null} onClick={()=>nav(-1)}>
+        <button  disabled={selectedQuestion===0 || value==null || selector.started} onClick={()=>nav(-1)}>
             Pre
         </button>
-        <Select showBlank={false} 
+        <Select showBlank={false} disabled={selector.started}
             options={
                 Array(value?.level1QKeyList?.length??0).fill()
                 .map((a,id)=>{
@@ -53,7 +53,7 @@ export default function ControllPanel({value, actions,selectorName,...props}){
             onChange={selectQuestion}
             value={selectedQuestion}
         />
-        <button disabled={selectedQuestion+1===value?.level1QKeyList?.length || value==null}onClick={()=>nav(1)}>
+        <button disabled={selectedQuestion+1===value?.level1QKeyList?.length || value==null || selector.started}onClick={()=>nav(1)}>
             Next
         </button>
     </StyledControllPanel>

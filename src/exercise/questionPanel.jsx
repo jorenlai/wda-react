@@ -85,7 +85,7 @@ export const findQuestion=(questions,selectedIndex)=>{
 const StyledQuestionPanel=styled.div`
 `
 
-export default function QuestionPanel({value,actions,selectorName}){
+export default function QuestionPanel({doneCallback,value,actions,selectorName}){
     const dispatch = useDispatch()
     const selector = useSelector((state) => state[selectorName])
 
@@ -111,8 +111,6 @@ export default function QuestionPanel({value,actions,selectorName}){
                 return false
             }
 
-            //selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
-
             const currentKeys=value.keys[selector.selectedIndex]
             const currentParrentKeys=[...value.keys[selector.selectedIndex]].splice(0,currentKeys.length-1)
             const futureParrentKeys=[...value.keys[selectIndex]].splice(0,currentKeys.length-1)
@@ -136,18 +134,62 @@ export default function QuestionPanel({value,actions,selectorName}){
         return key?.length>1
     }
 
+    const submitAnswer=()=>{
+        const answers=[...selector.answers]
+        answers.push(true)
+        doneCallback?.()
+        dispatch(actions.setState({
+            selectedIndex:selector.selectedIndex+1
+            ,started:false
+            ,answers
+        }))
+    }
+
     const selectedQuestion=findQuestion(value?.questions,selector.selectedIndex)
+    const answerOrder=selector.answers.length
+
+
     return <StyledQuestionPanel
         className={'question-panel'}
     >
-        <button>Start</button><button>Stop</button><br/>
+        {
+        selector.started
+            ?<>
+                <button
+                    onClick={()=>{
+                        dispatch(actions.setStarted(false))
+                    }}        
+                >
+                    Stop
+                </button>
+                <button
+                    onClick={submitAnswer}        
+                >
+                    Done
+                </button>                
+            </>
+            :        
+                selector.selectedIndex<=answerOrder
+                && <button disabled={selector.selectedIndex!==answerOrder}
+                            onClick={()=>{
+                                dispatch(actions.setStarted(true))
+                            }} 
+                >
+                    {selector.selectedIndex<answerOrder?'Done':'Start'}
+                </button>
+            
+        }
+        
+        
+        
+        <br/>
 
         {
             hasSubQ()
             && <>
-                <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null}>pre</button>
+                <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null || selector.started}>pre</button>
                 {currentSub()}
-                <button onClick={()=>navSub(1)} disabled={!navigable(1)||value==null}>next</button>
+                <button onClick={()=>navSub(1)} disabled={!navigable(1)||value==null || selector.started}>next</button>
             </>
         }
         

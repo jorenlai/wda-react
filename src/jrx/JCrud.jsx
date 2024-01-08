@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import JXTable from './JXTable'
 import ITable from './ITable'
 import { Button } from 'antd'
-import JPath from './JPath'
+import JPath from '../component/JPath'
 const StyledJCrud=styled.div`
     display: flex;
     flex-direction: column;

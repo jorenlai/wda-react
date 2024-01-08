@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { po } from '../../jrx/Util';
 
-
+po('createSlice administrator------------------')
 const name='administrator'
 const initialState={
     selectedIndex:0
+    ,started:false
+    ,answers:[]
     ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
@@ -24,6 +27,14 @@ const administratorSlice = createSlice({
                 state[key]=value
                 localStorage.setItem(name, JSON.stringify(state))
             })
+        }
+        ,reset(state){
+            po('reset administrator')
+            localStorage.removeItem('administrator')
+            state=null
+        }
+        ,getShouldAnswer(state, action){
+            return "aaa"
         }
     })
 });

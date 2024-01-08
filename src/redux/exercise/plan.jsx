@@ -4,7 +4,9 @@ import { po } from '../../jrx/Util';
 
 const name='plan'
 const initialState={
-    selectedIndex:1
+    selectedIndex:0
+    ,started:false
+    ,answers:[]
     ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
@@ -25,6 +27,11 @@ const planSlice = createSlice({
                 state[key]=value
                 localStorage.setItem(name, JSON.stringify(state))
             })
+        }
+        ,reset(state){
+            po('reset plan')
+            localStorage.removeItem('plan')
+            state=null
         }
     })
 });

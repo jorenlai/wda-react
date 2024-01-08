@@ -13,8 +13,8 @@ export default function OrderBook(){
         <SearchPanel>
             <Input name={'name'} label={'Name'}/>
             <Input name={'address'} label={'Address'}/>
-            <Input name={'name'} label={'Name'}/>
-            <Input name={'address'} label={'Address'}/>
+            <Input name={'age'} label={'Age'}/>
+            <Input name={'other'} label={'Other'}/>
         </SearchPanel>
         <ResultPanel
             get={{

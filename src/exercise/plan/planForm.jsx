@@ -16,11 +16,11 @@ const StyledPlanForm=styled(JPanel)`
 
 `
 
-export default function PlanForm(){
+export default function PlanForm(props){
     const formRef=useRef()
     const editorRef=useRef()
     const jrEditorRef=useRef()
-    return <StyledPlanForm ref={formRef} cols={1}
+    return <StyledPlanForm style={props.style} ref={formRef} cols={1}
         post={{
             url:'/api/file/test'
         }}

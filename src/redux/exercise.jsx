@@ -4,7 +4,7 @@ import { po } from '../jrx/Util'
 
 const name='exercise'
 const initialState={
-    selectedIndex:1
+    selectedIndex:0
     ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
@@ -25,6 +25,11 @@ const exerciseSlice = createSlice({
                 state[key]=value
                 localStorage.setItem(name, JSON.stringify(state))
             })
+        }
+        ,reset(state){
+            po('reset exercise')
+            localStorage.removeItem('exercise')
+            state=null
         }
     })
 });

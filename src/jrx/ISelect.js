@@ -29,7 +29,7 @@ export default class Select extends JSubmit {
     setRes = this.setOptions;
 
     renderer() {
-        const {fieldNames,readOnly,onDeselect,onSearch, defaultActiveFirstOption,defaultValue, value, onChange,onSelect , valueName = "id", labelName = "name", showBlank ,mode, required} = this.props;
+        const {disabled,fieldNames,readOnly,onDeselect,onSearch, defaultActiveFirstOption,defaultValue, value, onChange,onSelect , valueName = "id", labelName = "name", showBlank ,mode, required} = this.props;
         return readOnly
             ?<div style={{padding: '0 11px'}}>{this.state?.options?.find((option)=>option[valueName]===this.props.value)?.[labelName]}</div>
             :<ADSelect 
@@ -58,6 +58,7 @@ export default class Select extends JSubmit {
             onChange={onChange?.bind(this)}
             onSelect={onSelect}
             fieldNames={fieldNames}
+            disabled={disabled}
         />
     }
 }

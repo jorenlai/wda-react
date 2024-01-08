@@ -1,25 +1,19 @@
 import  { useEffect,useState, useRef } from 'react'
 import { useSelector , useDispatch } from 'react-redux'
 import { exerciseActions } from '../redux/exercise'
+import {   administratorActions } from '../redux/exercise/administrator'
+import {   planActions } from '../redux/exercise/plan'
 import  { useHistory,redirect   } from 'react-router-dom'
 
 export default function ResetApp(){
 
-    const topic={
-        name:'administrator'
-        ,time:1000 * 60 * 100 
-    }
 
-
-    const set=`set${topic.name.charAt(0).toUpperCase()}${topic.name.slice(1)}`
     const dispatch = useDispatch()
-    const exercise = useSelector((state) => state.exercise)[topic.name]
 
     useEffect(()=>{
-        // dispatch(exerciseActions.reset(topic.name))
-        localStorage.removeItem('exercise')
-        localStorage.removeItem('administrator')
-        localStorage.removeItem('plan')
+        dispatch(exerciseActions.reset())
+        dispatch(administratorActions.reset())
+        dispatch(planActions.reset())
         redirect("/ready");
     },[])
 

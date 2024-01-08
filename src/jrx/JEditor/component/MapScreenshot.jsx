@@ -27,7 +27,7 @@ const StyledMapContainer = styled(Modal)`
 `
 export default function MapScreenshot({getRange}){
     const mapRef=useRef()
-    const position = [51.505, -0.09]
+    const position = [25.0330, 121.5654]
     const [map, setMap] = useState();
     const [range, setRange] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -87,7 +87,7 @@ export default function MapScreenshot({getRange}){
                             </MapContainer>
                         ) 
                     } else if(open==false){
-                        // setMap(null)
+                        setMap(null)
                     }  
                 }}
             >

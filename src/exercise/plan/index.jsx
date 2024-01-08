@@ -14,6 +14,8 @@ import JEditor from '../../jrx/JEditor'
 import { toPng } from 'html-to-image'
 import QuestionPanel,{getQuestionParams} from '../questionPanel'
 import PlanForm from './planForm'
+import AnswerOrder from '../answerOrder'
+import { useSelector } from 'react-redux'
 
 const StyledPlanApp=styled(JPanel)`
     > div > * {
@@ -24,7 +26,12 @@ const StyledPlanApp=styled(JPanel)`
     
 
 export default function PlanApp(){
+    const selector = useSelector((state) => state.plan)
     const [value,setValue]=useState()
+    const doneCallback=()=>{
+        po('PlanApp doneCallback')
+        return 
+    }
     return <StyledPlanApp
         className={'con-plan'}
         get={{
@@ -48,11 +55,12 @@ export default function PlanApp(){
         <ControllPanel value={value} actions={planActions} selectorName={'plan'}/>
         <PanelGroup direction="horizontal">
             <Panel minSize={10} defaultSize={25}>
-                <QuestionPanel value={value} actions={planActions} selectorName={'plan'}/>
+                <QuestionPanel value={value} actions={planActions} selectorName={'plan'} doneCallback={doneCallback}/>
             </Panel>    
             <PanelResizeHandle/>
             <Panel minSize={30} style={{display:'flex'}}>
-                <PlanForm/>
+                <PlanForm style={selector.started?null:{display:'none'}}/>
+                <AnswerOrder value={value} style={selector.started?{display:'none'}:null} actions={planActions} selectorName={'plan'}/>
             </Panel>   
         </PanelGroup>
     </StyledPlanApp>

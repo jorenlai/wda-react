@@ -49,7 +49,7 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
     })
 }
 
-export default function WebApp(){
+export default function WebApp(props){
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)
 
@@ -58,7 +58,7 @@ export default function WebApp(){
     const routes=[]
     const menus=[]
     loop(routeConfig,'','',0,routes,menus,navigate,dispatch,exercise)
-    return <StyledWebApp className={'web-app'}>
+    return <StyledWebApp style={props.style} className={'web-app'}>
         <Menu menu={menus} className={'menu'}/>
         <div className={'body'}>
         <Routes>

@@ -25,6 +25,7 @@ export default class JPanel extends JSubmit {
 
     renderer(){
         return <JGrid 
+            style={this.props.style}
             className={this.props.className}
             cols={this.props.cols}
         >

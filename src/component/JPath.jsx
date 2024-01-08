@@ -4,12 +4,17 @@ import styled from 'styled-components'
 import WebRouteConfig from '../exercise/administrator/route'
 import { useEffect } from 'react'
 import {pathActions} from '../redux/path'
-import { po } from './Util'
+import { po } from '../jrx/Util'
 
 const StyledPath = styled.div`
-    background: #535353;
-    display:flex;
-    gap:4px;
+    .path{
+        background: #535353;
+        display:flex;
+        gap:4px;
+    }
+    .desc{
+        background: #434343;
+    }
 `
 export default function JPath(){
     const dispatch = useDispatch()
@@ -52,11 +57,16 @@ export default function JPath(){
     }, [location]);
 
     return <StyledPath>
-        Path:{
-            paths?.map((record)=>{
-                return <div> / {record.label} </div>
-            })
-        }
+        <div className={'path'}>
+            Path:{
+                paths?.map((record)=>{
+                    return <div> / {record.label} </div>
+                })
+            }
+        </div>
+        <div className={'desc'}>
+            Desc...
+        </div>
     </StyledPath>
     
 }
