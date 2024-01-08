@@ -31,12 +31,6 @@ export default function PlanForm(){
                 po(formRef)
                 jrEditorRef.current.download()
                 jrEditorRef.current.getBase64().then((base64)=>{
-                    po('[base64',base64)
-                    const link = document.createElement("a");
-                    link.download = "my-image-name.png";
-                    link.href = base64;
-                    link.click();
-
                     formRef.current.post({
                         value:{
                             base64//:'base64'

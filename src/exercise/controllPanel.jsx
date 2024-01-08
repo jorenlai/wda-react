@@ -1,5 +1,4 @@
 import React, { useEffect ,useState} from 'react'
-import { Routes, Route, useParams, useLocation,useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
 import Select from '../jrx/ISelect'
@@ -9,7 +8,6 @@ const StyledControllPanel=styled.div`
 `
 
 export default function ControllPanel({value, actions,selectorName,...props}){
-    po('planActions',actions)
     const dispatch = useDispatch()
     const selector = useSelector((state) => state[selectorName])
     const [selectedQuestion,setSelectedQuestion]=useState()
@@ -38,7 +36,7 @@ export default function ControllPanel({value, actions,selectorName,...props}){
         }
     },[selector.selectedIndex,value ])
 
-    return <StyledControllPanel {...props}>
+    return <StyledControllPanel className={'controll-panel'} {...props}>
         Total:{value?.level1QKeyList?.length}
         <button  disabled={selectedQuestion===0 || value==null} onClick={()=>nav(-1)}>
             Pre

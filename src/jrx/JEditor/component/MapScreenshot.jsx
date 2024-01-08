@@ -9,8 +9,7 @@ import { Modal } from "antd";
 import { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 
-const StyledMapScreenshot = styled.div`
-    color: white;
+const StyledMapScreenshot = styled.button`
 `
 const StyledMapContainer = styled(Modal)`
     .ant-modal-body{
@@ -54,10 +53,20 @@ export default function MapScreenshot({getRange}){
 
     };
     const handleCancel = () => {
-      setIsModalOpen(false);
+        po("--------------------------------------")
+        setIsModalOpen(false);
     };
 
-    return <StyledMapScreenshot>
+    return <>
+        <button
+            onClick={()=>{
+                po('++++++++++++++++++++++++++++++++++++++')
+                setRange(getRange())
+                showModal()
+            }} 
+        >
+            MapScreenshot
+        </button>
         <StyledMapContainer
                 wrapClassName={'wrapClassName'}
 
@@ -86,12 +95,5 @@ export default function MapScreenshot({getRange}){
                 {map}
                 </div>
         </StyledMapContainer>
-        <button
-            onClick={()=>{
-                setRange(getRange())
-                showModal()
-            }}
-        >MapScreenshot
-        </button>
-    </StyledMapScreenshot>
+    </>
 }

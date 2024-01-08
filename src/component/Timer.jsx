@@ -11,6 +11,5 @@ export default function Timer({startTime,length,onComplete}){
 
     return <div title={`${startTimeD.format('hh:mm:ss')} ~ ${nowLength.format('hh:mm:ss')}`}>
         Timer: <Countdown date={date} onComplete={onComplete} key={date}/>
-        
     </div>
 }

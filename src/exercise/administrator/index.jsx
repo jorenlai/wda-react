@@ -27,8 +27,6 @@ export default function AdministratorApp(){
             ,autoRun:true
             ,callback(success,res){
                 setValue(res.data.questionParams)
-                po(success,res.data.questionParams
-                    )
             }
             ,dataFormat(data){
                 return {

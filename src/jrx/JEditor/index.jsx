@@ -3,11 +3,7 @@ import styled from 'styled-components'
 import { po } from "../Util";
 import testImg from "../../exercise/plan/component/testImg";
 import { toPng } from 'html-to-image'
-import JMap from "../../component/JMap";
 import React, { useEffect, useRef } from "react";
-import { Modal } from "antd";
-import { useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
 import MapScreenshot from "./component/MapScreenshot";
 
 
@@ -24,8 +20,35 @@ const StyledJEditor = styled.div`
 `
 
 const StyledTools = styled.div`
-    xbackground: #fb8a04;
+    display:flex;
+    background: black;
     color: black;
+    border:1px solid white;
+    flex-wrap: wrap;
+    padding: 6px;
+    gap:6px ;
+`
+
+const StyledToolsGroup = styled.div`
+    --b-size: 28px;
+
+    display:flex;
+    xborder:5px solid blue;
+    button {
+        border-radius: 0;
+        border:1px solid gray;
+        flex-wrap: nowrap;
+        min-width:var(--b-size);
+        min-height:var(--b-size);
+        padding: 0 8px;
+    }
+
+    :first-child {
+        border-radius: 6px 0 0 6px;
+    }
+    :last-child {
+        border-radius: 0 6px 6px 0;
+    }
 `
 
 const StyledEditorWapper = styled.div`
@@ -46,7 +69,7 @@ const StyledEditorScroll = styled.div`
 
 const StyledEditor = styled.div`
     padding: 10px;
-    xbackground: #f8eee4;
+    background: #4a4a4a;
     color: white;
     flex:1;
     height:100%;
@@ -91,36 +114,32 @@ export default class JEditor extends JSubmit {
         // po(this.editorRef.current)
         // if (window.getSelection) {
         //     const sel=window.getSelection()
-        //     if (sel.getRangeAt && sel.rangeCount) {
+            if (range) {
                 const oImg = document.createElement('img')
                 oImg.src=testImg
         //         const range = sel.getRangeAt(0);
         //         range.deleteContents();
                 range.insertNode( oImg );
-        //     }
+            }
         // } else if (document.selection && document.selection.createRange) {
         //     po("xxxxxxxxxxxxx")
         // }
     }
 
     async getImage(){
-        po('ref',this.editorRef)
         let data;
         await toPng(this.editorRef.current, { cacheBust: false })
         .then((dataUrl) => {
-            // po('dataUrl',dataUrl)
 
             const link = document.createElement("a");
             link.download = "my-image-name.png";
             link.href = dataUrl;
             link.click();
             data=dataUrl
-            po('then ++++++++++++++++++++++++++++++++++++++')
         })
         .catch((err) => {
             console.log(err);
         })
-        po('return ---------------------------------------')
         return data
     }
 
@@ -142,23 +161,15 @@ export default class JEditor extends JSubmit {
     }
 
     async getBase64(){
-        // po('ref',this.editorRef)
         let data;
         await toPng(this.editorRef.current, { cacheBust: false })
         .then((dataUrl) => {
-            // po('dataUrl',dataUrl)
-            // const link = document.createElement("a");
-            // link.download = "my-image-name.png";
-            // link.href = dataUrl;
-            // link.click();
             data= dataUrl
-            // po('then ++++++++++++++++++++++++++++++++++++++')
         })
         .catch((err) => {
             console.log(err);
         })
         return data
-        // po('return ---------------------------------------',data)
     }  
     
     addMap=(mapBase64)=>{
@@ -167,18 +178,37 @@ export default class JEditor extends JSubmit {
 
     render(){
         return <StyledJEditor className={'jr-editor'}>
-            <StyledTools>Tools
-                <button
-                    onClick={this.addImg}
-                >
-                    Add logo
-                </button>
-                <MapScreenshot getRange={this.getRange}/>
 
+            <StyledTools>
+                <StyledToolsGroup>
+                    <button>A</button>
+                    <button>B</button>
+                    <button>C</button>
+                </StyledToolsGroup>
+
+                <StyledToolsGroup>
+                    <button>X</button>
+                    <button>Y</button>
+                </StyledToolsGroup>
+
+                <StyledToolsGroup>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                </StyledToolsGroup>
+
+                <StyledToolsGroup>
+                    <button onClick={this.addImg}>Add logo</button>
+                    <MapScreenshot getRange={this.getRange}/>
+                </StyledToolsGroup>
             </StyledTools>
+
             <StyledEditorScroll className={'editor-scroll'}>
                 <StyledEditorWapper className={'editor-wapper'}>
-                    <StyledEditor className={'editor'} contenteditable={"true"} ref={this.editorRef}/>
+                    <StyledEditor className={'editor'} id={'jrEditor'} contenteditable={"true"} ref={this.editorRef}/>
                 </StyledEditorWapper>
             </StyledEditorScroll>
         </StyledJEditor>

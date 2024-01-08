@@ -111,7 +111,7 @@ export default function QuestionPanel({value,actions,selectorName}){
                 return false
             }
 
-            selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
+            //selectIndex=selectIndex<=0 ? 0:selectIndex>value.length?value.length:selectIndex
 
             const currentKeys=value.keys[selector.selectedIndex]
             const currentParrentKeys=[...value.keys[selector.selectedIndex]].splice(0,currentKeys.length-1)
@@ -130,15 +130,28 @@ export default function QuestionPanel({value,actions,selectorName}){
         return i==null?null:i+1
     }
 
+    const hasSubQ=()=>{
+        const key=value?.keys[selector.selectedIndex]
+        
+        return key?.length>1
+    }
+
     const selectedQuestion=findQuestion(value?.questions,selector.selectedIndex)
     return <StyledQuestionPanel
         className={'question-panel'}
     >
         <button>Start</button><button>Stop</button><br/>
 
-        <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null}>pre</button>
-        {currentSub()}
-        <button onClick={()=>navSub(1)} disabled={!navigable(1)||value==null}>next</button><br/>
+        {
+            hasSubQ()
+            && <>
+                <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null}>pre</button>
+                {currentSub()}
+                <button onClick={()=>navSub(1)} disabled={!navigable(1)||value==null}>next</button>
+            </>
+        }
+        
+        <br/>
         <ShowQuestion questions={selectedQuestion!=null?[selectedQuestion]:null}/>
     </StyledQuestionPanel>
 }

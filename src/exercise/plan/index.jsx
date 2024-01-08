@@ -15,9 +15,9 @@ import { toPng } from 'html-to-image'
 import QuestionPanel,{getQuestionParams} from '../questionPanel'
 import PlanForm from './planForm'
 
-const StyledAdministratorApp=styled(JPanel)`
+const StyledPlanApp=styled(JPanel)`
     > div > * {
-        xborder: 1px solid gray;
+        border: 1px solid gray;
     }
     gap: 20px;
 `
@@ -25,15 +25,13 @@ const StyledAdministratorApp=styled(JPanel)`
 
 export default function PlanApp(){
     const [value,setValue]=useState()
-    return <StyledAdministratorApp
+    return <StyledPlanApp
         className={'con-plan'}
         get={{
             url:'/question1.json'
             ,autoRun:true
             ,callback(success,res){
                 setValue(res.data.questionParams)
-                po(success,res.data.questionParams
-                    )
             }
             ,dataFormat(data){
                 return {
@@ -57,6 +55,6 @@ export default function PlanApp(){
                 <PlanForm/>
             </Panel>   
         </PanelGroup>
-    </StyledAdministratorApp>
+    </StyledPlanApp>
 
 } 

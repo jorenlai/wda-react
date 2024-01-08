@@ -2,9 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        --border-width: 1px;
-
-      }
+        --border-width: 0;
+    }
     
     #root{
         height: 100vh;
@@ -23,12 +22,25 @@ const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         overflow: hidden;
     }
+    
+
+    .info-panel {
+ 
+    }
+
+    .controll-panel {
+        
+    }
 
     .anp-panel{
         flex:1;
         display: flex;
         border: var(--border-width) solid blue;
         overflow: hidden;
+
+        .ant-tabs-nav{
+            background: #575757;
+        }
     }
 
     .anp-tab{
@@ -82,9 +94,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .search-panel{
-        overflow: scroll;
-        border: 2px solid red;
+        Xoverflow: scroll;
+        xborder: 2px solid red;
         flex-shrink: 0;
+        padding: 12px;
     }
 
     .jr-table.result-panel{

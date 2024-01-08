@@ -1,11 +1,17 @@
 import styled from 'styled-components'
+import JCrud, { ResultPanel } from '../../../jrx/JCrud'
+import JForm from '../../../jrx/JForm'
 
 const StyledPurchase=styled.div`
     display: flex;
 `
 
 export default function Purchase(){
-    return <StyledPurchase>
-        StyledExPurchase
-    </StyledPurchase>
+    return <JCrud>
+        <ResultPanel
+            type={JForm}
+        >
+            Purchase
+        </ResultPanel>
+    </JCrud>
 }

@@ -36,10 +36,10 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
                 ,path:_path
                 ,element:<record.component/>
             }
-            paths.push(<Route  {...pathParams}  />)
+            paths.push(<Route {...pathParams}/>)
         }
 
-        menus.push(<div {...menuParams} >
+        menus.push(<div style={{background:`${record.component==null?'#515151':'red'}`}} {...menuParams} >
             {record.label}
         </div>)
 
