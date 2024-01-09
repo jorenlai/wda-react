@@ -7,13 +7,15 @@ const initialState={
     selectedIndex:0
     ,started:false
     ,answers:[]
-    ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
+const initialStateWithStore={
+    ...initialState,...JSON.parse(localStorage.getItem(name)||'{}')
+}
 
 const planSlice = createSlice({
     name
-    ,initialState
+    ,initialState:initialStateWithStore
     ,reducers: Object.entries(initialState).reduce((aco,[key,value])=>{
         aco[`set${key.charAt(0).toUpperCase()}${key.slice(1)}`]=(state, action) => {
             state[key] = action.payload
@@ -29,8 +31,12 @@ const planSlice = createSlice({
             })
         }
         ,reset(state){
-            po('reset plan')
+            po('reset',name)
             localStorage.removeItem('plan')
+            Object.entries(initialState).forEach(([key,value])=>{
+                state[key]=value
+                localStorage.setItem(name, JSON.stringify(state))
+            })            
             state=null
         }
     })

@@ -20,7 +20,7 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
             key:_key
         }
 
-        if(record.component){
+        if(record.element){
             menuParams.style={
                 cursor: 'pointer'
             }
@@ -34,12 +34,12 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
             const pathParams={
                 key:_path
                 ,path:_path
-                ,element:<record.component/>
+                ,element:<record.element/>
             }
             paths.push(<Route {...pathParams}/>)
         }
 
-        menus.push(<div style={{background:`${record.component==null?'#515151':'red'}`}} {...menuParams} >
+        menus.push(<div style={{background:`${record.element==null?'#515151':'red'}`}} {...menuParams} >
             {record.label}
         </div>)
 

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        --border-width: 0;
+        --border-width: 1px;
     }
     
     #root{
@@ -18,14 +18,15 @@ const GlobalStyle = createGlobalStyle`
         flex:1;
         height: 100vh;
         border: var(--border-width) solid gray;
-        display: flex;
-        flex-direction: column;
         overflow: hidden;
+        grid: min-content 1fr / 1fr !important;
+
     }
     
 
     .info-panel {
- 
+        display:flex;
+        justify-content: space-between;
     }
 
     .controll-panel {

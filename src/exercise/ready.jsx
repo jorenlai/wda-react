@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import JPanel from '../jrx/JPanel'
+import { useEffect } from 'react'
 
 
 
 export default function ReadyApp(){
-    return <JPanel>Ready
-        <Link to={'/exercise/anp/administrator'}>Administrator</Link>
-        <Link to={'/exercise/anp/plan'}>Plan</Link>
-    </JPanel>
+    const navigate=useNavigate()
+    useEffect(()=>{
+        navigate('/exercise/anp/administrator')
+    },[])
+    return null
 }

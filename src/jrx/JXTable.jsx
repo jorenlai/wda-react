@@ -840,7 +840,7 @@ export default class JXTable extends JSubmit {
 
         return <StyledJRTable
             className={`jr-table ${this.props.className?this.props.className:''}`}
-            scrollx={this.props.scrollx}
+            scrollx={this.props.scrollx?.toString()}
             float={this.props.float}
             doubleClickable={this.props.onDoubleClick!==undefined}
             paging={page!==undefined}        

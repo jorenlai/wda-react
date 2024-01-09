@@ -18,18 +18,18 @@ export default function AnpExercise(){
     const navigate = useNavigate()
 
 
-    const operations = <div><Button>Extra Action</Button></div>;
+    const operations = <div><Button>Done</Button></div>;
     const items = [
         {
             key: 'administrator'
-            ,label: 'Tab 1'
+            ,label: 'Test 1'
             ,children: <Routes>
                 <Route path='/administrator/*' element={<AdministratorApp/>}/>
             </Routes>
         },
         {
             key: 'plan'
-            ,label: 'Tab 2'
+            ,label: 'Test 2'
             ,children:<Routes>
                 <Route path='/plan' element={<PlanApp/>}/>
             </Routes>
@@ -39,8 +39,6 @@ export default function AnpExercise(){
     const navigateTo=(key,b,c)=>{
         console.clear()
         const selector=selectors[key==='plan'?'administrator':'plan']
-        po('key,b,c',key,b,c)
-        po('selector[key]',selector)
         // if(selector.started){
         //     alert('Stop answering?')
         // }else{

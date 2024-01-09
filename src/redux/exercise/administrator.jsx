@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { po } from '../../jrx/Util';
 
-po('createSlice administrator------------------')
 const name='administrator'
 const initialState={
     selectedIndex:0
     ,started:false
     ,answers:[]
-    ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
+const initialStateWithStore={
+    ...initialState,...JSON.parse(localStorage.getItem(name)||'{}')
+}
 
 const administratorSlice = createSlice({
     name
-    ,initialState
+    ,initialState:initialStateWithStore
     ,reducers: Object.entries(initialState).reduce((aco,[key,value])=>{
         aco[`set${key.charAt(0).toUpperCase()}${key.slice(1)}`]=(state, action) => {
             state[key] = action.payload
@@ -29,8 +30,12 @@ const administratorSlice = createSlice({
             })
         }
         ,reset(state){
-            po('reset administrator')
-            localStorage.removeItem('administrator')
+            po('reset',name)
+            localStorage.removeItem(name)
+            Object.entries(initialState).forEach(([key,value])=>{
+                state[key]=value
+                localStorage.setItem(name, JSON.stringify(state))
+            })            
             state=null
         }
         ,getShouldAnswer(state, action){

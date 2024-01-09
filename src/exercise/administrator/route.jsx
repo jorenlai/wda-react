@@ -12,12 +12,12 @@ export default function WebRouteConfig(){
                 {
                     path:'book'
                     ,label:'Order Book'
-                    ,component:OrderBook
+                    ,element:OrderBook
                 }
                 ,{
                     path:'short'
                     ,label:'Order Short'
-                    ,component:OrderShort
+                    ,element:OrderShort
                 }
             ]
         }
@@ -28,7 +28,7 @@ export default function WebRouteConfig(){
                 {
                     path:'purchase'
                     ,label:'Purchase'
-                    ,component:Purchase
+                    ,element:Purchase
                 }
             ]
         }        
@@ -39,7 +39,7 @@ export default function WebRouteConfig(){
                 {
                     path:'scrapped'
                     ,label:'Scrapped cp'
-                    ,component:Scrapped
+                    ,element:Scrapped
                 }
             ]
         }

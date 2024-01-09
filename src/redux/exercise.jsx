@@ -5,13 +5,19 @@ import { po } from '../jrx/Util'
 const name='exercise'
 const initialState={
     selectedIndex:0
-    ,...JSON.parse(localStorage.getItem(name)||'{}')
+    ,startTime:null
+    ,completed:null
+    ,timeUp:null
+}
+
+const initialStateWithStore={
+    ...initialState,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
 
 const exerciseSlice = createSlice({
     name
-    ,initialState
+    ,initialState:initialStateWithStore
     ,reducers: Object.entries(initialState).reduce((aco,[key,value])=>{
         aco[`set${key.charAt(0).toUpperCase()}${key.slice(1)}`]=(state, action) => {
             state[key] = action.payload
@@ -27,9 +33,12 @@ const exerciseSlice = createSlice({
             })
         }
         ,reset(state){
-            po('reset exercise')
+            po('reset',name)
             localStorage.removeItem('exercise')
-            state=null
+            Object.entries(initialState).forEach(([key,value])=>{
+                state[key]=value
+                localStorage.setItem(name, JSON.stringify(state))
+            })
         }
     })
 });

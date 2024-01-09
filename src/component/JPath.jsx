@@ -24,12 +24,9 @@ export default function JPath(){
     let paths=[]
     let url=location.pathname
     const findPath=(routes,aco)=>{
-        po('url',url)
-        po('routes',routes)
         let found=false;
         for(var x=0;x<routes.length && !found;x++){
             const route=routes[x]
-            po('\t route',route)
             const regRoute=`/${route.path.replaceAll(/:\w+/g,"([^/]+)")}$`
             if(new RegExp(regRoute).test(url)){
                 found=true
@@ -43,7 +40,6 @@ export default function JPath(){
   
     }
     findPath(WebRouteConfig(),[])
-    po('paths',paths)
 
     useEffect(() => {
         const items= paths.map(path=>{
@@ -59,8 +55,8 @@ export default function JPath(){
     return <StyledPath>
         <div className={'path'}>
             Path:{
-                paths?.map((record)=>{
-                    return <div> / {record.label} </div>
+                paths?.map((record,index)=>{
+                    return <div key={index}> / {record.label} </div>
                 })
             }
         </div>
