@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { po } from '../../jrx/Util';
 
-const name='administrator'
+const name='web'
 const initialState={
     selectedIndex:0
     ,started:false
@@ -12,7 +12,7 @@ const initialStateWithStore={
     ...initialState,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
-const administratorSlice = createSlice({
+const webSlice = createSlice({
     name
     ,initialState:initialStateWithStore
     ,reducers: Object.entries(initialState).reduce((aco,[key,value])=>{
@@ -44,5 +44,5 @@ const administratorSlice = createSlice({
     })
 });
 
-export const administratorActions = administratorSlice.actions;
-export default administratorSlice.reducer;
+export const webActions = webSlice.actions;
+export default webSlice.reducer;

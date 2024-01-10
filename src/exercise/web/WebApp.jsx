@@ -2,7 +2,7 @@ import { Routes, Route,useNavigate } from 'react-router-dom'
 import Menu from './menu'
 import WebRouteConfig from './route'
 import { useSelector , useDispatch } from 'react-redux'
-import { administratorActions } from '../../redux/exercise/administrator'
+import { webActions } from '../../redux/exercise/web'
 import { po } from '../../jrx/Util'
 
 import styled from 'styled-components'
@@ -28,7 +28,7 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
             menuParams.onClick=()=>{
                 navigate(_path)
                 const nav=exercise.nav ? exercise.nav.indexOf(_path)===-1 ? [...exercise.nav,_path]: exercise.nav: [_path]
-                dispatch(administratorActions.setState({nav}))
+                dispatch(webActions.setState({nav}))
             }
 
             const pathParams={

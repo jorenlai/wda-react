@@ -2,7 +2,7 @@ import { Routes, Route, useParams, useLocation,useNavigate } from 'react-router-
 import { Button, Tabs } from 'antd'
 import { po } from '../jrx/Util';
 import PlanApp from './plan';
-import {   administratorActions } from '../redux/exercise/administrator'
+import {   webActions } from '../redux/exercise/web'
 import {   planActions } from '../redux/exercise/plan'
 import { useSelector , useDispatch } from 'react-redux'
 import AdministratorApp from './web';
