@@ -1,8 +1,6 @@
 import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
-// import {   actions } from '../../../redux/exercise/administrator'
-// import { findQuestion } from './administrator'
 import { po } from '../jrx/Util'
 
 

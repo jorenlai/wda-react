@@ -5,7 +5,7 @@ import PlanApp from './plan';
 import {   administratorActions } from '../redux/exercise/administrator'
 import {   planActions } from '../redux/exercise/plan'
 import { useSelector , useDispatch } from 'react-redux'
-import AdministratorApp from './administrator';
+import AdministratorApp from './web';
 import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){

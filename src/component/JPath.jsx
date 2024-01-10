@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import WebRouteConfig from '../exercise/administrator/route'
+import WebRouteConfig from '../exercise/web/route'
 import { useEffect } from 'react'
 import {pathActions} from '../redux/path'
 import { po } from '../jrx/Util'
