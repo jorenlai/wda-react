@@ -1,4 +1,4 @@
-import { Routes, Route,useNavigate } from 'react-router-dom'
+import { Routes, Route,useNavigate, useParams } from 'react-router-dom'
 import Menu from './menu'
 import WebRouteConfig from './route'
 import { useSelector , useDispatch } from 'react-redux'
@@ -11,7 +11,8 @@ const StyledWebApp=styled.div`
     gap: 22px;
 `
 
-const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
+const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise,type)=>{
+    // po('exercise.type',exercise.type,type)
     notes?.forEach((record,i)=>{
         const _path=`${path}${record.path}`
         const _key=`${key}${i}`
@@ -36,7 +37,6 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
                 ,path:_path
                 ,element:<record.element/>
             }
-            po('_path',_path)
             paths.push(<Route {...pathParams}/>)
         }
 
@@ -45,12 +45,14 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
         </div>)
 
         if(record.items){
-            loop(record.items,`${_path}/`,`${_key}-`,level+1,paths,menus,navigate,dispatch,exercise)
+            loop(record.items,`${_path}/`,`${_key}-`,level+1,paths,menus,navigate,dispatch,exercise,type)
         }
     })
 }
 
 export default function WebApp(props){
+    const { type } = useParams()
+    po('web type',type)
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)
 
@@ -58,9 +60,8 @@ export default function WebApp(props){
     const routeConfig=WebRouteConfig()
     const routes=[]
     const menus=[]
-    loop(routeConfig,'','',0,routes,menus,navigate,dispatch,exercise)
+    loop(routeConfig,'','',0,routes,menus,navigate,dispatch,exercise,type)
 
-    po(routes)
     return <StyledWebApp style={props.style} className={'web-app'}>
         <Menu menu={menus} className={'menu'}/>
         <div className={'body'}>
@@ -68,6 +69,5 @@ export default function WebApp(props){
             {routes}
         </Routes>  
         </div>
-        {/* {JSON.stringify(exercise.nav)} */}
     </StyledWebApp>
 }

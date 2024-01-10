@@ -18,7 +18,6 @@ export default function AnswerOrder({style,value,selectorName,actions}){
     const dispatch = useDispatch()
     const selector = useSelector((state) => state[selectorName])
     const answerOrder=selector.answers.length
-    // po('answerOrder',answerOrder)
     const shouldAnswer=value?.keys[answerOrder]??[]
 
     const nav=(num)=>{
@@ -31,21 +30,22 @@ export default function AnswerOrder({style,value,selectorName,actions}){
     }
 
     return <StyledAnswerOrder style={style}>
-        <div>請按試題順序作答 主問題{shouldAnswer[0]+1} {`${shouldAnswer[0,1]!=null?`子問題${shouldAnswer[0,1]+1}`:''}`} </div>
+        <div>依序作答 主題{shouldAnswer[0]+1} {`${shouldAnswer[0,1]!=null?`子題${shouldAnswer[0,1]+1}`:''}`} </div>
         <div className={'buttons'}>
-            <button onClick={()=>nav(-1)}>
+            {/* <button onClick={()=>nav(-1)}>
                 pre
-            </button>
-            <button disabled={selector.selectedIndex!==answerOrder}
-                        onClick={()=>{
-                            dispatch(actions.setStarted(true))
-                        }} 
+            </button> */}
+            <button xxdisabled={selector.selectedIndex!==answerOrder}
+                onClick={()=>{
+                    dispatch(actions.setState({started:true,selectedIndex:answerOrder}))
+                    
+                }} 
             >
                 {selector.selectedIndex<answerOrder?'Done':'Start'}
             </button>
-            <button onClick={()=>nav(1)}>
+            {/* <button onClick={()=>nav(1)}>
                 next
-            </button>
+            </button> */}
         </div>
     </StyledAnswerOrder>
 }

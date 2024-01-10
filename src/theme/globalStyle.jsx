@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
     :root {
-        --border-width: 1px;
+        --border-width: 0;
     }
     
     #root{

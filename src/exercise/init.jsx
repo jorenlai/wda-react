@@ -14,7 +14,7 @@ export default function Init(){
     const navigate=useNavigate()
     const dispatch = useDispatch()
     dispatch(userActions.reset())
-    dispatch(exerciseActions.reset())
+    dispatch(exerciseActions.reset({type}))
     dispatch(adminActions.reset())
     dispatch(planActions.reset())
 	

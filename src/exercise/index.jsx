@@ -39,11 +39,14 @@ export function InfoPanel({value}){
 
 export default function  ExerciseApp(){
     const { type,topic,...p } = useParams()
-    po('type',p,type,topic)
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)
-	if((type!=='exercise'&&type!=='rehearsal')
+    po('===============type',p,type,topic)
+    po('exercise.type',exercise.type)
+	if(
+        (type!=='exercise'&&type!=='rehearsal')
         || (topic!=='anp')
+        || (exercise.type!==type)
     ){
 		return
 	};
