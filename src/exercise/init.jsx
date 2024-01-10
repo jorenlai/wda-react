@@ -4,27 +4,31 @@ import { exerciseActions } from '../redux/exercise'
 import {   administratorActions } from '../redux/exercise/administrator'
 import {   userActions } from '../redux/user'
 import {   planActions } from '../redux/exercise/plan'
-import  { useHistory,redirect, useNavigate   } from 'react-router-dom'
+import  { useHistory,redirect, useNavigate, useParams   } from 'react-router-dom'
 import JPanel from '../jrx/JPanel'
 import { po } from '../jrx/Util'
 
 
 export default function Init(){
+	const { id,type } = useParams()
     const navigate=useNavigate()
     const dispatch = useDispatch()
     dispatch(userActions.reset())
     dispatch(exerciseActions.reset())
     dispatch(administratorActions.reset())
     dispatch(planActions.reset())
-
-
+	
 	localStorage.removeItem('accessToken')
+	
+	if(type!=='exercise'&&type!=='rehearsal')return
+	
+
 	return <JPanel
 		get={{
 			url:'/token.json'
 			,autoRun:true
 			,value:{
-				id:'839202334-g-eg34-w345'
+				id
 			}
 			,dataFormat(data){
 				po('data',data)
@@ -34,7 +38,7 @@ export default function Init(){
 				if(success){
 					po('res',res.data.token)
 					localStorage.setItem('accessToken',res.data.token)
-					navigate('/exercise/ready')
+					navigate(`/${type}/ready`)
 				}
             }
 		}}

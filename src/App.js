@@ -18,20 +18,16 @@ function App() {
 	return <AppProvider>
 		<BrowserRouter>
 			<Routes>
-				<Route path="/init/:id" element={<Init/>} exact/>
 				<Route path="/test/*" element={<TestApp/>}/>
 				<Route path="/web/*" element={<WebApp/>}/>
 				<Route path="/plan/*" element={<PlanForm/>}/>
-				<Route path="/exercise/reset" element={<ResetApp/>}/>
-				<Route path="/exercise/ready" element={<ReadyApp/>} exact/>
-				<Route path="/exercise/*" 
-					element={<Authentication>
-						<ExerciseApp/>
-						{/* <div>.</div> */}
-					</Authentication>}
-				/>
+
+				<Route path="/:type/init/:id" element={<Init/>} exact/>
+				<Route path="/:type/ready" element={<ReadyApp/>} exact/>
+				<Route path="/:type/:topic/*" element={<Authentication><ExerciseApp/></Authentication>}/>
+
+				<Route path="/:type/reset" element={<ResetApp/>} exact/>
 				<Route path="/office" element={<Authentication><div>A</div></Authentication>}/>
-				{/* <ExerciseApp/> */}
 			</Routes>
 		</BrowserRouter>
   </AppProvider>

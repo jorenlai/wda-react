@@ -9,11 +9,10 @@ import AdministratorApp from './administrator';
 import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){
-    const selectors ={
-        administrator:useSelector((state) => state.administrator)
-        ,plan:useSelector((state) => state.plan)
-    } 
-    const location = useLocation();
+    // const selectors ={
+    //     administrator:useSelector((state) => state.administrator)
+    //     ,plan:useSelector((state) => state.plan)
+    // } 
     const p=useParams()
     const navigate = useNavigate()
 
@@ -21,10 +20,10 @@ export default function AnpExercise(){
     const operations = <div><Button>Done</Button></div>;
     const items = [
         {
-            key: 'administrator'
+            key: 'web'
             ,label: 'Test 1'
             ,children: <Routes>
-                <Route path='/administrator/*' element={<AdministratorApp/>}/>
+                <Route path='/web/*' element={<AdministratorApp/>}/>
             </Routes>
         },
         {
@@ -38,7 +37,7 @@ export default function AnpExercise(){
 
     const navigateTo=(key,b,c)=>{
         console.clear()
-        const selector=selectors[key==='plan'?'administrator':'plan']
+        // const selector=selectors[key==='plan'?'web':'plan']
         // if(selector.started){
         //     alert('Stop answering?')
         // }else{
@@ -49,7 +48,7 @@ export default function AnpExercise(){
         <Tabs className={'anp-tab'} 
             onChange={navigateTo} 
             tabBarExtraContent={operations} 
-            activeKey={p['*']==='plan'?'plan':'administrator'} 
+            activeKey={p['*']==='plan'?'plan':'web'} 
             items={items}
         />
     </div>

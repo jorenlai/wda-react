@@ -208,7 +208,7 @@ export default class JEditor extends JSubmit {
 
             <StyledEditorScroll className={'editor-scroll'}>
                 <StyledEditorWapper className={'editor-wapper'}>
-                    <StyledEditor className={'editor'} id={'jrEditor'} contenteditable={"true"} ref={this.editorRef}/>
+                    <StyledEditor className={'editor'} id={'jrEditor'} contentEditable={"true"} ref={this.editorRef}/>
                 </StyledEditorWapper>
             </StyledEditorScroll>
         </StyledJEditor>

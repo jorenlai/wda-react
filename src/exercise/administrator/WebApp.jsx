@@ -36,10 +36,11 @@ const loop=(notes,path,key,level,paths,menus,navigate,dispatch,exercise)=>{
                 ,path:_path
                 ,element:<record.element/>
             }
+            po('_path',_path)
             paths.push(<Route {...pathParams}/>)
         }
 
-        menus.push(<div style={{background:`${record.element==null?'#515151':'red'}`}} {...menuParams} >
+        menus.push(<div title={_path} style={{background:`${record.element==null?'#515151':'red'}`}} {...menuParams} >
             {record.label}
         </div>)
 
@@ -58,6 +59,8 @@ export default function WebApp(props){
     const routes=[]
     const menus=[]
     loop(routeConfig,'','',0,routes,menus,navigate,dispatch,exercise)
+
+    po(routes)
     return <StyledWebApp style={props.style} className={'web-app'}>
         <Menu menu={menus} className={'menu'}/>
         <div className={'body'}>

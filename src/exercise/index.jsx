@@ -18,6 +18,7 @@ import JPanel from '../jrx/JPanel'
 
 
 export function InfoPanel({value}){
+    const { type } = useParams()
     const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
@@ -31,48 +32,32 @@ export function InfoPanel({value}){
     return <div className={'info-panel'}>
         <Timer startTime={exercise.startTime} length={value.time} onComplete={onComplete} />
         <div>{user.name}{exercise.timeUp+""}</div>
-        <a href={'/init/345345345-34-53-45-345'}>Init</a>
-        <a href={'/exercise/reset'}>Reset</a>
+        <a href={`/${type}/init/345345345-34-53-45-345`}>Init</a>
+        <a href={`/${type}/reset`}>Reset</a>
     </div>
 }
 
-export default function ExerciseApp(){
-    const topic={
-        name:'exercise'
-        ,time:1000 * 5
-    }
-
+export default function  ExerciseApp(){
+    const { type,topic,...p } = useParams()
+    po('type',p,type,topic)
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)
-    
-
-    // useEffect(()=>{
-    //     po('exercise',exercise)
-        
-    //     if(exercise.startTime==null && !exercise.completed){
-    //         dispatch(exerciseActions.setState({
-    //             startTime:dayjs().valueOf()
-    //             ,timeUp:false
-    //             ,completed:false
-    //         }))
-    //     }else if(exercise.startTime+topic.time<Date.now()){
-    //         dispatch(exerciseActions.setTimeUp(true))
-    //     }
-    // },[])
-
+	if((type!=='exercise'&&type!=='rehearsal')
+        || (topic!=='anp')
+    ){
+		return
+	};
 
     return <JPanel 
         className={'exercise'} gap={0} cols={1}
         waitForReadState={true}
         get={{
-            url:'/exercise.json'
+            url:`/${type}.json`
             ,autoRun:true
             ,dataFormat(data){
                 return {exercise:data}
             }
             ,callback(success,res){
-                po('res',res)
-                po('callback',this)
                 if(success){
                     const {data:{exercise:{time}}}=res
                     if(exercise.startTime==null && !exercise.completed){
@@ -92,12 +77,10 @@ export default function ExerciseApp(){
     >
         <InfoPanel name={'exercise'}/>
         {function(props){
-            po('props',props)
-            po('func',this)
             return exercise.timeUp 
                 ?<div key={props.index}>Time's up</div>
                 :<Routes key={props.index}>
-                    <Route path='/anp/*' element={<AnpExercise/>}/>
+                    <Route path='/*' element={<AnpExercise/>}/>
                 </Routes>
         }}
     </JPanel>
