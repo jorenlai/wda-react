@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {   webActions } from '../../redux/exercise/web'
+import {   adminActions } from '../../redux/exercise/admin'
 import { useSelector , useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
@@ -47,15 +47,15 @@ export default function AdministratorApp(){
         }}
         cols={1}
     >
-        <ControllPanel value={value} actions={webActions} selectorName={'administrator'}/>
+        <ControllPanel value={value} actions={adminActions} selectorName={'administrator'}/>
         <PanelGroup direction="horizontal">
             <Panel minSize={10} defaultSize={25}>
-                <QuestionPanel value={value} actions={webActions} selectorName={'administrator'} doneCallback={doneCallback}/>
+                <QuestionPanel value={value} actions={adminActions} selectorName={'administrator'} doneCallback={doneCallback}/>
             </Panel>    
             <PanelResizeHandle/>
             <Panel minSize={30} defaultSize={75} style={{display:'flex'}}>
                 <WebApp style={selector.started?null:{display:'none'}}/>
-                <AnswerOrder value={value} style={selector.started?{display:'none'}:null} actions={webActions} selectorName={'administrator'}/>
+                <AnswerOrder value={value} style={selector.started?{display:'none'}:null} actions={adminActions} selectorName={'administrator'}/>
             </Panel>   
         </PanelGroup>
     </StyledAdministratorApp>

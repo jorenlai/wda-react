@@ -1,7 +1,7 @@
 import  { useEffect,useState, useRef } from 'react'
 import { useSelector , useDispatch } from 'react-redux'
 import { exerciseActions } from '../redux/exercise'
-import {   webActions } from '../redux/exercise/web'
+import {   adminActions } from '../redux/exercise/admin'
 import {   userActions } from '../redux/user'
 import {   planActions } from '../redux/exercise/plan'
 import  { useHistory,redirect, useNavigate, useParams   } from 'react-router-dom'
@@ -15,7 +15,7 @@ export default function Init(){
     const dispatch = useDispatch()
     dispatch(userActions.reset())
     dispatch(exerciseActions.reset())
-    dispatch(webActions.reset())
+    dispatch(adminActions.reset())
     dispatch(planActions.reset())
 	
 	localStorage.removeItem('accessToken')

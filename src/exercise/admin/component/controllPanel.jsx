@@ -2,7 +2,7 @@ import React, { useEffect ,useState} from 'react'
 import { Routes, Route, useParams, useLocation,useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
-import {   webActions } from '../../../redux/exercise/administrator'
+import {   adminActions } from '../../../redux/exercise/administrator'
 import Select from '../../../jrx/ISelect'
 
 const StyledControllPanel=styled.div`
@@ -20,14 +20,14 @@ export default function ControllPanel({value,...props}){
         console.clear()
         let i= num   
         i=i<0?0:i>=value.level1QKeyList.length?value.level1QKeyList.length-1:i
-        dispatch(webActions.setSelectedIndex(value.level1QKeyList[i]))
+        dispatch(adminActions.setSelectedIndex(value.level1QKeyList[i]))
     }
 
     const nav=(num)=>{
         if(value!=null){
             let i= getQNum()+num   
             i=i<0?0:i>=value.level1QKeyList.length?value.level1QKeyList.length-1:i
-            dispatch(webActions.setSelectedIndex(value.level1QKeyList[i]))
+            dispatch(adminActions.setSelectedIndex(value.level1QKeyList[i]))
         }
     }
 
