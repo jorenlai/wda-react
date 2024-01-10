@@ -7,7 +7,7 @@ import { userActions } from '../redux/user'
 import { exerciseActions } from '../redux/exercise'
 import dayjs from 'dayjs'
 
-import AdministratorApp from './web'
+import AdministratorApp from './admin'
 import { po } from '../jrx/Util'
 import Timer from '../component/Timer'
 

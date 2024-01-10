@@ -3,7 +3,6 @@ import {   webActions } from '../../redux/exercise/web'
 import { useSelector , useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import WebApp from './WebApp'
 import { po } from '../../jrx/Util'
 import { useState } from 'react'
 import JPanel from '../../jrx/JPanel'
@@ -11,6 +10,7 @@ import QuestionPanel,{getQuestionParams} from '../questionPanel'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 import ControllPanel from '../controllPanel'
 import AnswerOrder from '../answerOrder'
+import WebApp from '../../web'
 
 const StyledAdministratorApp=styled(JPanel)`
     > div > * {

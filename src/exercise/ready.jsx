@@ -9,7 +9,7 @@ export default function ReadyApp(){
     const { type } = useParams()
     const navigate=useNavigate()
     useEffect(()=>{
-        navigate(`/${type}/anp/web`)
+        navigate(`/${type}/anp/admin`)
     },[])
     return null
 }

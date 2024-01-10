@@ -5,7 +5,7 @@ import PlanApp from './plan';
 import {   webActions } from '../redux/exercise/web'
 import {   planActions } from '../redux/exercise/plan'
 import { useSelector , useDispatch } from 'react-redux'
-import AdministratorApp from './web';
+import AdministratorApp from './admin';
 import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){
@@ -20,10 +20,10 @@ export default function AnpExercise(){
     const operations = <div><Button>Done</Button></div>;
     const items = [
         {
-            key: 'web'
+            key: 'admin'
             ,label: 'Test 1'
             ,children: <Routes>
-                <Route path='/web/*' element={<AdministratorApp/>}/>
+                <Route path='/admin/*' element={<AdministratorApp/>}/>
             </Routes>
         },
         {
@@ -48,7 +48,7 @@ export default function AnpExercise(){
         <Tabs className={'anp-tab'} 
             onChange={navigateTo} 
             tabBarExtraContent={operations} 
-            activeKey={p['*']==='plan'?'plan':'web'} 
+            activeKey={p['*']==='plan'?'plan':'admin'} 
             items={items}
         />
     </div>

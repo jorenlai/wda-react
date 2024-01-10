@@ -1,9 +1,9 @@
 import { Routes, Route,useNavigate } from 'react-router-dom'
-import Menu from './menu'
-import WebRouteConfig from './route'
+import Menu from '../exercise/admin/menu'
+import WebRouteConfig from '../exercise/admin/route'
 import { useSelector , useDispatch } from 'react-redux'
-import { webActions } from '../../redux/exercise/web'
-import { po } from '../../jrx/Util'
+import { webActions } from '../redux/exercise/web'
+import { po } from '../jrx/Util'
 
 import styled from 'styled-components'
 const StyledWebApp=styled.div`

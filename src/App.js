@@ -4,13 +4,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ExerciseApp from './exercise'
 import ResetApp from './exercise/reset'
 import ReadyApp from './exercise/ready'
-import WebApp from './exercise/web/WebApp'
 import TestApp from './test'
 import PlanForm from './exercise/plan/planForm'
 import JPanel from './jrx/JPanel'
 import { po } from './jrx/Util'
 import Init from './exercise/init'
 import Authentication from './component/Authentication'
+import WebApp from './web'
 
 
 
