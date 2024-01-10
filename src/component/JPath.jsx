@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import WebRouteConfig from '../exercise/admin/route'
 import { useEffect } from 'react'
 import {pathActions} from '../redux/path'
 import { po } from '../jrx/Util'
+import WebRouteConfig from '../web/route'
 
 const StyledPath = styled.div`
     .path{

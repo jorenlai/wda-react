@@ -1,7 +1,7 @@
-import OrderBook from "./order/book";
-import OrderShort from "./order/short";
-import Purchase from "./orderEx/purchase";
-import Scrapped from "./scrapped/scrapped";
+import OrderBook from "../exercise/admin/order/book";
+import OrderShort from "../exercise/admin/order/short";
+import Purchase from "../exercise/admin/orderEx/purchase";
+import Scrapped from "../exercise/admin/scrapped/scrapped";
 
 export default function WebRouteConfig(){
     return [
