@@ -8,6 +8,7 @@ const initialState={
     ,startTime:null
     ,completed:null
     ,timeUp:null
+    ,time:null
 }
 
 const initialStateWithStore={

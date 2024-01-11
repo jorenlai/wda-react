@@ -17,8 +17,9 @@ const AntdStyles = createGlobalStyle`
 
     .ant-form{
         .ant-form-item-label{
+            padding:unset;
             label{
-                color: white;
+                color: black;
             }
         }
         color: white;

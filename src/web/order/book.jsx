@@ -1,7 +1,7 @@
-import JCrud, { ResultPanel, SearchPanel } from '../../../jrx/JCrud'
+import JCrud, { ResultPanel, SearchPanel } from '../component/JCrud'
 import styled from 'styled-components'
-import JPanel from '../../../jrx/JPanel'
-import JForm from '../../../jrx/JForm'
+import JPanel from '../../jrx/JPanel'
+import JForm from '../../jrx/JForm'
 import { Input } from 'antd'
 
 const StyledJCrud=styled(SearchPanel)`
@@ -11,10 +11,8 @@ const StyledJCrud=styled(SearchPanel)`
 export default function OrderBook(){
     return <JCrud>
         <SearchPanel>
-            <Input name={'name'} label={'Name'}/>
-            <Input name={'address'} label={'Address'}/>
-            <Input name={'age'} label={'Age'}/>
-            <Input name={'other'} label={'Other'}/>
+            <Input name={'name'} label={'代碼'}/>
+            <Input name={'address'} label={'名稱'}/>
         </SearchPanel>
         <ResultPanel
             get={{

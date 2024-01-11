@@ -92,13 +92,26 @@ const GlobalStyle = createGlobalStyle`
     .jr-crud{
         overflow: hidden;
         flex:1;
+
     }
 
     .search-panel{
+        border-radius:  ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius} 0 0;
+        background: ${({theme})=>theme.colorPrimaryBg};
         Xoverflow: scroll;
         xborder: 2px solid red;
         flex-shrink: 0;
-        padding: 12px;
+
+        .inputs{
+            xborder: 1px solid red;
+            padding: ${({theme})=>theme.pMargin} ${({theme})=>theme.pMargin} 0 ${({theme})=>theme.pMargin};
+        }
+
+        .buttons{
+            padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin} ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
+            justify-self: end;
+            xborder: 1px solid red;
+        }
     }
 
     .jr-table.result-panel{
@@ -106,6 +119,40 @@ const GlobalStyle = createGlobalStyle`
         overflow: hidden;
     }
 
+    .web-menu{
+        flex-basis: 200px;
+
+        display: flex;
+        flex-direction: column;
+
+
+        .ant-menu{
+            border-radius: 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius} 0;
+        }
+    }
+
+    .jr-path{
+        flex-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; 
+        margin-bottom: 24px;
+
+        .path{
+            display:flex;
+            background: ${({theme})=>theme.colorPrimary};
+            padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
+            gap:4px;
+        }
+        .desc{
+            border-radius: 0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+            padding:${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
+            background: ${({theme})=>theme.colorPrimaryBg};
+            color: black;
+        }  
+        > div{
+            white-space: nowrap;
+        }      
+    }
 
 `
 

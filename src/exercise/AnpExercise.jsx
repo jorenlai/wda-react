@@ -9,10 +9,6 @@ import AdministratorApp from './admin';
 import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){
-    // const selectors ={
-    //     administrator:useSelector((state) => state.administrator)
-    //     ,plan:useSelector((state) => state.plan)
-    // } 
     const p=useParams()
     const navigate = useNavigate()
 
@@ -37,12 +33,7 @@ export default function AnpExercise(){
 
     const navigateTo=(key,b,c)=>{
         console.clear()
-        // const selector=selectors[key==='plan'?'web':'plan']
-        // if(selector.started){
-        //     alert('Stop answering?')
-        // }else{
-            navigate(key)
-        // }
+        navigate(key)
     }
     return <div className={'anp-panel'}>
         <Tabs className={'anp-tab'} 

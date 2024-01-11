@@ -4,6 +4,7 @@ import { exerciseActions } from '../redux/exercise'
 import {   adminActions } from '../redux/exercise/admin'
 import {   userActions } from '../redux/user'
 import {   planActions } from '../redux/exercise/plan'
+import {   webActions } from '../redux/web'
 import  { useHistory,redirect, useNavigate, useParams   } from 'react-router-dom'
 import JPanel from '../jrx/JPanel'
 import { po } from '../jrx/Util'
@@ -17,6 +18,7 @@ export default function Init(){
     dispatch(exerciseActions.reset({type}))
     dispatch(adminActions.reset())
     dispatch(planActions.reset())
+	dispatch(webActions.setThemeName(type))
 	
 	localStorage.removeItem('accessToken')
 	

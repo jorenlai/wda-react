@@ -30,7 +30,7 @@ export function InfoPanel({value}){
 
     const exercise = useSelector((state) => state.exercise)
     return <div className={'info-panel'}>
-        <Timer startTime={exercise.startTime} length={value.time} onComplete={onComplete} />
+        <Timer startTime={exercise.startTime} length={exercise.time} onComplete={onComplete} />
         <div>{user.name}{exercise.timeUp+""}</div>
         <a href={`/${type}/init/345345345-34-53-45-345`}>Init</a>
         <a href={`/${type}/reset`}>Reset</a>
@@ -38,11 +38,9 @@ export function InfoPanel({value}){
 }
 
 export default function  ExerciseApp(){
-    const { type,topic,...p } = useParams()
+    const { type,topic} = useParams()
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)
-    po('===============type',p,type,topic)
-    po('exercise.type',exercise.type)
 	if(
         (type!=='exercise'&&type!=='rehearsal')
         || (topic!=='anp')
@@ -68,6 +66,7 @@ export default function  ExerciseApp(){
                             startTime:dayjs().valueOf()
                             ,timeUp:false
                             ,completed:false
+                            ,time
                         }))
                     }else if(exercise.startTime+time<Date.now()){
                         dispatch(exerciseActions.setTimeUp(true))

@@ -1,44 +1,44 @@
-import OrderBook from "../exercise/admin/order/book";
-import OrderShort from "../exercise/admin/order/short";
-import Purchase from "../exercise/admin/orderEx/purchase";
-import Scrapped from "../exercise/admin/scrapped/scrapped";
+import OrderBook from "../web/order/book";
+import OrderShort from "../web/order/short";
+import Purchase from "../web/orderEx/purchase";
+import Scrapped from "../web/scrapped/scrapped";
 
 export default function WebRouteConfig(){
     return [
         {
-            label:'Order'
+            label:'訂單納入企劃'
             ,path:'order'
             ,items:[
                 {
                     path:'book'
-                    ,label:'Order Book'
+                    ,label:'訂單作業'
                     ,element:OrderBook
                 }
                 ,{
                     path:'short'
-                    ,label:'Order Short'
+                    ,label:'達成率查詢'
                     ,element:OrderShort
                 }
             ]
         }
         ,{
-            label:'Order Ex'
+            label:'客戶管理'
             ,path:'orderEx'
             ,items:[
                 {
                     path:'purchase'
-                    ,label:'Purchase'
+                    ,label:'客戶列表'
                     ,element:Purchase
                 }
             ]
         }        
         ,{
-            label:'Scrapped'
+            label:'權限管理'
             ,path:'scrapped'
             ,items:[
                 {
                     path:'scrapped'
-                    ,label:'Scrapped cp'
+                    ,label:'功能群組'
                     ,element:Scrapped
                 }
             ]

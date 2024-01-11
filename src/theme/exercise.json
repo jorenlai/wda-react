@@ -1,0 +1,34 @@
+{
+    "colorPrimaryBg":"#f8eee4"
+    ,"colorPrimaryBgHover":"#ffe4a8"
+    ,"colorPrimaryBorder":"#ffd280"
+    ,"colorPrimaryBorderHover":"#ffbe57"
+    ,"colorPrimaryHover":"#ffa82e"
+    ,"colorPrimary":"#fb8a04"
+    ,"colorPrimaryActive":"#d46d00"
+    ,"colorPrimaryTextHover":"#ffa82e"
+    ,"colorPrimaryText":"#fb8a04"
+    ,"colorPrimaryTextActive":"#d46d00"
+
+    ,"colorPrimaryT":"#fb8a04f4"
+
+    ,"pGBg":"linear-gradient(180deg, rgba(227,227,226,1) 0%, rgba(255,255,255,1) 25%, rgba(210,210,210,1) 100%)"
+    ,"mBg":"black"
+    ,"pBg":"#dfdfdf"
+    ,"phBg": "#e8d2c0"
+    ,"pGap":"12px"
+    ,"pMargin":"10px"
+    ,"phMargin":"6px"
+
+    ,"pRadius": "8px"
+    ,"phRadius": "4px"
+
+    ,"phShadow": "0 4px 12px -1px gray"
+    ,"pFontSize": "18px"
+    ,"pColor": "#464646"
+
+    ,"table":{
+        "color":"black"
+        ,"borderBottom": "1px solid #dfdfdf"
+    }
+}

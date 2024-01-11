@@ -1,5 +1,5 @@
-import JCrud, { ResultPanel } from '../../../jrx/JCrud'
-import JForm from '../../../jrx/JForm'
+import JCrud, { ResultPanel } from '../component/JCrud'
+import JForm from '../../jrx/JForm'
 
 export default function OrderShort(){
     return <JCrud>

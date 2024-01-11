@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { po } from './Util'
-import JForm from './JForm'
+import { po } from '../../jrx/Util'
+import JForm from '../../jrx/JForm'
 import { useRef } from 'react'
-import JXTable from './JXTable'
-import ITable from './ITable'
+import JXTable from '../../jrx/JXTable'
+import ITable from '../../jrx/ITable'
 import { Button } from 'antd'
-import JPath from '../component/JPath'
+import JPath from '../path'
 const StyledJCrud=styled.div`
     display: flex;
     flex-direction: column;
@@ -57,20 +57,19 @@ export default function JCrud({children}){
 
 
 
-    return <StyledJCrud
-        className={'jr-crud'}
-    >
+    return <StyledJCrud className={'jr-crud'}>
         <JPath/>
         {
             items.SearchPanel!=null &&
             <JForm  
+                doNotShowErrorMessage={true}
                 className={'search-panel'}
                 cols={1} gap={0} {...searchProps} ref={searchPanelFormRef}
             >
-                <JForm.Grid cols={4}>
+                <JForm.Grid cols={4} className={'inputs'}>
                     {searchChildren}
                 </JForm.Grid>
-                <JForm.Grid style={{width:'400px'}}>
+                <JForm.Grid style={{width:'200px'}} className={'buttons'}>
                     <Button onClick={()=>{
                         searchPanelFormRef.current.resetFields()
                     }}>Reset</Button>
