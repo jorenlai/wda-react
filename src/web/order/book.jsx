@@ -19,13 +19,10 @@ export default function OrderBook(){
         <ResultPanel
             get={{
                 url:'/data.json'
-                ,dataFormat(data){
-                    return data.questions
-                }
             }}
             columns={[
-                {name:'question',label:'代碼',sort:true,width:'200px'}
-                ,{name:'description',label:'名稱',sort:true}
+                {name:'id',label:'代碼',sort:true,width:'200px'}
+                ,{name:'name',label:'名稱',sort:true}
             ]}
         >
             OrderBook 

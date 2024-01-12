@@ -552,7 +552,7 @@ export default class JXTable extends JSubmit {
     }
 
     createNoData(){
-        return <StyledNoData colSpan={this.columnsLeaf.length}>No data</StyledNoData>
+        return <StyledNoData colSpan={this.columnsLeaf.length}>無資料</StyledNoData>
     }
 
     get page(){

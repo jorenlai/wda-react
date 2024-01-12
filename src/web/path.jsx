@@ -49,9 +49,9 @@ export default function JPath(){
     po('paths',paths)
     return <StyledPath className={'jr-path'}>
         <div className={'path'}>
-            <HomeOutlined /> : {
+            <HomeOutlined className={'current'}/> : {
                 paths?.map((record,index)=>{
-                    return <div key={index}> / {record.label} </div>
+                    return <div key={index} className={paths?.length===index+1?'current':null}> / {record.label} </div>
                 })
             }
         </div>

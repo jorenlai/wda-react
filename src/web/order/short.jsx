@@ -13,9 +13,6 @@ export default function OrderShort(){
         <ResultPanel
             get={{
                 url:'/data.json'
-                ,dataFormat(data){
-                    return data.questions
-                }
             }}
             columns={[
                 {name:'question',label:'代碼',sort:true,width:'200px'}

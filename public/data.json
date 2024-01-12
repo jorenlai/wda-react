@@ -1,158 +1,126 @@
 {
-    "name":"plan"
-    ,"questions":[
+    "dataSource": [
         {
-            "question":"What is your name?"
-            ,"description":"The name your parent give you"
-            ,"questions":[
+            "id": "C1",
+            "name": "二林基地",
+            "factories": [
                 {
-                    "question":"Q1 1"
+                    "id": "T4",
+                    "name": "二林",
+                    "sort": 3,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "ES1"
                 }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B1",
+            "name": "兩湖基地主管基地",
+            "factories": [
                 {
-                    "question":"Q1 1"
+                    "id": "W22",
+                    "name": "湖北",
+                    "sort": 1,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "QS1"
                 }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B63",
+            "name": "兩湖基地主管基地",
+            "factories": [
                 {
-                    "question":"Q1 1"
+                    "id": "W8",
+                    "name": "平湖",
+                    "sort": 4,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "BS1"
                 }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B61",
+            "name": "兩湖基地副主管基地",
+            "factories": [
                 {
-                    "question":"Q1 1"
+                    "id": "W22",
+                    "name": "湖北",
+                    "sort": 1,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "QS1"
                 }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B62",
+            "name": "兩湖基地副主管基地",
+            "factories": null,
+            "factoryIds": null
+        },
+        {
+            "id": "A1",
+            "name": "江浙基地",
+            "factories": [
                 {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
+                    "id": "W1",
+                    "name": "無錫",
+                    "sort": 2,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "ES1"
+                },
                 {
-                    "question":"Q1 1"
+                    "id": "W8",
+                    "name": "平湖",
+                    "sort": 4,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "BS1"
                 }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "A17",
+            "name": "江浙基地副主管基地",
+            "factories": [
                 {
-                    "question":"Q1 1"
+                    "id": "W1",
+                    "name": "無錫",
+                    "sort": 2,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "ES1"
                 }
-            ]
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "A9",
+            "name": "江浙基地副主管基地",
+            "factories": null,
+            "factoryIds": null
         }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-    ]
+    ],
+    "page": {
+        "pageSize": 50,
+        "current": 1,
+        "total": 8
+    }
 }

@@ -92,6 +92,13 @@ const GlobalStyle = createGlobalStyle`
         border: var(--border-width) solid red;
         overflow: hidden;
 
+        .ant-tabs-tab{
+            color: white;
+        }
+        .ant-tabs-tab-btn{
+            font-size: large;
+            font-weight: bold;
+        }
         .ant-tabs-content{
             height: 100%;
 
@@ -127,6 +134,7 @@ const GlobalStyle = createGlobalStyle`
             flex-wrap: wrap;
         }  
         .question{
+            padding: 0 24px;
             overflow: auto;
             flex:1;
             
@@ -225,6 +233,11 @@ const GlobalStyle = createGlobalStyle`
             background: ${({theme})=>theme.colorPrimary};
             padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
             gap:4px;
+            color: #dddddd;
+            .current{
+                color: white;
+                font-weight: bold;
+            }
         }
         .desc{
             padding:${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
