@@ -18,9 +18,10 @@ import { useSelector } from 'react-redux'
 
 const StyledPlanApp=styled(JPanel)`
     > div > * {
-        border: 1px solid gray;
+        xborder: 1px solid gray;
     }
     gap: 20px;
+    
 `
     
 
@@ -34,7 +35,7 @@ export default function PlanApp(){
     return <StyledPlanApp
         className={'con-plan'}
         get={{
-            url:'/question1.json'
+            url:'/plan.json'
             ,autoRun:true
             ,callback(success,res){
                 setValue(res.data.questionParams)
@@ -56,7 +57,7 @@ export default function PlanApp(){
             <Panel minSize={10} defaultSize={25}>
                 <QuestionPanel value={value} actions={planActions} selectorName={'plan'} doneCallback={doneCallback}/>
             </Panel>    
-            <PanelResizeHandle/>
+            <PanelResizeHandle className={'resizer'}/>
             <Panel minSize={30} style={{display:'flex'}}>
                 <PlanForm style={selector.started?null:{display:'none'}}/>
                 <AnswerOrder value={value} style={selector.started?{display:'none'}:null} actions={planActions} selectorName={'plan'}/>

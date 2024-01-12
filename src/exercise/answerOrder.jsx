@@ -3,15 +3,7 @@ import { useSelector , useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { po } from '../jrx/Util'
 const StyledAnswerOrder=styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1;  
-    
-    .buttons{
-        display:flex;
-    }
+
 `
 
 export default function AnswerOrder({style,value,selectorName,actions}){
@@ -29,7 +21,7 @@ export default function AnswerOrder({style,value,selectorName,actions}){
         }
     }
 
-    return <StyledAnswerOrder style={style}>
+    return <StyledAnswerOrder style={style} className={'answer-order'}>
         <div>依序作答 主題{shouldAnswer[0]+1} {`${shouldAnswer[0,1]!=null?`子題${shouldAnswer[0,1]+1}`:''}`} </div>
         <div className={'buttons'}>
             {/* <button onClick={()=>nav(-1)}>

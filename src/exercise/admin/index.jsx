@@ -14,9 +14,10 @@ import WebApp from '../../web'
 
 const StyledAdministratorApp=styled(JPanel)`
     > div > * {
-        border: 1px solid gray;
+        xborder: 1px solid gray;
     }
     gap: 20px;
+
 `
     
 export default function AdministratorApp(){
@@ -29,7 +30,7 @@ export default function AdministratorApp(){
     }
 
     return <StyledAdministratorApp
-        className={'con-adm'}
+        className={'con-admin'}
         get={{
             url:'/question.json'
             ,autoRun:true
@@ -49,11 +50,11 @@ export default function AdministratorApp(){
     >
         <ControllPanel value={value} actions={adminActions} selectorName={'administrator'}/>
         <PanelGroup direction="horizontal">
-            <Panel minSize={10} defaultSize={25}>
+            <Panel minSize={10} defaultSize={25} style={{display:'flex'}}>
                 <QuestionPanel value={value} actions={adminActions} selectorName={'administrator'} doneCallback={doneCallback}/>
             </Panel>    
-            <PanelResizeHandle/>
-            <Panel minSize={30} defaultSize={75} style={{display:'flex'}}>
+            <PanelResizeHandle className={'resizer'}/>
+            <Panel minSize={10} defaultSize={75} style={{display:'flex'}}>
                 <WebApp style={selector.started?null:{display:'none'}}/>
                 <AnswerOrder value={value} style={selector.started?{display:'none'}:null} actions={adminActions} selectorName={'administrator'}/>
             </Panel>   

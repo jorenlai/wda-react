@@ -15,27 +15,10 @@ import Timer from '../component/Timer'
 import styled from 'styled-components'
 import AnpExercise from './AnpExercise'
 import JPanel from '../jrx/JPanel'
+import InfoPanel from './infoPanel'
 
 
-export function InfoPanel({value}){
-    const { type } = useParams()
-    const user = useSelector((state) => state.user)
-    const dispatch = useDispatch()
 
-    const onComplete=(a,b,c)=>{
-        if(exercise.timeUp===false){
-            dispatch(exerciseActions.setTimeUp(true))
-        }
-    }
-
-    const exercise = useSelector((state) => state.exercise)
-    return <div className={'info-panel'}>
-        <Timer startTime={exercise.startTime} length={exercise.time} onComplete={onComplete} />
-        <div>{user.name}{exercise.timeUp+""}</div>
-        <a href={`/${type}/init/345345345-34-53-45-345`}>Init</a>
-        <a href={`/${type}/reset`}>Reset</a>
-    </div>
-}
 
 export default function  ExerciseApp(){
     const { type,topic} = useParams()

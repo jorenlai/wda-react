@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import {pathActions} from '../redux/path'
 import { po } from '../jrx/Util'
 import WebRouteConfig from './route'
+import { HomeOutlined } from '@ant-design/icons'
 
 const StyledPath = styled.div`
 
@@ -45,17 +46,18 @@ export default function JPath(){
         
     }, [location]);
 
+    po('paths',paths)
     return <StyledPath className={'jr-path'}>
         <div className={'path'}>
-            Path:{
+            <HomeOutlined /> : {
                 paths?.map((record,index)=>{
                     return <div key={index}> / {record.label} </div>
                 })
             }
         </div>
-        <div className={'desc'}>
-            Desc...
-        </div>
+        {paths?.[paths.length-1].desc!=null && <div className={'desc'}>
+            desc
+        </div> }
     </StyledPath>
     
 }

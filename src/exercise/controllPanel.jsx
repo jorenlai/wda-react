@@ -37,24 +37,29 @@ export default function ControllPanel({value, actions,selectorName,...props}){
     },[selector.selectedIndex,value ])
 
     return <StyledControllPanel className={'controll-panel'} {...props}>
-        Total:{value?.level1QKeyList?.length}
-        <button  disabled={selectedQuestion===0 || value==null || selector.started} onClick={()=>nav(-1)}>
-            Pre
-        </button>
-        <Select showBlank={false} disabled={selector.started}
-            options={
-                Array(value?.level1QKeyList?.length??0).fill()
-                .map((a,id)=>{
-                    return{
-                        name:id+1,id
-                    }
-                })
-            }
-            onChange={selectQuestion}
-            value={selectedQuestion}
-        />
-        <button disabled={selectedQuestion+1===value?.level1QKeyList?.length || value==null || selector.started}onClick={()=>nav(1)}>
-            Next
-        </button>
+        <div>
+            <button  disabled={selectedQuestion===0 || value==null || selector.started} onClick={()=>nav(-1)}>
+                Pre
+            </button>
+            <Select showBlank={false} disabled={selector.started}
+                options={
+                    Array(value?.level1QKeyList?.length??0).fill()
+                    .map((a,id)=>{
+                        return{
+                            name:id+1,id
+                        }
+                    })
+                }
+                onChange={selectQuestion}
+                value={selectedQuestion}
+            />
+            <button disabled={selectedQuestion+1===value?.level1QKeyList?.length || value==null || selector.started}onClick={()=>nav(1)}>
+                Next
+            </button>
+        </div>
+
+        <div>Total:{value?.level1QKeyList?.length}</div>
+
+        <div>F</div>
     </StyledControllPanel>
 }

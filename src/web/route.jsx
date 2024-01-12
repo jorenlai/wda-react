@@ -13,6 +13,7 @@ export default function WebRouteConfig(){
                     path:'book'
                     ,label:'訂單作業'
                     ,element:OrderBook
+                    ,desc:'Description...'
                 }
                 ,{
                     path:'short'

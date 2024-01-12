@@ -28,14 +28,12 @@ const Web=({children})=>{
 			{children}
 		</ConfigProvider>
 	</ThemeProvider>
-
-	
 }
 
 export default function AppProvider({children}){
 	return <Provider store={store} >
 		<Web>
-			{/* <AntdStyles/> */}
+			<AntdStyles/>
 			<GlobalStyle/>
 			<LoadingBar/>
 			{children}

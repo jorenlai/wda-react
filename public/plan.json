@@ -1,158 +1,39 @@
-{
-    "name":"plan"
-    ,"questions":[
-        {
-            "question":"What is your name?"
-            ,"description":"The name your parent give you"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-        ,{
-            "question":"你在哪裡上班?"
-            ,"description":"工作地點於"
-            ,"questions":[
-                {
-                    "question":"Q1 1"
-                }
-            ]
-        }
-    ]
-}
+[
+    {
+        "question":"Q1"
+
+    }
+    ,{
+        "question":"Q2"
+
+    }
+    ,{
+        "question":"Q3"
+
+    }
+    ,{
+        "question":"Q4"
+
+    }
+    ,{
+        "question":"Q5"
+        ,"questions":[
+            {
+                "question":"2 1"
+            }
+            ,{
+                "question":"2 2"
+            }
+            ,{
+                "question":"2 3"
+            }
+            ,{
+                "question":"2 4"
+            }
+            ,{
+                "question":"2 5"
+            }
+        ]
+    }
+    
+]

@@ -6,12 +6,14 @@ import JXTable from '../../jrx/JXTable'
 import ITable from '../../jrx/ITable'
 import { Button } from 'antd'
 import JPath from '../path'
+import { PlusCircleOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons'
 const StyledJCrud=styled.div`
     display: flex;
     flex-direction: column;
 `
 
-
+export function AddForm(){
+}
 
 export function SearchPanel(){
 }
@@ -26,7 +28,7 @@ const getChildren=(children) =>{
             ? [children]
             : []
     )
-    .filter((child)=>[SearchPanel,ResultPanel].indexOf(child.type)>-1)
+    .filter((child)=>[AddForm,SearchPanel,ResultPanel].indexOf(child.type)>-1)
     .reduce(( aco,child) => {
         aco[child.type.name]=child
         return aco;
@@ -54,9 +56,44 @@ export default function JCrud({children}){
 
     const ResultType=resultType??JXTable
 
+    /////////////////////////////////////////////////////////////////////////////////
+    const searchButtons=[
+        <Button className={'convex'} key={'sbr'}
+        icon={<RedoOutlined/>}
+        onClick={()=>{
+            searchPanelFormRef.current.resetFields()
+        }}
+    >重設</Button>
+    ,<Button type={'primary'} className={'convex'} key={'sbs'}
+        icon={<SearchOutlined/>}
+        onClick={()=>{
+            resultPanelFormRef.current.get({
+                value:searchPanelFormRef.current.getValue()
+            })
+        }}
+    >查詢</Button>
+]    
+    //Add Form///////////////////////////////////////////////////////////////////////
+    const {children:addFormChildren
+        ,title:addFormTitle
+        ,url:addUrl
+        ,post:addPost
+        ,cols:addCols=1
+        ,...addFormProps
+    }=items.AddForm?.props ?? {}
 
-
-
+    if(items.AddForm){
+        searchButtons.unshift(
+            <Button type={'primary'} className={'convex'}
+                icon={<PlusCircleOutlined/>}
+                onClick={()=>{
+                }}
+            >
+                新增
+            </Button>
+        )
+    }
+    /////////////////////////////////////////////////////////////////////////////////
     return <StyledJCrud className={'jr-crud'}>
         <JPath/>
         {
@@ -69,15 +106,8 @@ export default function JCrud({children}){
                 <JForm.Grid cols={4} className={'inputs'}>
                     {searchChildren}
                 </JForm.Grid>
-                <JForm.Grid style={{width:'200px'}} className={'buttons'}>
-                    <Button onClick={()=>{
-                        searchPanelFormRef.current.resetFields()
-                    }}>Reset</Button>
-                    <Button onClick={()=>{
-                        resultPanelFormRef.current.get({
-                            value:searchPanelFormRef.current.getValue()
-                        })
-                    }}>Search</Button>
+                <JForm.Grid className={'buttons'}>
+                    {searchButtons}
                 </JForm.Grid>
             </JForm>
         }
