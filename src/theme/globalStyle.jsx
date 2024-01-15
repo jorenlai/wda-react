@@ -55,11 +55,13 @@ const GlobalStyle = createGlobalStyle`
 
     .info-panel {
         > * {
-            border:1px solid gray;
+            xborder:1px solid gray;
         }
-        padding:6px 0;
+
+        padding:12px 10px;
         display:flex;
         justify-content: space-between;
+        align-items: center;
     }
 
 
@@ -89,6 +91,7 @@ const GlobalStyle = createGlobalStyle`
         background: black;
         
         .header{
+            flex-basis: 42px;
             border-radius:0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
             padding: ${({theme})=>theme.pMargin};
             background:${({theme})=>theme.colorPrimary};
@@ -97,7 +100,7 @@ const GlobalStyle = createGlobalStyle`
         .footer{
             flex-basis: 20px;
             background:${({theme})=>theme.colorPrimary};
-            border-radius: 0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+            border-radius: 0 0 ${({theme})=>theme.pRadius} 0;
         }
 
         .middle{
@@ -112,6 +115,12 @@ const GlobalStyle = createGlobalStyle`
                 border: var(--border-width) solid green;
                 overflow: hidden;
             }
+        }
+    }
+
+    .web-app:has(+ .answer-order){
+        .header{
+            border-radius:0 0 ${({theme})=>theme.pRadius} 0;
         }
     }
 
@@ -212,8 +221,8 @@ const GlobalStyle = createGlobalStyle`
 
     .resizer{
         margin-left: 1px;
-        border:5px solid gray;
-        xborder-radius: 100vh;
+        border:3px solid gray;
+        border-radius: 100vh 0 0 100vh;
         xmargin:4px 1px;
     }
 
@@ -289,6 +298,7 @@ const GlobalStyle = createGlobalStyle`
         flex-shrink: 0;
 
         .inputs{
+            gap: 10px 20px;
             grid-template-columns: repeat(4, 1fr);
             transition: 300ms;
             padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin} 6px ${({theme})=>theme.pMargin};

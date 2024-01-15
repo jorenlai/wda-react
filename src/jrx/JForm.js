@@ -191,11 +191,11 @@ export default class JForm extends JSubmit {
                     // ,whitespace:true
                     ,validator(rule, value, callback) {
                         if(Array.isArray(value)&&value.length==0){
-                            return Promise.reject(label);
+                            return Promise.reject(label+"必填");
                          }else if(value){
                             return Promise.resolve();
                         }else{
-                            return Promise.reject(label);
+                            return Promise.reject(label+"必填");
                         }
                     }
                 });

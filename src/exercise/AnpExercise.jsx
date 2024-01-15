@@ -17,14 +17,14 @@ export default function AnpExercise(){
     const items = [
         {
             key: 'admin'
-            ,label: 'Test 1'
+            ,label: '術科測試'
             ,children: <Routes>
                 <Route path='/admin/*' element={<AdministratorApp/>}/>
             </Routes>
         },
         {
             key: 'plan'
-            ,label: 'Test 2'
+            ,label: '企劃書撰寫'
             ,children:<Routes>
                 <Route path='/plan' element={<PlanApp/>}/>
             </Routes>

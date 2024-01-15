@@ -25,6 +25,64 @@ const AntdStyles = createGlobalStyle`
         color: white;
     }
 
+    // Message
+    .ant-message-top{
+        top: 1px !important;
+    }
+    .ant-message-notice-content {
+        border-radius: 8px;
+        background: #6e6e6ebb !important;
+        color: white;
+        padding: 0 !important;
+        min-width: 300px;
+    }
+    .ant-message-custom-content {
+        border-radius: 8px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 16px;
+        font-size: 18px;
+
+        &> span:nth-child(2) {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .message {
+            margin-right: 8px;
+        }
+
+        .anticon-close {
+            color: #fff;
+        }
+    }
+    .info, .warning {
+        & .ant-message-custom-content {
+            background: #fbc74b3c;
+            border: 2px solid #fbc74b;
+        }
+    }
+    .success {
+        & .ant-message-custom-content {
+            background: #87d06836;
+            border: 2px solid #87d068;
+        }
+    }
+    .error {
+        & .ant-message-custom-content {
+            background: hsl(1deg 76% 43% / 31%);
+            border: 2px solid #C11D1A;
+        }
+    } 
+
     .jr-modal{
         .ant-modal-content{
             padding:0;

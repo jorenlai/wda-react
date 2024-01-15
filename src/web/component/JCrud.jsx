@@ -248,7 +248,7 @@ export default function JCrud({children}){
                         // }
                         ,...updateGet
                     }}                 
-                    post={{
+                    put={{
                         mask:'修改中...'
                         ,successMessage:'修改成功'
                         ,failedMessage:'修改失敗'
@@ -257,7 +257,7 @@ export default function JCrud({children}){
                                 resultPanelFormRef.current.reload({
                                     mask:'重新載入中...'
                                 })
-                                setIsAddOpen(false)
+                                setIsUpdateOpen(false)
                             }
                         }   
                         ,response(){
@@ -265,6 +265,7 @@ export default function JCrud({children}){
                                 status:200
                             }
                         }
+                        ,...updatePut
                     }}
                     {...updateFormProps}
                 >

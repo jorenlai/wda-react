@@ -29,7 +29,7 @@ export default function OrderShort(){
                 url:'post'
             }}
         >
-            <Input name={'name'} label={'代碼'} Xrequired/>
+            <Input name={'name'} label={'代碼'} required/>
             <Input name={'address'} label={'名稱'}/>
         </AddForm>
         <UpdateForm    
@@ -47,11 +47,19 @@ export default function OrderShort(){
                 }
             }}
             put={{
-                url:'post'
+                url:'put'
+                ,response(){
+                    return {
+                        status:200
+                        ,data:{
+                            id:'aaa'
+                            ,name:'Name'
+                        }
+                    }
+                }
             }}
         >
             <Input name={'name'} label={'名稱'} required/>
-
         </UpdateForm>
     </JCrud>
 }
