@@ -124,7 +124,7 @@ const StyledJRTable = styled.div`
     }
 
 
-    ${({doubleClickable,theme})=>doubleClickable?`
+    ${({clickable,theme})=>clickable?`
         > main > main > *:hover > div{
             background-color: ${theme.colorPrimaryBg};
             transition: color .2s , background-color .2s;
@@ -648,11 +648,11 @@ export default class JXTable extends JSubmit {
         return <span
             key={`s${index}`}
             {...onMoveEvents} 
-            onDoubleClick={
-                this.props.onDoubleClick
+            onClick={
+                this.props.onClick
                 ?()=>{
-                    const onDoubleClick=this.props.onDoubleClick.bind(this)
-                    onDoubleClick(record,index)
+                    const onClick=this.props.onClick.bind(this)
+                    onClick(record,index)
                 }
                 :null
             }
@@ -842,7 +842,7 @@ export default class JXTable extends JSubmit {
             className={`jr-table ${this.props.className?this.props.className:''}`}
             scrollx={this.props.scrollx?.toString()}
             float={this.props.float}
-            doubleClickable={this.props.onDoubleClick!==undefined}
+            clickable={this.props.onClick!==undefined}
             paging={page!==undefined}        
         >
             {/* <StyledSh className={"sh"}>&nbsp;</StyledSh> */}

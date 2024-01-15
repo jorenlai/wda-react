@@ -247,6 +247,7 @@ export default class JForm extends JSubmit {
     }
 
     renderer() {
+        po('this.props.children',this.props.children)
         return <StyledForm
             layout={this.props.layout ?? "vertical"}
             ref={this.#formRef}

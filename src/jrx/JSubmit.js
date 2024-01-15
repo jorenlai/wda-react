@@ -204,9 +204,9 @@ export default class JSubmit extends JRX {
         };
 
         if (url) {
-            this.timeout=setTimeout(()=>{
+            // this.timeout=setTimeout(()=>{
                 displaySpinner({mask:_config.mask})
-            } ,200)
+            // } ,200)
             
             const config = {
                 headers:{

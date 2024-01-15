@@ -6,6 +6,7 @@ import { adminActions } from '../redux/exercise/admin'
 import { po } from '../jrx/Util'
 
 import styled from 'styled-components'
+import Header from './header'
 const StyledWebApp=styled.div`
     display: flex;
     gap: 22px;
@@ -63,11 +64,15 @@ export default function WebApp(props){
     loop(routeConfig,'','',0,routes,menus,navigate,dispatch,exercise,type)
 
     return <StyledWebApp style={props.style} className={'web-app'}>
-        <Menu menu={menus} className={'menu'}/>
-        <div className={'body'}>
-        <Routes>
-            {routes}
-        </Routes>  
+        <Header className={'web-header'}/>
+        <div className={'middle'}>
+            <Menu menu={menus} className={'menu'}/>
+            <div className={'body'}>
+            <Routes>
+                {routes}
+            </Routes>  
+            </div>
         </div>
+        <footer className={'footer'}></footer>
     </StyledWebApp>
 }

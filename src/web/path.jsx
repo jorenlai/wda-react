@@ -10,7 +10,7 @@ import { HomeOutlined } from '@ant-design/icons'
 const StyledPath = styled.div`
 
 `
-export default function JPath(){
+export default function JPath({children}){
     const dispatch = useDispatch()
     const location = useLocation()
     const path = useSelector((state) => state.path)
@@ -55,9 +55,13 @@ export default function JPath(){
                 })
             }
         </div>
-        {paths?.[paths.length-1].desc!=null && <div className={'desc'}>
-            desc
-        </div> }
+        {children!=null && 
+            <div className={'desc-p'}>
+                <div className={'desc'}>
+                    {children}
+                </div>
+            </div>
+        }
     </StyledPath>
     
 }

@@ -14,6 +14,35 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    * {
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+            background: transparent;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+            &:hover {
+                xbackground: #d7d7d7;
+            }
+        }
+
+        &::-webkit-scrollbar-corner  {
+            background: transparent;
+        }
+    }
+
+
+
     .exercise{
         flex:1;
         height: 100vh;
@@ -53,20 +82,36 @@ const GlobalStyle = createGlobalStyle`
     }
     
     .web-app{
-        background: black;
-        gap: 18px !important;
         flex: 1;
         display: flex;
-        border-top:3px solid ${({theme})=>theme.colorPrimary};
-        border-bottom:20px solid ${({theme})=>theme.colorPrimary};
-        border-left:1px solid ${({theme})=>theme.colorPrimary};
-        border-radius: 0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
-        overflow: hidden;
-        .body{
+        flex-direction: column;
+        gap: 0 !important;
+        background: black;
+        
+        .header{
+            border-radius:0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+            padding: ${({theme})=>theme.pMargin};
+            background:${({theme})=>theme.colorPrimary};
+            margin-bottom:18px;
+        }
+        .footer{
+            flex-basis: 20px;
+            background:${({theme})=>theme.colorPrimary};
+            border-radius: 0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+        }
+
+        .middle{
+            gap: 18px !important;
+            flex: 1;
             display: flex;
-            flex:1;
-            border: var(--border-width) solid green;
             overflow: hidden;
+    
+            .body{
+                display: flex;
+                flex:1;
+                border: var(--border-width) solid green;
+                overflow: hidden;
+            }
         }
     }
 
@@ -166,7 +211,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .resizer{
-        border:4px solid gray;
+        margin-left: 1px;
+        border:5px solid gray;
         xborder-radius: 100vh;
         xmargin:4px 1px;
     }
@@ -177,55 +223,14 @@ const GlobalStyle = createGlobalStyle`
 
     }
 
-    .search-panel{
-        border-top: 4px solid ${({theme})=>theme.colorPrimary};
-        border-radius: ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius} 0 0;
-        background: ${({theme})=>theme.colorPrimaryBg};
-        Xoverflow: scroll;
-        xborder: 2px solid red;
-        flex-shrink: 0;
-
-        .inputs{
-            xborder: 1px solid red;
-            padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin} 6px ${({theme})=>theme.pMargin};
-        }
-
-        .buttons{
-            xwidth: 500px;
-            border-radius: ${({theme})=>theme.pRadius} 0 0 ${({theme})=>theme.pRadius};
-            xbackground: ${({theme})=>theme.colorPrimaryBorderHover};
-            gap:${({theme})=>theme.pMargin};
-            padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin} ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
-            justify-self: end;
-            xborder: 1px solid red;
-        }
-    }
-
-    .jr-table.result-panel{
-        flex:1;
-        overflow: hidden;
-    }
-
-    .web-menu{
-        flex-basis: 200px;
-        padding: 12px 0;
-        display: flex;
-        flex-direction: column;
-
-
-        .ant-menu{
-            border-radius: 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius} 0;
-        }
-    }
-
     .jr-path{
         flex-wrap: nowrap;
         text-overflow: ellipsis;
         overflow: hidden; 
-        margin-bottom: 20px;
+        border-radius: ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius} 0 0;
 
         > :last-child{
-            border-radius: 0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+            Xborder-radius: 0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
         }
 
         .path{
@@ -239,15 +244,104 @@ const GlobalStyle = createGlobalStyle`
                 font-weight: bold;
             }
         }
-        .desc{
-            padding:${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
-            background: ${({theme})=>theme.colorPrimaryBg};
-            color: black;
-        }  
+        .desc-p{
+            background: ${({theme})=>theme.phBg};
+            padding: 0 ${({theme})=>theme.plMargin} ${({theme})=>theme.plMargin} ${({theme})=>theme.plMargin};
+            
+            .desc{
+                border-radius:0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+                padding:${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin};
+                background: ${({theme})=>theme.colorPrimaryBg};
+                box-shadow:${({theme})=>theme.phShadow};
+                color: black;
+            }  
+        }
         > div{
             white-space: nowrap;
         }      
     }
+
+    .jr-path:has(+ .search-panel){
+        .desc-p{
+            padding: 0 ${({theme})=>theme.plMargin} 1px ${({theme})=>theme.plMargin};
+            .desc{
+                border-radius: unset;
+            }
+        }
+    }
+    .ZZZjr-path:has(+ .jr-form .result-panel){
+        .desc-p{
+            padding: 0 ${({theme})=>theme.plMargin} 1px ${({theme})=>theme.plMargin};
+            .desc{
+                border-radius: unset;
+            }
+        }
+    }    
+
+    .search-panel{
+        >div{
+            background: ${({theme})=>theme.colorPrimaryBg}; 
+            border-radius:0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
+            box-shadow:${({theme})=>theme.phShadow};
+        }
+        padding: 0 ${({theme})=>theme.plMargin} ${({theme})=>theme.plMargin} ${({theme})=>theme.plMargin};
+        background: ${({theme})=>theme.phBg};
+        flex-shrink: 0;
+
+        .inputs{
+            grid-template-columns: repeat(4, 1fr);
+            transition: 300ms;
+            padding: ${({theme})=>theme.phMargin} ${({theme})=>theme.pMargin} 6px ${({theme})=>theme.pMargin};
+        }
+
+        .buttons{
+            gap:${({theme})=>theme.pMargin};
+            padding:  ${({theme})=>theme.pMargin};
+            justify-self: end;
+            xborder: 1px solid red;
+            
+        }
+    }
+    @media (max-width: 1200px) {
+        .search-panel{
+            .inputs{
+                transition: 300ms;
+                grid-template-columns: repeat(3, 1fr) ;
+            }
+        }
+    }
+    @media (max-width: 800px) {
+        .search-panel{
+            .inputs{
+                transition: 300ms;
+                grid-template-columns: repeat(2, 1fr) ;
+            }
+        }
+    }    
+
+    .result-panel{
+        background: ${({theme})=>theme.phBg};
+        flex:1;
+        overflow: hidden;
+    }
+    .jr-form.result-panel{
+        padding: 0 ${({theme})=>theme.plMargin} ${({theme})=>theme.plMargin} ${({theme})=>theme.plMargin};
+        color:black;
+    }
+    .jr-table.result-panel{
+    }    
+
+    .web-menu{
+        flex-basis: 200px;
+        padding-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+        .ant-menu{
+            border-radius: 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius} 0;
+        }
+    }
+
+
     
 
     //Button
