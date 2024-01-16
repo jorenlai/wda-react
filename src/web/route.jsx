@@ -3,7 +3,7 @@ import OrderShort from "../web/order/short";
 import Purchase from "../web/orderEx/purchase";
 import Scrapped from "../web/scrapped/scrapped";
 
-export default function Fack(){
+ function Fack(){
     return [
         {
             label:'訂單納入企劃'
@@ -47,47 +47,102 @@ export default function Fack(){
     ]
 }
 
- function WebRouteConfig(){
+export default function WebRouteConfig(){
     return [
         {
-            label:'A'
+            label:'訂貨業務'
             ,path:'order'
             ,items:[
                 {
                     path:'book'
-                    ,label:'A 1'
+                    ,label:'訂單作業'
                     ,element:OrderBook
-                    ,desc:'Description...'
                 }
                 ,{
                     path:'short'
-                    ,label:'A2'
+                    ,label:'訂單業務'
                     ,element:OrderShort
                 }
             ]
         }
         ,{
-            label:'B'
+            label:'進貨/驗貨/退貨業務'
             ,path:'orderEx'
             ,items:[
                 {
                     path:'purchase'
-                    ,label:'B 1'
+                    ,label:'進貨'
                     ,element:Purchase
                     ,desc:'Description...'
                 }
             ]
-        }        
+        }    
         ,{
-            label:'C'
-            ,path:'scrapped'
+            label:'庫存業務'
+            ,path:'k'
             ,items:[
                 {
-                    path:'scrapped'
-                    ,label:'C 1'
+                    path:'k1'
+                    ,label:'庫存業務'
+                    ,element:Scrapped
+                }
+            ]
+        }        
+        ,{
+            label:'營收日報業務'
+            ,path:'i'
+            ,items:[
+                {
+                    path:'營收日報業務'
+                    ,label:'i1'
+                    ,element:Scrapped
+                }
+            ]
+        }        
+        ,{
+            label:'銷售分析業務'
+            ,path:'s'
+            ,items:[
+                {
+                    path:'s1'
+                    ,label:'銷售分析業務'
+                    ,element:Scrapped
+                }
+            ]
+        }        
+        ,{
+            label:'會員管理'
+            ,path:'m'
+            ,items:[
+                {
+                    path:'m1'
+                    ,label:'會員管理'
+                    ,element:Scrapped
+                }
+            ]
+        }        
+        ,{
+            label:'電子發票管理'
+            ,path:'c'
+            ,items:[
+                {
+                    path:'c1'
+                    ,label:'電子發票管理'
+                    ,element:Scrapped
+                }
+            ]
+        }        
+        ,{
+            label:'即時公告'
+            ,path:'n'
+            ,items:[
+                {
+                    path:'n1'
+                    ,label:'即時公告'
                     ,element:Scrapped
                 }
             ]
         }
+
     ]
 }

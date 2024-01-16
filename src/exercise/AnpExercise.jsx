@@ -9,6 +9,7 @@ import AdministratorApp from './admin';
 import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){
+    po('AnpExercise pppppppppppppppppppppppp')
     const p=useParams()
     const navigate = useNavigate()
 

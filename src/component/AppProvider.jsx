@@ -14,10 +14,25 @@ const themes={
 	exercise:exerciseTheme
 	,rehearsal:rehearsalTheme
 }
+
+const userStyle={
+	small:{
+		fontSize:'small'
+	}
+	,middle:{
+		fontSize:'middle'
+	}
+	,large:{
+		fontSize:'large'
+	}
+}
 const Web=({children})=>{
 	const web = useSelector((state) => state.web)
+	const user = useSelector((state) => state.user)
 	const theme=themes[web.themeName]??exerciseTheme
-	
+	theme.fontSize=user.fontSize
+	// po('theme.fontSize',user.fontSize,theme.fontSize)
+	// po('theme',theme)
 	return <ThemeProvider theme={theme}>
 		<ConfigProvider
 			locale={'zhTW'}

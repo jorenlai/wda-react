@@ -1,5 +1,6 @@
 {
-    "colorPrimaryBg":"#f0f9ff"
+    "name":"rehearsal"
+    ,"colorPrimaryBg":"#f0f9ff"
     ,"colorPrimaryBgHover":"#f0f8ff"
     ,"colorPrimaryBorder":"#e0f1ff"
     ,"colorPrimaryBorderHover":"#b8dbff"

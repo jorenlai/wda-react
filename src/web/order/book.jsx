@@ -20,6 +20,7 @@ export default function OrderBook(){
             <Input name={'address'} label={'名稱'}/> */}
         </SearchPanel>
         <ResultPanel
+            XXtype={JForm}
             get={{
                 url:'/data.json'
             }}
@@ -29,7 +30,7 @@ export default function OrderBook(){
             ]}
         >
             OrderBook 
-            <Input name={'name'}  />
+            <Input name={'name'} label={'名稱'} />
         </ResultPanel>
         {/* <AddForm>
             <Input name={'name'} label={'代碼'}/>

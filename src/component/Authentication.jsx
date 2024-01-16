@@ -9,11 +9,19 @@ export default function Authentication({ children}){
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user)
 
+    useEffect(()=>{
+        const accessToken= localStorage.getItem('accessToken')
+        if(accessToken==null){
+            setStateReady(true)
+        }else{
+            submitRef.current.get()
+        }
+    },[])
     return <JSubmit
         ref={submitRef}
         get={{
             url:'/me.json'
-            ,autoRun:true
+            ,autoRun:false
             ,callback(success,res){
                 if(success){
                     dispatch(userActions.setState(res.data))

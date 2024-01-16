@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
 import Select from '../jrx/ISelect'
 import { po } from '../jrx/Util'
+import SizeSelector from '../component/SizeSelector'
 
 const StyledControllPanel=styled.div`
 `
@@ -60,6 +61,6 @@ export default function ControllPanel({value, actions,selectorName,...props}){
 
         <div>Total:{value?.level1QKeyList?.length}</div>
 
-        <div>F</div>
+        <div><SizeSelector/></div>
     </StyledControllPanel>
 }

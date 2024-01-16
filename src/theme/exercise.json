@@ -1,5 +1,6 @@
 {
-    "colorPrimaryBg":"#f8eee4"
+    "name":"exercise"
+    ,"colorPrimaryBg":"#f8eee4"
     ,"colorPrimaryBgHover":"#ffe4a8"
     ,"colorPrimaryBorder":"#ffd280"
     ,"colorPrimaryBorderHover":"#ffbe57"

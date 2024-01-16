@@ -35,7 +35,7 @@ const exerciseSlice = createSlice({
         }
         ,reset(state, action){
             po('reset',name,action)
-            localStorage.removeItem('exercise')
+            localStorage.removeItem(name)
             Object.entries({...initialState,...action.payload}).forEach(([key,value])=>{
                 state[key]=value
                 localStorage.setItem(name, JSON.stringify(state))

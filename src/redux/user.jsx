@@ -1,14 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { po } from "../jrx/Util";
+
+
+const name='user'
 const initialState={
     name:null
     ,id:null
-    ,token: null
+    ,token:null
+}
+
+const initialStateWithStore={
+    fontSize:'medium'
+    ,...initialState
+    ,...JSON.parse(localStorage.getItem(name)||'{}')
 }
 
 const userSlice = createSlice({
     name: 'user'
-    ,initialState
+    ,initialState:initialStateWithStore
     ,reducers: Object.entries(initialState).reduce((aco,[key,value])=>{
         aco[`set${key.charAt(0).toUpperCase()}${key.slice(1)}`]=(state, action) => {
             state[key] = action.payload;
@@ -19,10 +28,18 @@ const userSlice = createSlice({
         setState(state, action){
             Object.entries(action.payload).forEach(([key,value])=>state[key]=value)
         }
-        ,reset(state){
-            po('reset user')
-            localStorage.removeItem('user')
-            state=null
+        ,setFontSize(state, action){
+            po('setFontSize',action.payload)
+            state.fontSize=action.payload
+            localStorage.setItem(name, JSON.stringify(state))
+        }
+        ,reset(state, action){
+            po('reset',name,action)
+            localStorage.removeItem(name)
+            Object.entries({...initialState,...action.payload}).forEach(([key,value])=>{
+                state[key]=value
+                localStorage.setItem(name, JSON.stringify(state))
+            })
         }
     })
 });

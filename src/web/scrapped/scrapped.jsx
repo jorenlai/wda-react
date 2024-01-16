@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import JCrud, { ResultPanel } from '../component/JCrud'
+import JCrud, { Description, ResultPanel } from '../component/JCrud'
 import JForm from '../../jrx/JForm'
 
 const StyledScrapped=styled.div`
@@ -8,6 +8,9 @@ const StyledScrapped=styled.div`
 
 export default function Scrapped(){
     return <JCrud>
+        <Description>
+            庫存業務....
+        </Description>
         <ResultPanel
             type={JForm}
         >

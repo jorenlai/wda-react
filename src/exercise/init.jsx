@@ -12,37 +12,56 @@ import { po } from '../jrx/Util'
 
 export default function Init(){
 	const { id,type } = useParams()
-    const navigate=useNavigate()
-    const dispatch = useDispatch()
-    dispatch(userActions.reset())
-    dispatch(exerciseActions.reset({type}))
-    dispatch(adminActions.reset())
-    dispatch(planActions.reset())
-	dispatch(webActions.setThemeName(type))
-	
-	localStorage.removeItem('accessToken')
-	
-	if(type!=='exercise'&&type!=='rehearsal')return
-	
+	const [isValidUser,setIsValidUser]=useState()
+	const exercise = useSelector((state) => state.exercise)
+	// po('Init exercise',exercise)
+	const navigate=useNavigate()
+	const dispatch = useDispatch()
 
+	if(type!=='exercise'&&type!=='rehearsal')return
+	if(exercise.startTime!=null){
+		if(exercise.type!==type || exercise.startTime+exercise.time<Date.now()){//已過期 需更新
+			// po('已過期 需更新+++++++++++++++++++')
+			dispatch(userActions.reset())
+			dispatch(exerciseActions.reset({type}))
+			dispatch(adminActions.reset())
+			dispatch(planActions.reset())
+			dispatch(webActions.setThemeName(type))
+			localStorage.removeItem('accessToken')
+		}else{//未過期 不更新
+			// po('未過期 不更新-------------------')
+		}
+	}else{
+		// po('第一次....................')
+		// dispatch(webActions.setThemeName(type))
+	}
+	
+	
+	
 	return <JPanel
+		className={'init-panel'}
 		get={{
 			url:'/token.json'
 			,autoRun:true
 			,value:{
 				id
 			}
-			,dataFormat(data){
+			,XXXdataFormat(data){
 				po('data',data)
 				return data
 			}
             ,callback(success,res){
 				if(success){
-					po('res',res.data.token)
+					po('success res',res.data.token)
 					localStorage.setItem('accessToken',res.data.token)
 					navigate(`/${type}/ready`)
+				}else{
+					 setIsValidUser(false)
 				}
             }
 		}}
-	/>
+	>{isValidUser===false
+		? <div>無效使用者</div>
+		: <div>進入中...</div>
+	}</JPanel>
 }

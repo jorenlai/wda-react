@@ -5,6 +5,7 @@ import { useSelector , useDispatch } from 'react-redux'
 import { Button, Tabs } from 'antd'
 import { userActions } from '../redux/user'
 import { exerciseActions } from '../redux/exercise'
+import { webActions } from '../redux/web'
 import dayjs from 'dayjs'
 
 import AdministratorApp from './admin'
@@ -24,10 +25,12 @@ export default function  ExerciseApp(){
     const { type,topic} = useParams()
     const dispatch = useDispatch()
     const exercise = useSelector((state) => state.exercise)
+    
+    po('type',type,exercise.type,topic)
 	if(
         (type!=='exercise'&&type!=='rehearsal')
         || (topic!=='anp')
-        || (exercise.type!==type)
+        // || (exercise.type==='exercise' && type==='rehearsal')
     ){
 		return
 	};
@@ -45,10 +48,12 @@ export default function  ExerciseApp(){
                 if(success){
                     const {data:{exercise:{time}}}=res
                     if(exercise.startTime==null && !exercise.completed){
+                        dispatch(webActions.setThemeName(type))
                         dispatch(exerciseActions.setState({
                             startTime:dayjs().valueOf()
                             ,timeUp:false
                             ,completed:false
+                            ,type
                             ,time
                         }))
                     }else if(exercise.startTime+time<Date.now()){

@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+
     * {
         &::-webkit-scrollbar {
             width: 10px;
@@ -41,7 +42,13 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-
+    .init-panel{
+        align-items: center;
+        flex:1;
+        > div{
+            text-align:center;
+        }
+    }
 
     .exercise{
         flex:1;
@@ -58,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
             xborder:1px solid gray;
         }
 
-        padding:12px 10px;
+        padding:12px 24px;
         display:flex;
         justify-content: space-between;
         align-items: center;
@@ -137,7 +144,7 @@ const GlobalStyle = createGlobalStyle`
 
         .ant-tabs-nav{
             margin-bottom:unset;
-            Xbackground: #575757;
+            background: #383838;
         }
     }
 
@@ -165,7 +172,7 @@ const GlobalStyle = createGlobalStyle`
         }
         .ant-tabs-nav-wrap{
             .ant-tabs-tab{
-                padding: 0px !important;
+                padding: 0 30px !important;
             }
         }
         .ant-tabs-extra-content{
@@ -221,7 +228,7 @@ const GlobalStyle = createGlobalStyle`
 
     .resizer{
         margin-left: 1px;
-        border:3px solid gray;
+        border:4px solid gray;
         border-radius: 100vh 0 0 100vh;
         xmargin:4px 1px;
     }
@@ -420,6 +427,34 @@ const GlobalStyle = createGlobalStyle`
             // }
         }
     }
+
+    button[class^='jr-'],button:not([class]){
+        color:red;
+    }
+
+    body{
+        font-size: ${({theme})=>theme.fontSize};
+    }
+
+    .d1{
+        font-size:80%;
+    }
+    .d2{
+        font-size:90%;
+    }
+    .d3{
+        
+    }
+    .d4{
+        font-size:110%;
+    }
+    .d5{
+        font-size:120%;
+    }
+
+    // div, h1,h2,h3,h4,h5{
+    //     border:1px solid gray;
+    // }
 `
 
 export default GlobalStyle

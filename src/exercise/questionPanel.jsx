@@ -2,7 +2,8 @@ import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components'
 import { useSelector , useDispatch } from 'react-redux'
 import { po } from '../jrx/Util'
-
+import { Button } from 'antd'
+import large from '../theme/large.json'
 
 const QQuestion=({question,keys,qkey,level})=>{
     po('question',question)
@@ -92,6 +93,11 @@ export const findQuestion=(questions,selectedIndex)=>{
 }
 
 const StyledQuestionPanel=styled.div`
+    button{
+        color: ${({theme})=>theme.color};
+        size: ${({theme})=>theme.size};
+    }
+
 
 `
 
@@ -159,14 +165,15 @@ export default function QuestionPanel({doneCallback,value,actions,selectorName})
     const answerOrder=selector.answers.length
 
 
-    return <StyledQuestionPanel className={'question-panel'}>
+    return <StyledQuestionPanel className={'question-panel'} theme={large}>
         <div className={'button-panel'}>
                 {
                     hasSubQ()
                     && <div>
-                        <button onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null || selector.started}>pre</button>
+                        <Button size={'small'} xstyle={{fontSize:'14px'}} onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null || selector.started}>A pre</Button>
                         {currentSub()}
-                        <button onClick={()=>navSub(1)} disabled={!navigable(1)||value==null || selector.started}>next</button>
+                        <Button size={'large'} xstyle={{fontSize:'20px'}} onClick={()=>navSub(1)} disabled={!navigable(1)||value==null || selector.started}>Next</Button>
+                        <Button size={'middle'} xstyle={{fontSize:'18px'}}>middle</Button>
                     </div>
                 }
                 {
