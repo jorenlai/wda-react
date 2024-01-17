@@ -1,0 +1,126 @@
+{
+    "dataSource": [
+        {
+            "id": "C1",
+            "name": "二林基地",
+            "factories": [
+                {
+                    "id": "T4",
+                    "name": "二林",
+                    "sort": 3,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "ES1"
+                }
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B1",
+            "name": "兩湖基地主管基地",
+            "factories": [
+                {
+                    "id": "W22",
+                    "name": "湖北",
+                    "sort": 1,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "QS1"
+                }
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B63",
+            "name": "兩湖基地主管基地",
+            "factories": [
+                {
+                    "id": "W8",
+                    "name": "平湖",
+                    "sort": 4,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "BS1"
+                }
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B61",
+            "name": "兩湖基地副主管基地",
+            "factories": [
+                {
+                    "id": "W22",
+                    "name": "湖北",
+                    "sort": 1,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "QS1"
+                }
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "B62",
+            "name": "兩湖基地副主管基地",
+            "factories": null,
+            "factoryIds": null
+        },
+        {
+            "id": "A1",
+            "name": "江浙基地",
+            "factories": [
+                {
+                    "id": "W1",
+                    "name": "無錫",
+                    "sort": 2,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "ES1"
+                },
+                {
+                    "id": "W8",
+                    "name": "平湖",
+                    "sort": 4,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "BS1"
+                }
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "A17",
+            "name": "江浙基地副主管基地",
+            "factories": [
+                {
+                    "id": "W1",
+                    "name": "無錫",
+                    "sort": 2,
+                    "planVehicles": [],
+                    "productionList": null,
+                    "productionIds": null,
+                    "orderType": "ES1"
+                }
+            ],
+            "factoryIds": null
+        },
+        {
+            "id": "A9",
+            "name": "江浙基地副主管基地",
+            "factories": null,
+            "factoryIds": null
+        }
+    ],
+    "page": {
+        "pageSize": 50,
+        "current": 1,
+        "total": 8
+    }
+}
