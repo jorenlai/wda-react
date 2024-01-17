@@ -36,11 +36,11 @@
     "eject": "react-scripts eject",
 
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b master -d build",
 
-    "build:git": "env-cmd -f .env.git npm run deploy"
+    "build:git": "env-cmd -f .env.git npm run build"
   },
-  "homepage": ".",
+  "homepage": "https://jorenlai.github.io/wda-react",
   "eslintConfig": {
     "extends": [
       "react-app",
