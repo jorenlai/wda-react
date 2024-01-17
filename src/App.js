@@ -1,6 +1,6 @@
 import './App.css'
 import AppProvider from './component/AppProvider'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ExerciseApp from './exercise'
 import ResetApp from './exercise/reset'
 import ReadyApp from './exercise/ready'
@@ -15,6 +15,7 @@ import WebApp from './web'
 function Tmp(){
 	return <div>
 		<a href={'/exercise/init/345-34-4-36-'}>Init</a>
+		<Link to="/exercise/init/345-34-4-36-">Init 2</Link>
 	</div>
 }
 
