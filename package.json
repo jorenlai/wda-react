@@ -12,6 +12,7 @@
     "axios": "^1.6.2",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
+    "env-cmd": "^10.1.0",
     "gh-pages": "^6.1.1",
     "html-to-image": "^1.11.11",
     "leaflet": "^1.9.4",
@@ -33,10 +34,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+
+    "build:git": "env-cmd -f .env.git npm run deploy"
   },
-  "homepage": "https://jorenlai.github.io/wda-react",
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",
