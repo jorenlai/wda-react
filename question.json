@@ -1,0 +1,75 @@
+[
+    {
+        "question":"Demo: Building a Complex UI with Multiple Resizable Panels."
+        ,"questions":[
+            {
+                "question":"Building a complex UI with multiple resizable panels involves combining all the concepts we've discussed so far. You can create a PanelGroup with multiple Panel components, use the PanelResizeHandle component to allow the user to resize the panels, and use props to customize the behavior and appearance of the panels."
+                
+            }
+            ,{
+                "question":"In this example, we create a horizontal group of three resizable panels. The sizes of the panels are stored in the state using the useState hook, and they are updated when the panels are resized using the onLayout prop of the PanelGroup component. Each panel has a default size that is set to its corresponding size in the state."
+            }
+
+        ]
+    }
+    ,{
+        "question":"Q2"
+    }
+    ,{
+        "question":"Q3"
+        ,"questions":[
+            {
+                "question":"3 1"
+            }
+            ,{
+                "question":"3 2"
+            }
+            ,{
+                "question":"3 3"
+            }
+            ,{
+                "question":"3 4"
+            }
+        ]
+    }
+    ,{
+        "question":"Q4"
+        ,"questions":[
+            {
+                "question":"4 1"
+            }
+            ,{
+                "question":"4 2"
+            }
+            ,{
+                "question":"4 3"
+            }
+            ,{
+                "question":"4 4"
+            }
+            ,{
+                "question":"4 5"
+            }
+        ]
+    }
+    ,{
+        "question":"Q5"
+        ,"questions":[
+            {
+                "question":"5 1"
+            }
+            ,{
+                "question":"5 2"
+            }
+            ,{
+                "question":"5 3"
+            }
+            ,{
+                "question":"5 4"
+            }
+            ,{
+                "question":"5 5"
+            }
+        ]
+    }    
+]
