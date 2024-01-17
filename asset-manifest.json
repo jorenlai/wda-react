@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wda-react/static/css/main.080075ea.css",
-    "main.js": "/wda-react/static/js/main.33b6097a.js",
+    "main.js": "/wda-react/static/js/main.65566a96.js",
     "static/js/787.b7c4768d.chunk.js": "/wda-react/static/js/787.b7c4768d.chunk.js",
     "index.html": "/wda-react/index.html",
     "main.080075ea.css.map": "/wda-react/static/css/main.080075ea.css.map",
-    "main.33b6097a.js.map": "/wda-react/static/js/main.33b6097a.js.map",
+    "main.65566a96.js.map": "/wda-react/static/js/main.65566a96.js.map",
     "787.b7c4768d.chunk.js.map": "/wda-react/static/js/787.b7c4768d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.080075ea.css",
-    "static/js/main.33b6097a.js"
+    "static/js/main.65566a96.js"
   ]
 }
