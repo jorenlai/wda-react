@@ -20,7 +20,7 @@ function Tmp(){
 
 function App() {
 	return <AppProvider>
-		<BrowserRouter>
+		<BrowserRouter basename={'/wda-react'}>
 			<Routes>
 				<Route path="*" element={<Tmp/>}/>
 				<Route path="/map" element={<TestApp/>}/>
