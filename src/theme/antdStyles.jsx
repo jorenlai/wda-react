@@ -5,8 +5,20 @@ const AntdStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    .ant-tabs{
+        font-size:100%;
+    }
+
     .ant-tabs-tab{
         color: white;
+        margin: unset !important;
+        font-size: unset !important;
+        font-weight: bold;
+    }
+
+    .ant-tabs-tab-btn{
+        xxfont-size: ${({theme})=>theme.fontSize}  !important;
+        xxfont-weight: bold;
     }
     .ant-tabs-content{
         color: white;

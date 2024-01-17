@@ -4,6 +4,7 @@ import { useSelector , useDispatch } from 'react-redux'
 import Select from '../jrx/ISelect'
 import { po } from '../jrx/Util'
 import SizeSelector from '../component/SizeSelector'
+import Button from '../component/Button'
 
 const StyledControllPanel=styled.div`
 `
@@ -42,6 +43,7 @@ export default function ControllPanel({value, actions,selectorName,...props}){
             <button  disabled={selectedQuestion===0 || value==null || selector.started} onClick={()=>nav(-1)}>
                 Pre
             </button>
+            <div>
             <Select showBlank={false} disabled={selector.started}
                 options={
                     Array(value?.level1QKeyList?.length??0).fill()
@@ -54,6 +56,7 @@ export default function ControllPanel({value, actions,selectorName,...props}){
                 onChange={selectQuestion}
                 value={selectedQuestion}
             />
+            </div>
             <button disabled={selectedQuestion+1===value?.level1QKeyList?.length || value==null || selector.started}onClick={()=>nav(1)}>
                 Next
             </button>

@@ -54,7 +54,7 @@ export default function PlanApp(){
 
         <ControllPanel value={value} actions={planActions} selectorName={'plan'}/>
         <PanelGroup direction="horizontal">
-            <Panel minSize={10} defaultSize={25}>
+            <Panel minSize={10} defaultSize={25}  style={{display:'flex'}}>
                 <QuestionPanel value={value} actions={planActions} selectorName={'plan'} doneCallback={doneCallback}/>
             </Panel>    
             <PanelResizeHandle className={'resizer'}/>

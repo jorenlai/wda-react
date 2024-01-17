@@ -170,10 +170,10 @@ export default function QuestionPanel({doneCallback,value,actions,selectorName})
                 {
                     hasSubQ()
                     && <div>
-                        <Button size={'small'} xstyle={{fontSize:'14px'}} onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null || selector.started}>A pre</Button>
+                        <button xsize={'small'} xstyle={{fontSize:'14px'}} onClick={()=>navSub(-1)} disabled={!navigable(-1)||value==null || selector.started}>A pre</button>
                         {currentSub()}
-                        <Button size={'large'} xstyle={{fontSize:'20px'}} onClick={()=>navSub(1)} disabled={!navigable(1)||value==null || selector.started}>Next</Button>
-                        <Button size={'middle'} xstyle={{fontSize:'18px'}}>middle</Button>
+                        <button xsize={'large'} xstyle={{fontSize:'20px'}} onClick={()=>navSub(1)} disabled={!navigable(1)||value==null || selector.started}>Next</button>
+                        <button xsize={'middle'} xstyle={{fontSize:'18px'}}>middle</button>
                     </div>
                 }
                 {

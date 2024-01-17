@@ -12,13 +12,18 @@ import Init from './exercise/init'
 import Authentication from './component/Authentication'
 import WebApp from './web'
 
-
+function Tmp(){
+	return <div>
+		<a href={'/exercise/init/345-34-4-36-'}>Init</a>
+	</div>
+}
 
 function App() {
 	return <AppProvider>
 		<BrowserRouter>
 			<Routes>
-				<Route path="/test/*" element={<TestApp/>}/>
+				<Route path="*" element={<Tmp/>}/>
+				<Route path="/map" element={<TestApp/>}/>
 				<Route path="/web/*" element={<WebApp/>}/>
 				<Route path="/plan/*" element={<PlanForm/>}/>
 

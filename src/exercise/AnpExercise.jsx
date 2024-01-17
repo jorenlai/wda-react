@@ -9,12 +9,11 @@ import AdministratorApp from './admin';
 import { useEffect, useState } from 'react';
 
 export default function AnpExercise(){
-    po('AnpExercise pppppppppppppppppppppppp')
     const p=useParams()
     const navigate = useNavigate()
 
 
-    const operations = <div><Button>Done</Button></div>;
+    const operations = <div><button>Done</button></div>;
     const items = [
         {
             key: 'admin'

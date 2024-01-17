@@ -98,6 +98,7 @@ const GlobalStyle = createGlobalStyle`
         background: black;
         
         .header{
+            font-size:150%;
             flex-basis: 42px;
             border-radius:0 0 ${({theme})=>theme.pRadius} ${({theme})=>theme.pRadius};
             padding: ${({theme})=>theme.pMargin};
@@ -153,13 +154,8 @@ const GlobalStyle = createGlobalStyle`
         border: var(--border-width) solid red;
         overflow: hidden;
 
-        .ant-tabs-tab{
-            color: white;
-        }
-        .ant-tabs-tab-btn{
-            font-size: large;
-            font-weight: bold;
-        }
+
+
         .ant-tabs-content{
             height: 100%;
 
@@ -172,7 +168,8 @@ const GlobalStyle = createGlobalStyle`
         }
         .ant-tabs-nav-wrap{
             .ant-tabs-tab{
-                padding: 0 30px !important;
+                color: white;
+                padding: 10px 30px !important;
             }
         }
         .ant-tabs-extra-content{
